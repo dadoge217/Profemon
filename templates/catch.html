@@ -1,3 +1,5 @@
+{% extends 'include/catch.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,12 +11,31 @@
   <body>
     <div class="big-box isGrid">
       <div class="head">
-        <h1>Title</h1>
+        <div class="info-box">
+          <div class="info-image">
+            <img src="" alt="Picture of ">
+          </div>
+          <div class="info-right">
+            <h1>Profemon Name</h1>
+            <div class="info-stats">
+              stats
+            </div>
+          </div>
+        </div>
       </div>
       <div class="body">
-        <p>body</p>
+        <div class="left-split">
+          <div class="catch-log">
+            <p>log from catch</p>
+          </div>
+        </div>
+        <div class="right-split">
+          <div class="catch-options">
+            <p>options</p>
+          </div>
+        </div>
       </div>
     </div>
   </body>
 </html>
-
+{% endblock %}

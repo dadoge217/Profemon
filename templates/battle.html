@@ -1,3 +1,5 @@
+{% extends 'include/battle.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,12 +10,35 @@
   </head>
   <body>
     <div class="big-box isGrid">
-      <div class="head">
-        <h1>Title</h1>
-      </div>
-      <div class="body">
-        <p>body</p>
+      <div class="body-split">
+        <div class="left-split">
+          <div class="battle-box">
+            <div class="your-prof">
+              <h2>Your Profemon</h2>
+              <img class="image" alt="Picture of ">
+            </div>
+            <div class="opp-prof">
+              <h2>VS. Profemon</h2>
+              <img class="image" alt="Picture of ">
+            </div>
+          </div>
+          <div class="your-moves">
+            <h2>Your Moves</h2>
+            <div class="move">move 1</div>
+            <div class="move">move 2</div>
+            <div class="move">move 3</div>
+          </div>
+        </div>
+        <div class="right-split">
+          <div class="battle-log">
+            Battle log
+            <div class="log">
+              log stuff
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
 </html>
+{% endblock %}

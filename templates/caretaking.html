@@ -1,3 +1,5 @@
+{% extends 'include/caretaking.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,12 +11,36 @@
   <body>
     <div class="big-box isGrid">
       <div class="head">
-        <h1>Title</h1>
-      </div>
-      <div class="body">
-        <p>body</p>
+        <div class="info-box">
+          <div class="info-image">
+            <img src="" alt="Picture of ">
+          </div>
+          <div class="info-right">
+            <h1>Profemon Name</h1>
+            <div class="info-stats">
+              stats
+            </div>
+            <div class="affection">
+              <p>affection:</p>
+              <div class="affection-meter">
+              </div>
+              <div class="care-buttons">
+                <div class="pet-button">pet</div>
+                <div class="feed-button">feed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stats">
+          <p>ATK: </p>
+          <p>DEF: </p>
+          <p>HP: </p>
+          <p>SpATK: </p>
+          <p>SpDEF: </p>
+          <p>SPD: </p>
+        </div>
       </div>
     </div>
   </body>
 </html>
-
+{% endblock %}

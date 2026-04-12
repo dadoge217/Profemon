@@ -1,3 +1,5 @@
+{% extends 'include/main-info.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,12 +11,23 @@
   <body>
     <div class="big-box isGrid">
       <div class="head">
-        <h1>Title</h1>
+        <h1 class="title">Profedex</h1>
+        <div class="subhead">
+          <h2 class="subtitle">search</h2>
+        </div>
       </div>
       <div class="body">
         <p>body</p>
+        <div class="image-bar">
+          <img class="image" src="" alt="Picture of "> 
+          <img class="image" src="" alt="Picture of ">
+          <img class="image" src="" alt="Picture of "> 
+          <img class="image" src="" alt="Picture of "> 
+          <img class="image" src="" alt="Picture of ">
+          <img class="image" src="" alt="Picture of "> 
+        </div>
       </div>
     </div>
   </body>
 </html>
-
+{% endblock %}
