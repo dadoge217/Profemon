@@ -22,6 +22,8 @@ dbCurser.execute("""
                  
                 ('Maha', 'Confusion', 'Flamethrower', 'Gameover', '64', '85', '60', '65'),
                 ('Allouzi', 'Confusion', 'Flamethrower', 'Gameover', '80', '105', '90', '70'),
-                 
+
+                ('Deanna', 'Slap', 'Flamethrower', 'Gameover', '40', '45', '40', '40'),
+                ('Burret-Peffer', 'Slap', 'Flamethrower', 'Gameover', '65', '70', '60', '65'),
                 
 """)
