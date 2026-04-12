@@ -117,14 +117,78 @@
 }
 
 /* SPECIFIC ELEMENTS */
+
 .type{
+    /* type buttons */
     width: 100px;
 }
 .navbar{
+    /* page navigation bar */
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     border: var(--white) 1px;
 }
-.isGrid{display:grid;}
-.big-box{}
-.head{}
-.body{}
+.isGrid{display:grid;} /* for grid elements*/
+.big-box{
+    /* page content */
+}
+.head{
+    /* top half of page content */
+}
+.body{
+    /* bottom half of page content */
+}
+.body-split{
+    /* vertical split body for team page */
+    grid-template-columns: 1fr 2fr;
+}
+.body-split-rev{
+    /* vertical split body for battle page */
+    grid-template-columns:  2fr 1fr;
+}
+.left-split{
+    /* left side (party)/(battle) */
+}
+.right-split{
+    /*  right side (box)/(battle log) */
+}
+.title-box{
+    /* welcome to profemon box, index */
+}
+.body-box{
+    /* body for index */
+}
+.title{
+    /* profedex title */
+}
+.subhead{
+    /* container for searchbar */
+}
+.subtitle{
+    /* h2 subtitle */
+}
+.image-bar{
+    /* image bar , */
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.image{
+    /* images */
+}
+.vs{
+    /* user vs user box */
+}
+.button{
+    /* expand buttons */
+}
+.battle-prof{
+    /* prof images in battle page */
+}
+.move{
+    /* moves */
+}
+.info-box{
+    /* catch page info */
+    grid-template-columns: 1fr 3fr;
+}
+.affection-meter{
+    /* affection meter */
+}
