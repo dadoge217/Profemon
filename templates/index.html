@@ -1,3 +1,5 @@
+{% extends 'include/index.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,12 +11,16 @@
   <body>
     <div class="big-box isGrid">
       <div class="head">
-        <h1>Title</h1>
+        <div class="title-box">
+          <h1>Welcome to Profemon</h1>
+        </div>
       </div>
       <div class="body">
-        <p>body</p>
+        <div class="body-box">
+          <p>body</p>
+        </div>
       </div>
     </div>
   </body>
 </html>
-
+{% endblock %}

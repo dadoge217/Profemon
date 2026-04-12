@@ -1,3 +1,5 @@
+{% extends 'include/team-builder.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,13 +10,19 @@
   </head>
   <body>
     <div class="big-box isGrid">
-      <div class="head">
-        <h1>Title</h1>
-      </div>
-      <div class="body">
-        <p>body</p>
+      <div class="body-split">
+        <div class="left-split">
+          <div class="title-box">
+            Team
+          </div>
+        </div>
+        <div class="right-split">
+          <div class="title-box">
+            Caught Profemon
+          </div>
+        </div>
       </div>
     </div>
   </body>
 </html>
-
+{% endblock %}
