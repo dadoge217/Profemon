@@ -1,8 +1,10 @@
 from random import randint
 from profs import Profemon, Move
 
-types = ["Normal","Fire","Electric","Grass","Ice","Fighting","Poison","Ground","Flying","Psychic","Bug","Rock","Ghost","Dragon","Dark","Steel","Fairy"]
+types = ["Normal","Fire","Water","Electric","Grass","Ice","Fighting","Poison","Ground","Flying","Psychic","Bug","Rock","Ghost","Dragon","Dark","Steel","Fairy"]
 profs = []
+dmoves = ["Slap","Flamethrower","Bubble Burst","Thunderbolt","Razor Leaf","Icicle","Mega Punch","Sludge","Earth Shot","Skydive","Confusion","Slither","Rock Throw","Haunt","Dragon Claw","Bite","Iron Head","Moon Beam"]
+smoves = ["Tangent","Insult","Good Boy","Gameover"]
 
 typeChart = [[1,1,1,1,1,1,1,1,1,1,1,1,0.5,0,1,1,0.5,1],
              [1,0.5,0.5,1,2,2,1,1,1,1,1,2,0.5,1,0.5,1,2,1],
@@ -78,7 +80,7 @@ def isEffective(aType, dType):
     return mult
 
 def damageCalc(prof1, move, prof2):
-    damage = (((((2 * prof1.level) / 5) + 2) * move.power * (prof1.stats.attack / prof2.stats.defense)) / 50) + 2
+    damage = (((((2 * 25) / 5) + 2) * move.power * (prof1.attack / prof2.defense)) / 50) + 2
 
     #check STAB
     if move.type == prof1.type:
