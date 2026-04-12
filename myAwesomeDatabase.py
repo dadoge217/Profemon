@@ -35,5 +35,5 @@ dbCurser.execute("""
                 ('Hassan', 'Skydive', 'Bubble Burst', 'Bore', 63', '60', '50', '71'),
                 ('Peyravi', 'Skydive', 'Bubble Burst', 'Bore', 83', '80', '75', '101'),
                  
-                ('Rowan', 'Dragon Claw', 'Bubble Burst', 'Bore', 63', '60', '50', '71'),
+                ('Rowan', 'Dragon Claw', 'Bubble Burst', 'Bore', 61', '84', '70', '70'),
 """)
