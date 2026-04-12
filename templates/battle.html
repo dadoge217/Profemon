@@ -1,5 +1,3 @@
-{% extends 'include/layput.html' %}
-{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,6 +7,8 @@
     <link href="style.css" rel="stylesheet" type="text/css" media="all">
   </head>
   <body>
+{% extends 'include/layout.html' %}
+{% block content %}
     <div class="big-box isGrid">
       <div class="body-split">
         <div class="left-split">
@@ -39,6 +39,7 @@
         </div>
       </div>
     </div>
+    {% endblock %}
   </body>
 </html>
-{% endblock %}
+
