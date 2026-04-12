@@ -42,6 +42,21 @@
 .fairytype{     background: linear-gradient(0deg,rgba(250, 179, 255, 1) 0%, rgba(209, 10, 136, 1) 100%);}
 /* TYPES */
 /* FONTS */
+.fstitle{
+    font-size: 78px;
+}
+.fsbigger{
+    font-size: 64;
+}
+.fslarge{
+    font-size: 39px;
+}
+.fsmed{
+    font-size: 32px;
+}
+.fssmall{
+    font-size: 24px;
+}
 .fcwhite{
     color: var(--white);
 }
@@ -102,8 +117,12 @@
 }
 
 /* SPECIFIC ELEMENTS */
+.type{
+    width: 100px;
+}
 .navbar{
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    border: var(--white) 1px;
 }
 .isGrid{display:grid;}
 .big-box{}
