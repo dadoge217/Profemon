@@ -7,10 +7,10 @@
     --white:        #E6EDF1;
     --red:          #E39696;
     --yellow:       #EBD49C;
-    --redcheck:     url("../assets/images/tile_redcheck.png");
-    --yellowcheck:  url("../assets/images/tile_yellowcheck.png");
-    --darkgraygrid: url("../assets/images/tile_graygrid.png");
-    --darkbluegrid: url("../assets/images/tile_bluegrid.png");
+    --redcheck:     url("https://raw.githubusercontent.com/dadoge217/Profemon/refs/heads/main/assets/images/tile_redcheck.png");
+    --yellowcheck:  url("https://raw.githubusercontent.com/dadoge217/Profemon/refs/heads/main/assets/images/tile_yellowcheck.png");
+    --darkgraygrid: url("https://raw.githubusercontent.com/dadoge217/Profemon/refs/heads/main/assets/images/tile_graygrid.png");
+    --darkbluegrid: url("https://raw.githubusercontent.com/dadoge217/Profemon/refs/heads/main/assets/images/tile_bluegrid.png");
 
     /* SIZES */
     --checkbgsize:  2000%;
@@ -125,6 +125,6 @@
     border: var(--white) 1px;
 }
 .isGrid{display:grid;}
-.big-box{}
+.big-box{width:100%;}
 .head{}
 .body{}
