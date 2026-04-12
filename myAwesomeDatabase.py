@@ -23,7 +23,17 @@ dbCurser.execute("""
                 ('Maha', 'Confusion', 'Flamethrower', 'Gameover', '64', '85', '60', '65'),
                 ('Allouzi', 'Confusion', 'Flamethrower', 'Gameover', '80', '105', '90', '70'),
 
-                ('Deanna', 'Slap', 'Flamethrower', 'Gameover', '40', '45', '40', '40'),
-                ('Burret-Peffer', 'Slap', 'Flamethrower', 'Gameover', '65', '70', '60', '65'),
-                
+                ('Deanna', 'Slap', 'Confusion', 'Record', '65', '70', '60', '65'),
+                ('Burret-Peffer', 'Slap', 'Confusion', 'Record', 75', '90', '61', '100'),
+                 
+                ('Javed', 'Earth Shot', 'Mega Punch', 'Bore', 59', '66', '70', '35'),
+                ('Khan', 'Earth Shot', 'Mega Punch', 'Bore', 99', '86', '110', '40'),
+                 
+                ('Qiang', 'Haunt', 'Icicle', 'Ignore', 60', '60', '85', '85'),
+                ('Guan', 'Haunt', 'Icicle', 'Ignore', 60', '60', '105', '105'),
+                 
+                ('Hassan', 'Skydive', 'Bubble Burst', 'Bore', 63', '60', '50', '71'),
+                ('Peyravi', 'Skydive', 'Bubble Burst', 'Bore', 83', '80', '75', '101'),
+                 
+                ('Rowan', 'Dragon Claw', 'Bubble Burst', 'Bore', 61', '84', '70', '70'),
 """)

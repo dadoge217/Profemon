@@ -16,3 +16,10 @@ class Move:
         self.type = type
         self.power = power
         self.status = status
+
+class Trainer:
+    def __init__(self, name, prof1, prof2, prof3):
+        self.name = name
+        self.prof1 = prof1
+        self.prof2 = prof2
+        self.prof2 = prof3
