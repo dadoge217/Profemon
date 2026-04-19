@@ -30,3 +30,7 @@ def catch():
 @app.route('/caretaking')
 def caretaking():
     return render_template('caretaking.html')
+
+@app.route('/forfeit/<profId>',methods=['GET'])
+def forfeit_route(profId):
+    print(f"Professor ID: {profId}")
