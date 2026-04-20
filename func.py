@@ -1,5 +1,5 @@
 from random import randint
-from profs import Profemon, Move
+from profs import Profemon, Move, player
 
 types = ["Normal","Fire","Water","Electric","Grass","Ice","Fighting","Poison","Ground","Flying","Psychic","Bug","Rock","Ghost","Dragon","Dark","Steel","Fairy"]
 profs = []
@@ -97,3 +97,64 @@ def damageCalc(prof1, move, prof2):
         damage = damage * 1.5
     
     return damage
+
+def campaignBattle(trainer):
+    playerProf1PO = False
+    playerProf2PO = False
+    playerProf3PO = False
+    trainerProf1PO = False
+    trainerProf2PO = False
+    trainerProf3PO = False
+    winner = ""
+
+    currentTurn = 0
+    battleEnded = False
+    while(not battleEnded):
+        currentTurn += 1
+        botMove(trainer)
+        #Do player turn
+        if(player.currentProf.move == "swap"):
+            continue
+        if(trainer.currentProf.move == "swap"):
+            continue
+        if(player.currentProf.speed > trainer.currentProf.speed):
+            if player.currentProf.move != "swap":
+                damageCalc(player.currentProf, player.currentProf.move, trainer.currentProf)
+            if trainer.currentProf.move != "swap":
+                damageCalc(player.currentProf, trainer.currentProf.move, trainer.currentProf)
+        if(trainer.currentProf.speed > player.currentProf.speed):
+            if(trainer.currentProf.move != "swap"):
+                damageCalc(trainer.currentProf, trainer.currentProf.move, player.currentProf)
+            if player.currentProf.move != "swap":
+                damageCalc(player.currentProf, player.currentProf.move, trainer.currentProf)
+        if(playerProf1PO and playerProf2PO and playerProf3PO):
+            battleEnded = True
+            winner = "Trainer"
+        elif(trainerProf1PO and trainerProf2PO and trainerProf3PO):
+            battleEnded = True
+            winner = "Player"
+
+
+
+# class Move:
+#     def __init__(self, type, power, status = ""):
+#         self.type = type
+#         self.power = power
+#         self.status = status
+def botMove(trainer):
+    lowestDamage = 1
+    if(isEffective(player.currentProf.type, trainer.currentProf.type) > 1):
+        if(isEffective(player.currentProf.type, trainer.prof1.type) <= lowestDamage):
+            profSwitch = trainer.prof1
+            lowestDamage = isEffective(player.currentProf.type, trainer.prof1.type)
+        if(isEffective(player.currentProf.type, trainer.prof2.type) <= lowestDamage):
+            profSwitch = trainer.prof2
+            lowestDamage = isEffective(player.currentProf.type, trainer.prof2.type)
+        if(isEffective(player.currentProf.type, trainer.prof3.type) <= lowestDamage):
+            profSwitch = trainer.prof3
+        trainer.currentProf = profSwitch
+        return "swap"
+    if(isEffective(trainer.currentProf.move1, player.currentProf.type) > 1):
+        return trainer.currentProf.move1
+    elif(isEffective(trainer.currentProf.move2, player.currentProf.type) > 1):
+        return trainer.currentProf.move2
