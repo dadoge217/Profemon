@@ -7,10 +7,10 @@
     --white:        #E6EDF1;
     --red:          #E39696;
     --yellow:       #EBD49C;
-    --redcheck:     url("https://github.com/dadoge217/Profemon/blob/main/static/assets/images/tile_redcheck.png");
-    --yellowcheck:  url("https://github.com/dadoge217/Profemon/blob/main/static/assets/images/tile_yellowcheck.png");
-    --darkgraygrid: url("https://github.com/dadoge217/Profemon/blob/main/static/assets/images/tile_graygrid.png");
-    --darkbluegrid: url("https://github.com/dadoge217/Profemon/blob/main/static/assets/images/tile_bluegrid.png");
+    --redcheck:     url("https://raw.githubusercontent.com/dadoge217/Profemon/refs/heads/main/static/assets/images/tile_redcheck.png");
+    --yellowcheck:  url("https://raw.githubusercontent.com/dadoge217/Profemon/refs/heads/main/static/assets/images/tile_yellowcheck.png");
+    --darkgraygrid: url("https://raw.githubusercontent.com/dadoge217/Profemon/refs/heads/main/static/assets/images/tile_graygrid.png");
+    --darkbluegrid: url("https://raw.githubusercontent.com/dadoge217/Profemon/refs/heads/main/static/assets/images/tile_bluegrid.png");
 
     /* SIZES */
     --checkbgsize:  2000%;
