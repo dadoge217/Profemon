@@ -5,46 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Builder</title>
-    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ url_for('static', filename='css/archie-style.css') }}" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
   </head>
   <body class="bggraygrid">
     {% extends 'include/layout.html' %}
 {% block content %}
     <div class="big-box isGrid">
       <div class="body-split">
-        <div class="left-split bgyellowcheck round">
-          <div class="title-box round bgwhite">
-            Team
-          </div>
-          <div class="member-box bglightgray round">
-            <div class="image">
-              <img src="" alt="your team member here">
-            </div>
-            <div class="member-stats">
-              <p>stats</p>
+        <div class="left-split bgyellowcheck round dsdarkgray">
+          <div class="title-box round bgwhite center dsred">
+            <div class="fsmed dslightergray fcdarkgray">
+              Team
             </div>
           </div>
-          <div class="member-box bglightgray round">
-            <div class="image round">
-              <img src="" alt="your team member here">
+          {% for (profemon) in (team) %}
+          <div class="member-box bglightgray round dsred">
+            <div class="image round dsdarkgray">
+              <img src="{{image source}}" alt="your team member here">
             </div>
-            <div class="member-stats">
-              <p>stats</p>
+            <div class="member-stats fcwhite dsdarkgray">
+              <div class="fssmall center">
+                  {{Name}}
+              </div>
+              <div class="type round center {{type}}type folblack bddarkgray"> {{type}}</div>
             </div>
           </div>
+          {% endfor %}
         </div>
-        <div class="right-split bglightblue round">
-          <div class="title-box round bgwhite">
-            Caught Profemon
-          </div>
-          <div class="member-box bglightgray round">
-            <div class="image round">
-              <img src="" alt="your team member here">
-            </div>
-            <div class="member-stats">
-              <p>stats</p>
+        <div class="right-split bglightblue round dsdarkgray">
+          <div class="title-box round bgwhite center dsblue">
+            <div class="fsmed dslightergray fcdarkgray">
+              Caught Profemon
             </div>
           </div>
+          <div class="caught-mons">
+            {%for (profemon) in (data) %}
+              <div class="member-box bglightgray round dsblue">
+                <div class="image round dsdarkgray">
+                  <img src="" alt="your team member here">
+                </div>
+                <div class="member-stats fcwhite dsdarkgray">
+                  <div class="fssmall center">
+                      {{Name}}
+                  </div>
+                  <div class="type round center {{type}}type folblack bddarkgray"> {{type}}</div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          
         </div>
       </div>
     </div>

@@ -1,0 +1,35 @@
+.body-split{
+    display:inherit;
+    grid-template-columns: 1fr 2fr;
+    gap: 2em;
+    padding: 0.5em;
+}
+.left-split{
+    padding: 0.5em;
+    width: auto;
+}
+.right-split{
+    padding: 0.5em;
+    width:auto;
+}
+.title-box{
+    padding: 0.5em;
+}
+.member-box{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+.caught-mons{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.type{
+    box-sizing:border-box;
+    display:grid;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    width: 100%;
+    margin: 0.5ch;
+}

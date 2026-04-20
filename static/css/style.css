@@ -4,6 +4,7 @@
     --lightblue:    #74ABB4;
     --darkgray:     #313537;
     --lightgray:    #585E62;
+    --lightergray:  #B9C3C9;
     --white:        #E6EDF1;
     --red:          #E39696;
     --yellow:       #EBD49C;
@@ -128,6 +129,9 @@
 /* DROP SHADOW */
 .dsblue{
     filter: drop-shadow(0px 4px 0px var(--darkblue));
+}
+.dslightergray{
+    filter: drop-shadow(0px 4px 0px var(--lightergray));
 }
 .dslightgray{
     filter: drop-shadow(0px 4px 0px var(--lightgray));
