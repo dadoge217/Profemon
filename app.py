@@ -31,6 +31,6 @@ def catch():
 def caretaking():
     return render_template('caretaking.html')
 
-@app.route('/battleTurn', methods = ['POST'])
-def battleTurn():
-    return "p"
+@app.route('/forfeit/<profId>',methods=['GET'])
+def forfeit_route(profId):
+    print(f"Professor ID: {profId}")

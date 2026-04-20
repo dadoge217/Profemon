@@ -6,35 +6,39 @@
     <title>Battle</title>
     <link href="style.css" rel="stylesheet" type="text/css" media="all">
   </head>
-  <body>
+  <body class="bgbluegrid">
 {% extends 'include/layout.html' %}
 {% block content %}
     <div class="big-box isGrid">
       <div class="body-split">
         <div class="left-split">
-          <div class="battle-box">
+          <div class="battle-box round bgwhite">
             <div class="your-prof">
               <h2>Your Profemon</h2>
-              <img class="image" alt="Picture of ">
+              <img class="image round" alt="Picture of ">
             </div>
             <div class="opp-prof">
               <h2>VS. Profemon</h2>
-              <img class="image" alt="Picture of ">
+              <img class="image round" alt="Picture of ">
             </div>
           </div>
-          <div class="your-moves">
+          <div class="your-moves bgwhite round">
             <h2>Your Moves</h2>
-            <div class="move">move 1</div>
-            <div class="move">move 2</div>
-            <div class="move">move 3</div>
+            <div class="move round">move 1</div>
+            <div class="move round">move 2</div>
+            <div class="move round">move 3</div>
           </div>
         </div>
         <div class="right-split">
-          <div class="battle-log">
+          <div class="battle-log bgwhite round">
             Battle log
             <div class="log">
               log stuff
             </div>
+          </div>
+          <div class="options bgwhite round">
+            options
+            <button class="opt-button">Forfeit</button>
           </div>
         </div>
       </div>
