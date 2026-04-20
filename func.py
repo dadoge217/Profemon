@@ -105,12 +105,12 @@ def campaignBattle(trainer):
     trainerProf1PO = False
     trainerProf2PO = False
     trainerProf3PO = False
-    
-    playerProf = ""
+    winner = ""
 
-    currentTurn = 1
+    currentTurn = 0
     battleEnded = False
     while(not battleEnded):
+        currentTurn += 1
         botMove(trainer)
         #Do player turn
         if(player.currentProf.move == "swap"):
@@ -127,6 +127,13 @@ def campaignBattle(trainer):
                 damageCalc(trainer.currentProf, trainer.currentProf.move, player.currentProf)
             if player.currentProf.move != "swap":
                 damageCalc(player.currentProf, player.currentProf.move, trainer.currentProf)
+        if(playerProf1PO and playerProf2PO and playerProf3PO):
+            battleEnded = True
+            winner = "Trainer"
+        elif(trainerProf1PO and trainerProf2PO and trainerProf3PO):
+            battleEnded = True
+            winner = "Player"
+
 
 
 # class Move:
@@ -134,7 +141,7 @@ def campaignBattle(trainer):
 #         self.type = type
 #         self.power = power
 #         self.status = status
-def botMove(trainer, playerProf):
+def botMove(trainer):
     lowestDamage = 1
     if(isEffective(player.currentProf.type, trainer.currentProf.type) > 1):
         if(isEffective(player.currentProf.type, trainer.prof1.type) <= lowestDamage):

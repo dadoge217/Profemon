@@ -30,3 +30,7 @@ def catch():
 @app.route('/caretaking')
 def caretaking():
     return render_template('caretaking.html')
+
+@app.route('/battleTurn', methods = ['POST'])
+def battleTurn():
+    return "p"
