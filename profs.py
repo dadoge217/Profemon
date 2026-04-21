@@ -1,10 +1,10 @@
 class Profemon:
-    def __init__(self, name, move1, move2, move3, stats, hp, attack, defense, speed, img=""):
+    def __init__(self, name, type, move1, move2, move3, hp, attack, defense, speed, img):
         self.name = name
+        self.type = type
         self.move1 = move1
         self.move2 = move2
         self.move3 = move3
-        self.stats = stats
         self.HP = hp
         self.attack = attack
         self.defense = defense
@@ -12,7 +12,7 @@ class Profemon:
         self.img = img
 
 class Move:
-    def __init__(self, type, name, power, status = ""):
+    def __init__(self, name, type, power, status = ""):
         self.type = type
         self.name = name
         self.power = power

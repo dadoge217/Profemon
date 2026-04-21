@@ -17,42 +17,14 @@
       <div class="body center">
         <p class="fslarge fcwhite foldarkblue dsblue">Popular Pages</p>
         <div class="image-bar isGrid">
-          <a class="dex-link" href="">
+          {% for prof in data %}
+          <a class="dex-link" href="/prof?prof={{prof.name}}">
             <div class="image-box">
-              <img class="image bddarkgray round" src="{{ url_for('static', filename='assets/images/base/charlie.jpg') }}" alt="Picture of me">
-              <p class="fssmall fcwhite foldarkblue dsblue">image 1 caption</p>
+              <img class="image bddarkgray round" src="{{ url_for('static', filename=prof.img) }}" alt="Profemon">
+              <p class="fssmall fcwhite foldarkblue dsblue">{{ prof.name }}</p> 
             </div>
           </a>
-          <a class="dex-link" href="">
-            <div class="image-box">
-              <img class="image bddarkgray round" src="{{ url_for('static', filename='assets/images/base/charlie.jpg') }}" alt="Picture of me">
-              <p class="fssmall  fcwhite foldarkblue dsblue">image 2 caption</p> 
-            </div>
-          </a>
-          <a class="dex-link" href="">
-          <div class="image-box">
-            <img class="image bddarkgray round" src="{{ url_for('static', filename='assets/images/base/charlie.jpg') }}" alt="Picture of me">
-            <p class="fssmall  fcwhite foldarkblue dsblue">image 3 caption</p> 
-          </div>
-          </a>
-          <a class="dex-link" href="">
-            <div class="image-box">
-              <img class="image bddarkgray round" src="{{ url_for('static', filename='assets/images/base/charlie.jpg') }}" alt="Picture of me">
-              <p class="fssmall fcwhite foldarkblue dsblue">image 4 caption</p> 
-            </div>
-          </a>
-          <a class="dex-link" href="">
-            <div class="image-box">
-              <img class="image bddarkgray round" src="{{ url_for('static', filename='assets/images/base/charlie.jpg') }}" alt="Picture of me">
-              <p class="fssmall fcwhite foldarkblue dsblue">image 4 caption</p> 
-            </div>
-          </a>
-          <a class="dex-link" href="">
-            <div class="image-box">
-              <img class="image bddarkgray round" src="{{ url_for('static', filename='assets/images/base/charlie.jpg') }}" alt="Picture of me">
-              <p class="fssmall fcwhite foldarkblue dsblue">image 4 caption</p> 
-            </div>
-          </a>
+          {% endfor %}
         </div>
       </div>
     </div>

@@ -2,9 +2,93 @@ from random import randint
 from profs import Profemon, Move, player
 
 types = ["Normal","Fire","Water","Electric","Grass","Ice","Fighting","Poison","Ground","Flying","Psychic","Bug","Rock","Ghost","Dragon","Dark","Steel","Fairy"]
-profs = []
 dmoves = ["Slap","Flamethrower","Bubble Burst","Thunderbolt","Razor Leaf","Icicle","Mega Punch","Sludge","Earth Shot","Skydive","Confusion","Slither","Rock Throw","Haunt","Dragon Claw","Bite","Iron Head","Moon Beam", "FINAL FLASH"]
 smoves = ["Tangent","Insult","Good Boy","Gameover","Record","Bore","Ignore","Draw","Compliment"]
+profstuff = [['Greg', 'POISON', 'Sludge', 'Earth Shot', 'Tangent', '61', '72', '57', '65', 'assets/images/base/greg.jpg'],
+                ['Delozier', 'POISON', 'Sludge', 'Earth Shot', 'Tangent', '81', '102', '77', '85', 'assets/images/evos/delozier.png'],
+                 
+                ['Mikhail', 'FIRE', 'Flamethrower', 'Rock Slide', 'Insult', '58', '74', '58', '70', 'assets/images/base/mikhail.jpg'],
+                ['Nesterenko', 'FIRE', 'Flamethrower', 'Rock Slide', 'Insult', '78', '104', '85', '94', 'assets/images/evos/nesterenko.png'],
+                 
+                ['Giovanni', 'GRASS', 'Razor Leaf', 'Bite', 'Good Boy', '60', '80', '80', '60', 'assets/images/base/giovanni.jpg'],
+                ['Herrera', 'GRASS', 'Razor Leaf', 'Bite', 'Good Boy', '80', '100', '100', '80', 'assets/images/evos/harrera.png'],
+                 
+                ['John', 'WATER', 'Bubble Burst', 'Earth Shot', 'Insult', '59', '63', '80', '58', 'assets/images/base/jonathan.jpg'],
+                ['Maletik', 'WATER', 'Bubble Burst', 'Earth Shot', 'Insult', '79', '83', '100', '78', 'assets/images/evos/maletic.png'],
+                 
+                ['Meldin', 'ELECTRIC', 'Thunderbolt', 'Razor Leaf', 'Gameover', '70', '80', '60', '45', 'assets/images/base/meldin.jpg'],
+                ['Bektic', 'ELECTRIC', 'Thunderbolt', 'Razor Leaf', 'Gameover', '90', '115', '90', '55', 'assets/images/evos/bektic.png'],
+                 
+                ['Maha', 'PSYCHIC', 'Confusion', 'Flamethrower', 'Gameover', '64', '85', '60', '65', 'assets/images/base/maha.jpg'],
+                ['Allouzi', 'PSYCHIC', 'Confusion', 'Flamethrower', 'Gameover', '80', '105', '90', '70', 'assets/images/evos/allouzi.png'],
+
+                ['Deanna', 'NORMAL', 'Slap', 'Confusion', 'Record', '65', '70', '60', '65', 'assets/images/base/deanna.png'],
+                ['Burret-Peffer', 'NORMAL', 'Slap', 'Confusion', 'Record', '75', '90', '61', '100', 'assets/images/evos/burritt-peffer.png'],
+                 
+                ['Javed', 'GROUND', 'Earth Shot', 'Mega Punch', 'Bore', '59', '66', '70', '35', 'assets/images/base/javed.jpg'],
+                ['Khan', 'GROUND', 'Earth Shot', 'Mega Punch', 'Bore', '99', '86', '110', '40', 'assets/images/evos/khan.png'],
+                 
+                ['Qiang', 'GHOST', 'Haunt', 'Icicle', 'Ignore', '60', '60', '85', '85', 'assets/images/base/qiang.jpg'],
+                ['Guan', 'GHOST', 'Haunt', 'Icicle', 'Ignore', '60', '60', '105', '105', 'assets/images/evos/guan.png'],
+                 
+                ['Hassan', 'FLYING', 'Skydive', 'Bubble Burst', 'Bore', '63', '60', '50', '71', 'assets/images/base/hassan.png'],
+                ['Peyravi', 'FLYING', 'Skydive', 'Bubble Burst', 'Bore', '83', '80', '75', '101', 'assets/images/evos/peyravi.png'],
+                 
+                ['Rowan', 'DRAGON', 'Dragon Claw', 'Flamethrower', 'Insult', '61', '84', '70', '70', 'assets/images/base/rowan.jpg'],
+                ['Ess', 'DRAGON', 'Dragon Claw', 'Flamethrower', 'Insult', '91', '100', '100', '80', 'assets/images/evos/ess.png'],
+                 
+                ['Raiful', 'ICE', 'Icicle', 'Bubble Burst', 'Gameover', '90', '60', '75', '45', 'assets/images/base/raiful.jpg'],
+                ['Hasan', 'ICE', 'Icicle', 'Bubble Burst', 'Gameover', '110', '90', '90', '65', 'assets/images/evos/hasan.png'],
+                 
+                ['Joe', 'FIGHTING', 'Mega Punch', 'Thunderbolt', 'Gameover', '80', '85', '70', '45', 'assets/images/base/joe.jpg'],
+                ['Demore', 'FIGHTING', 'Mega Punch', 'Thunderbolt', 'Gameover', '90', '105', '85', '55', 'assets/images/evos/demore.png'],
+                 
+                ['Charlie', 'BUG', 'Slither', 'Earth Shot', 'Draw', '35', '50', '35', '35', 'assets/images/base/charlie.jpg'],
+                ['Burrows', 'BUG', 'Slither', 'Earth Shot', 'Draw', '65', '90', '80', '75', 'assets/images/evos/burrows.png'],
+                 
+                ['Gus', 'ROCK', 'Rock Throw', 'Earth Shot', 'Tangent', '55', '95', '45', '35', 'assets/images/base/augustine.jpg'],
+                ['Samba', 'ROCK', 'Rock Throw', 'Earth Shot', 'Tangent', '80', '110', '65', '45', 'assets/images/evos/samba.png'],
+                 
+                ['Colin', 'STEEL', 'Iron Head', 'Rock Throw', 'Compliment', '60', '75', '80', '50', 'assets/images/base/colin.jpg'],
+                ['Grant', 'STEEL', 'Iron Head', 'Rock Throw', 'Compliment', '80', '110', '90', '55', 'assets/images/evos/grant.png'],
+                ['MEGA GRANT', 'STEEL', 'Iron Head', 'FINAL FLASH', 'Compliment', '80', '125', '120', '65', 'assets/images/evos/mega_grant.png'],
+                 
+                ['Ben', 'FAIRY', 'Moon Beam', 'Iron Head', 'Gameover', '60', '50', '70', '60', 'assets/images/base/ben.jpg'],
+                ['Purdum', 'FAIRY', 'Moon Beam', 'Iron Head', 'Gameover', '75', '71', '115', '80', 'assets/images/evos/purdum.png'],
+                 
+                ['Archie', 'DARK', 'Bite', 'Sludge', 'Draw', '63', '54', '41', '71', 'assets/images/base/archie.jpg'],
+                ['Horne', 'DARK', 'Bite', 'Sludge', 'Draw', '103', '87', '61', '84', 'assets/images/evos/horne.png']]
+
+movestuff = [['Slap', 'NORMAL', '50', 'NULL'],
+            ['Flamethrower', 'FIRE', '65', 'NULL'],
+            ['Bubble Burst', 'WATER', '60', 'NULL'],
+            ['Thunderbolt', 'ELECTRIC', '70', 'NULL'],
+            ['Razor Leaf', 'GRASS', '65', 'NULL'],
+            ['Icicle', 'ICE', '70', 'NULL'],
+            ['Mega Punch', 'FIGHTING', '60', 'NULL'],
+            ['Sludge', 'POISON', '65', 'NULL'],
+            ['Earth Shot', 'GROUND', '60', 'NULL'],
+            ['Skydive', 'FLYING', '65', 'NULL'],
+            ['Confusion', 'PSYCHIC', '55', 'NULL'],
+            ['Slither', 'BUG', '65', 'NULL'],
+            ['Rock Throw', 'ROCK', '60', 'NULL'],
+            ['Haunt', 'GHOST', '70', 'NULL'],
+            ['Dragon Claw', 'DRAGON', '65', 'NULL'],
+            ['Bite', 'DARK', '60', 'NULL'],
+            ['Iron Head', 'STEEL', '70', 'NULL'],
+            ['Moon Beam', 'FAIRY', '65', 'NULL'],
+            ['FINAL FLASH', 'PSYCHIC', '80', 'NULL'],
+
+            ['Tangent', 'NORMAL', '0', 'speed'],
+            ['Insult', 'NORMAL', '0', 'defense'],
+            ['Good Boy', 'NORMAL', '0', 'defense'],
+            ['Gameover', 'NORMAL', '0', 'attack'],
+            ['Record', 'NORMAL', '0', 'attack'],
+            ['Bore', 'NORMAL', '0', 'speed'],
+            ['Ignore', 'NORMAL', '0', 'attack'],
+            ['Draw', 'NORMAL', '0', 'speed'],
+            ['Compliment', 'NORMAL', '0', 'defense']]
+
 
 typeChart = [[1,1,1,1,1,1,1,1,1,1,1,1,0.5,0,1,1,0.5,1],
              [1,0.5,0.5,1,2,2,1,1,1,1,1,2,0.5,1,0.5,1,2,1],
@@ -25,8 +109,17 @@ typeChart = [[1,1,1,1,1,1,1,1,1,1,1,1,0.5,0,1,1,0.5,1],
              [1,0.5,0.5,0.5,1,2,1,1,1,1,1,1,2,1,1,1,0.5,2],
              [1,0.5,1,1,1,1,2,0.5,1,1,1,1,1,1,2,2,0.5,1]]
 
+def initMoves():
+    moves = []
+    for move in movestuff:
+        moves.append(Move(move[0],move[1],move[2],move[3]))
+    return moves
+
 def initProfs():
-    return profs
+    profemons = []
+    for prof in profstuff:
+        profemons.append(Profemon(prof[0],prof[1],prof[2],prof[3],prof[4],prof[5],prof[6],prof[7],prof[8],prof[9]))
+    return profemons
 
 def critical():
     rand = randint(1, 26)

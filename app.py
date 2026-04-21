@@ -1,7 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
+import profs
+import func
 
 app = Flask(__name__)
 app.debug = True
+moves = func.initMoves()
+profemons = func.initProfs()
 
 @app.route('/')
 def index():
@@ -9,7 +13,17 @@ def index():
 
 @app.route('/info')
 def info():
-    return render_template('main-info.html')
+    return render_template('main-info.html', data=profemons)
+
+@app.route('/prof', methods=['GET'])
+def profPage():
+    tempProf = request.args.get('prof')
+    workingProf = ""
+    for i in profemons:
+        if i.name == tempProf:
+            workingProf = i
+    print(workingProf.name)
+    return redirect('/info')
 
 @app.route('/stats')
 def stats():
