@@ -9,6 +9,10 @@ moves = func.initMoves()
 profemons = func.initProfs()
 profemons = func.fixMoves(profemons, moves)
 player = profs.Trainer()
+profemons = func.catchProf(profemons, "Mikhail")
+profemons = func.catchProf(profemons, "John")
+profemons = func.catchProf(profemons, "Giovanni")
+player = profs.Trainer("Ben", profemons[2], profemons[4], profemons[6])
 
 @app.route('/')
 def index():
