@@ -5,11 +5,12 @@ class Profemon:
         self.move1 = move1
         self.move2 = move2
         self.move3 = move3
-        self.HP = hp
+        self.hp = hp
         self.attack = attack
         self.defense = defense
         self.speed = speed
         self.img = img
+        self.caught = False
 
 class Move:
     def __init__(self, name, type, power, status = ""):
@@ -19,11 +20,12 @@ class Move:
         self.status = status
 
 class Trainer:
-    def __init__(self, prof1 = "none", prof2 = "none", prof3 = "none", name = "player"):
+    def __init__(self, name = "player", prof1 = "none", prof2 = "none", prof3 = "none",):
         self.name = name
-        self.prof1 = prof1
-        self.prof2 = prof2
-        self.prof2 = prof3
+        self.team = []
+        self.team.append(prof1)
+        self.team.append(prof2)
+        self.team.append(prof3)
         self.currentProf = prof1
 
 player = Trainer()

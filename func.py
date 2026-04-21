@@ -7,8 +7,8 @@ smoves = ["Tangent","Insult","Good Boy","Gameover","Record","Bore","Ignore","Dra
 profstuff = [['Greg', 'POISON', 'Sludge', 'Earth Shot', 'Tangent', '61', '72', '57', '65', 'assets/images/base/greg.jpg'],
                 ['Delozier', 'POISON', 'Sludge', 'Earth Shot', 'Tangent', '81', '102', '77', '85', 'assets/images/evos/delozier.png'],
                  
-                ['Mikhail', 'FIRE', 'Flamethrower', 'Rock Slide', 'Insult', '58', '74', '58', '70', 'assets/images/base/mikhail.jpg'],
-                ['Nesterenko', 'FIRE', 'Flamethrower', 'Rock Slide', 'Insult', '78', '104', '85', '94', 'assets/images/evos/nesterenko.png'],
+                ['Mikhail', 'FIRE', 'Flamethrower', 'Rock Throw', 'Insult', '58', '74', '58', '70', 'assets/images/base/mikhail.jpg'],
+                ['Nesterenko', 'FIRE', 'Flamethrower', 'Rock Throw', 'Insult', '78', '104', '85', '94', 'assets/images/evos/nesterenko.png'],
                  
                 ['Giovanni', 'GRASS', 'Razor Leaf', 'Bite', 'Good Boy', '60', '80', '80', '60', 'assets/images/base/giovanni.jpg'],
                 ['Herrera', 'GRASS', 'Razor Leaf', 'Bite', 'Good Boy', '80', '100', '100', '80', 'assets/images/evos/harrera.png'],
@@ -51,43 +51,44 @@ profstuff = [['Greg', 'POISON', 'Sludge', 'Earth Shot', 'Tangent', '61', '72', '
                  
                 ['Colin', 'STEEL', 'Iron Head', 'Rock Throw', 'Compliment', '60', '75', '80', '50', 'assets/images/base/colin.jpg'],
                 ['Grant', 'STEEL', 'Iron Head', 'Rock Throw', 'Compliment', '80', '110', '90', '55', 'assets/images/evos/grant.png'],
-                ['MEGA GRANT', 'STEEL', 'Iron Head', 'FINAL FLASH', 'Compliment', '80', '125', '120', '65', 'assets/images/evos/mega_grant.png'],
                  
                 ['Ben', 'FAIRY', 'Moon Beam', 'Iron Head', 'Gameover', '60', '50', '70', '60', 'assets/images/base/ben.jpg'],
                 ['Purdum', 'FAIRY', 'Moon Beam', 'Iron Head', 'Gameover', '75', '71', '115', '80', 'assets/images/evos/purdum.png'],
                  
                 ['Archie', 'DARK', 'Bite', 'Sludge', 'Draw', '63', '54', '41', '71', 'assets/images/base/archie.jpg'],
-                ['Horne', 'DARK', 'Bite', 'Sludge', 'Draw', '103', '87', '61', '84', 'assets/images/evos/horne.png']]
+                ['Horne', 'DARK', 'Bite', 'Sludge', 'Draw', '103', '87', '61', '84', 'assets/images/evos/horne.png'],
+                
+                ['MEGA GRANT', 'STEEL', 'Iron Head', 'FINAL FLASH', 'Compliment', '80', '125', '120', '65', 'assets/images/evos/mega_grant.png']]
 
-movestuff = [['Slap', 'NORMAL', '50', 'NULL'],
-            ['Flamethrower', 'FIRE', '65', 'NULL'],
-            ['Bubble Burst', 'WATER', '60', 'NULL'],
-            ['Thunderbolt', 'ELECTRIC', '70', 'NULL'],
-            ['Razor Leaf', 'GRASS', '65', 'NULL'],
-            ['Icicle', 'ICE', '70', 'NULL'],
-            ['Mega Punch', 'FIGHTING', '60', 'NULL'],
-            ['Sludge', 'POISON', '65', 'NULL'],
-            ['Earth Shot', 'GROUND', '60', 'NULL'],
-            ['Skydive', 'FLYING', '65', 'NULL'],
-            ['Confusion', 'PSYCHIC', '55', 'NULL'],
-            ['Slither', 'BUG', '65', 'NULL'],
-            ['Rock Throw', 'ROCK', '60', 'NULL'],
-            ['Haunt', 'GHOST', '70', 'NULL'],
-            ['Dragon Claw', 'DRAGON', '65', 'NULL'],
-            ['Bite', 'DARK', '60', 'NULL'],
-            ['Iron Head', 'STEEL', '70', 'NULL'],
-            ['Moon Beam', 'FAIRY', '65', 'NULL'],
-            ['FINAL FLASH', 'PSYCHIC', '80', 'NULL'],
+movestuff = [['Slap', 'NORMAL', '50', 'NULL'], #0
+            ['Flamethrower', 'FIRE', '65', 'NULL'], #1
+            ['Bubble Burst', 'WATER', '60', 'NULL'], #2
+            ['Thunderbolt', 'ELECTRIC', '70', 'NULL'], #3
+            ['Razor Leaf', 'GRASS', '65', 'NULL'], #4
+            ['Icicle', 'ICE', '70', 'NULL'], #5
+            ['Mega Punch', 'FIGHTING', '60', 'NULL'], #6
+            ['Sludge', 'POISON', '65', 'NULL'], #7
+            ['Earth Shot', 'GROUND', '60', 'NULL'], #8
+            ['Skydive', 'FLYING', '65', 'NULL'], #9
+            ['Confusion', 'PSYCHIC', '55', 'NULL'], #10
+            ['Slither', 'BUG', '65', 'NULL'], #11
+            ['Rock Throw', 'ROCK', '60', 'NULL'], #12
+            ['Haunt', 'GHOST', '70', 'NULL'], #13
+            ['Dragon Claw', 'DRAGON', '65', 'NULL'], #14
+            ['Bite', 'DARK', '60', 'NULL'], #15
+            ['Iron Head', 'STEEL', '70', 'NULL'], #16
+            ['Moon Beam', 'FAIRY', '65', 'NULL'], #17
+            ['FINAL FLASH', 'PSYCHIC', '80', 'NULL'], #18
 
-            ['Tangent', 'NORMAL', '0', 'speed'],
-            ['Insult', 'NORMAL', '0', 'defense'],
-            ['Good Boy', 'NORMAL', '0', 'defense'],
-            ['Gameover', 'NORMAL', '0', 'attack'],
-            ['Record', 'NORMAL', '0', 'attack'],
-            ['Bore', 'NORMAL', '0', 'speed'],
-            ['Ignore', 'NORMAL', '0', 'attack'],
-            ['Draw', 'NORMAL', '0', 'speed'],
-            ['Compliment', 'NORMAL', '0', 'defense']]
+            ['Tangent', 'NORMAL', '0', 'speed'], #19
+            ['Insult', 'NORMAL', '0', 'defense'], #20
+            ['Good Boy', 'NORMAL', '0', 'defense'], #21
+            ['Gameover', 'NORMAL', '0', 'attack'], #22
+            ['Record', 'NORMAL', '0', 'attack'], #23
+            ['Bore', 'NORMAL', '0', 'speed'], #24
+            ['Ignore', 'NORMAL', '0', 'attack'], #25
+            ['Draw', 'NORMAL', '0', 'speed'], #26
+            ['Compliment', 'NORMAL', '0', 'defense']] #27
 
 
 typeChart = [[1,1,1,1,1,1,1,1,1,1,1,1,0.5,0,1,1,0.5,1],
@@ -119,6 +120,33 @@ def initProfs():
     profemons = []
     for prof in profstuff:
         profemons.append(Profemon(prof[0],prof[1],prof[2],prof[3],prof[4],prof[5],prof[6],prof[7],prof[8],prof[9]))
+    return profemons
+
+def fixMoves(profemons, moves):
+    for prof in profemons:
+        #fix move1
+        for m in moves:
+            if prof.move1 == m.name:
+                prof.move1 = m
+                break
+        #fix move2
+        for m in moves:
+            if prof.move2 == m.name:
+                prof.move2 = m
+                break
+        #fix move3
+        for m in moves:
+            if prof.move3 == m.name:
+                prof.move3 = m
+                break
+    return profemons
+
+def catchProf(profemons, name):
+    for i in profemons:
+        if i.name == name:
+            i.caught = True
+            print(i.name)
+            break
     return profemons
 
 def critical():

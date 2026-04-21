@@ -4,8 +4,11 @@ import func
 
 app = Flask(__name__)
 app.debug = True
+#global vars
 moves = func.initMoves()
 profemons = func.initProfs()
+profemons = func.fixMoves(profemons, moves)
+player = ""
 
 @app.route('/')
 def index():
@@ -17,13 +20,14 @@ def info():
 
 @app.route('/prof', methods=['GET'])
 def profPage():
+    global profemons
+    profemons = func.catchProf(profemons, "Delozier")
     tempProf = request.args.get('prof')
     workingProf = ""
     for i in profemons:
         if i.name == tempProf:
             workingProf = i
-    print(workingProf.name)
-    return redirect('/info')
+    return render_template('dex-entry.html', data=workingProf)
 
 @app.route('/stats')
 def stats():
@@ -31,7 +35,7 @@ def stats():
 
 @app.route('/team')
 def team():
-    return render_template('team-builder.html')
+    return render_template('team-builder.html', team=player.team, totalProfs=profemons)
 
 @app.route('/battle')
 def battle():
@@ -48,3 +52,10 @@ def caretaking():
 @app.route('/forfeit/<profId>',methods=['GET'])
 def forfeit_route(profId):
     print(f"Professor ID: {profId}")
+
+if __name__ == "__main__":
+    profemons = func.catchProf(profemons, "Mikhail")
+    profemons = func.catchProf(profemons, "John")
+    profemons = func.catchProf(profemons, "Giovanni")
+    player = profs.Trainer("Ben", profemons[2], profemons[4], profemons[6])
+    app.run()
