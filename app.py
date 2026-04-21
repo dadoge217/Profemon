@@ -8,7 +8,7 @@ app.debug = True
 moves = func.initMoves()
 profemons = func.initProfs()
 profemons = func.fixMoves(profemons, moves)
-player = ""
+player = func.Trainer()
 
 @app.route('/')
 def index():
