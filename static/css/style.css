@@ -169,11 +169,8 @@
     margin-left:auto;
     margin-right:auto;
 }
-.head{
-    margin-top:auto;
-    margin-bottom:auto;
 
-}
+
 .body{}
 
 /* HEADER */
@@ -219,20 +216,66 @@
     background-color:#33585f;
     color:#c5ced4;
 }
+.main-link:hover{
+    opacity:60%;
+    
+}
 
 /* Battle */
-.body-split{
+.bat-body-split{
     grid-template-columns: 8fr 1fr 4fr;
 }
-.left-split{
+.bat-left-split{
     grid-column-start:1;
     grid-column-end:2;
 }
-.right-split{
+.bat-right-split{
     grid-column-start:3;
     grid-column-end:4;
 }
 a:link, a:visited, a:hover, a:active{
     text-decoration:none;
     color: var(--white);
+}
+
+/* profedex */
+.image-bar{
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.image-box{
+    overflow: hidden;
+    padding:1em;
+}
+.image{
+    width:100%;
+}
+.dex-link:hover{
+    animation-name:fadeOut;
+    animation-duration: 105ms;
+    opacity:60%;
+    width:97%;
+}
+
+/*stats*/
+/* .expand-cont{
+    display:none;
+    position:relative;
+}
+.expand:hover, .expand-cont{
+    display:block;
+    position:absolute;
+} */
+.title-box{
+    margin:1em;
+}
+/*animations*/
+@keyframes fadeOut{
+    0%{opacity:100%;
+        width:100%;
+    }
+    25%{opacity:80%;}
+    75%{opacity:70%; width:90%;}
+    100%{opacity:60%;
+        width:97%;
+    }
 }
