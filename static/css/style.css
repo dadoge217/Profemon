@@ -63,6 +63,9 @@
 .fssmall{
     font-size: 24px;
 }
+.fssmaller{
+    font-size: 18px;
+}
 .fcwhite{
     color: var(--white);
 }
@@ -259,6 +262,14 @@
 }
 .bat-image{
     width:40%;
+}
+/*battle right*/
+.battle-log{
+    padding:.5rem;
+    height:50%;
+}
+.log{
+    overflow:scroll;
 }
 
 /* profedex */
