@@ -181,7 +181,7 @@
     grid-template-columns:1fr 4fr 1fr;
 }
 .header{
-    padding:2.5%;
+    padding:1rem;
     grid-template-columns: 2fr 4fr;
     grid-column-start:2;
     grid-column-end:3;
@@ -193,7 +193,7 @@
 .navbar{
     grid-column-start:2;
     grid-column-end:3;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 .nav-left{
     grid-column-start:1;
@@ -210,10 +210,17 @@
     grid-column-end:4;
 
 }
-.nav-right{
+.nav-care{
     grid-column-start:4;
     grid-column-end:5;
+}
+.nav-right{
+    grid-column-start:5;
+    grid-column-end:6;
     border-radius: 0px 20px 20px 0px;
+}
+.nav{
+    padding:.5rem;
 }
 .nav:hover{
     background-color:#33585f;
