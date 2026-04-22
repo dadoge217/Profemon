@@ -221,20 +221,21 @@ def damageCalc(prof1, move, prof2):
 
 def doMoves(pMove, bMove, player, trainer):
         if(player.currentProf.speed >= trainer.currentProf.speed):
-            if pMove != "swap":
+            if ((pMove != "swap") and not (player.currentProf.fainted())):
                 damage = damageCalc(player.currentProf, pMove, trainer.currentProf)
                 trainer.currentProf.takeDamage(damage)
-            if bMove != "swap":
+            if ((bMove != "swap") and not (trainer.currentProf.fainted())):
                 damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
                 player.currentProf.takeDamage(damage)
-        if(trainer.currentProf.speed > player.currentProf.speed):
-            if(bMove != "swap"):
+        elif(trainer.currentProf.speed > player.currentProf.speed):
+            if((bMove != "swap") and not (trainer.currentProf.fainted())):
                  damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
                  player.currentProf.takeDamage(damage)
-            if pMove != "swap":
+            if ((pMove != "swap") and not (player.currentProf.fainted())):
                 damage = damageCalc(player.currentProf, pMove, trainer.currentProf)
                 trainer.currentProf.takeDamage(damage)
-
+        if(trainer.currentProf.fainted()):
+            botMove(trainer, player)
 
 
 # class Move:
