@@ -1,13 +1,49 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catch</title>
-    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
   </head>
-  <body>
-    
+  <body class="bggraygrid">
+  {% extends 'include/layout.html' %}
+{% block content %}
+    <div class="big-box isGrid">
+      <div class="head">
+        <div class="info-box bgyellowcheck round">
+          <div class="info-image">
+            <img class="image round" src="" alt="Picture of ">
+          </div>
+          <div class="info-right bgwhite round">
+            {% if show %}
+              <h1>{{encounter.name}}</h1>
+              <div class="info-stats">
+                stats
+                HP: {{encounter.hp}}
+              </div>
+          {% endif %}
+          </div>
+        </div>
+        <form method="POST" action="/catch">
+          <button name="look" value="look">Look Around</button>
+        </form>
+      </div>
+      <div class="body">
+        <div class="left-split">
+          <div class="catch-log bgwhite round">
+            <p>log from catch</p>
+          </div>
+        </div>
+        <div class="right-split">
+          <div class="catch-options bgwhite round">
+            <p>options</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
   </body>
 </html>
 

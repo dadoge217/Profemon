@@ -4,9 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battle</title>
-    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
   </head>
-  <body>
-    
+  <body class="bgbluegrid">
+{% extends 'include/layout.html' %}
+{% block content %}
+    <div class="big-box isGrid">
+      <div class="bat-body-split isGrid">
+        <div class="bat-left-split">
+          <div class="battle-box round bgwhite">
+            <div class="your-prof">
+              <h2>Your Profemon</h2>
+              <img class="image round" alt="Picture of ">
+            </div>
+            <div class="opp-prof">
+              <h2>VS. Profemon</h2>
+              <img class="image round" alt="Picture of ">
+            </div>
+          </div>
+          <div class="your-moves bgwhite round">
+            <h2>Your Moves</h2>
+            <div class="move round">move 1</div>
+            <div class="move round">move 2</div>
+            <div class="move round">move 3</div>
+          </div>
+        </div>
+        <div class="bat-right-split">
+          <div class="battle-log bgwhite round">
+            Battle log
+            <div class="log">
+              log stuff
+            </div>
+          </div>
+          <div class="options bgwhite round">
+            options
+            <button class="opt-button">Forfeit</button>
+          </div>
+          <form method="POST" action="/battle">
+            <button name="move" value="move1">{{player.currentProf.move1.name}}</button>
+            <button name="move" value="move2">{{player.currentProf.move2.name}}</button>
+            <button name="move" value="move3">{{player.currentProf.move3.name}}</button>
+          </form>
+          <h2>Player</h2>
+          <p>{{player.currentProf.name}}</p>
+          <p>HP: {{player.currentProf.hp}}</p>
+
+          <h2>Trainer</h2>
+          <p>{{trainer.currentProf.name}}</p>
+          <p>HP: {{trainer.currentProf.hp}}</p>
+          <h3>Your Team</h3>
+          {% for prof in player.team %}
+              {% if not prof.fainted() %}
+                  <form method="POST" action="/swap">
+                      <input type="hidden" name="prof_name" value="{{ prof.name }}">
+                      <button type="submit">
+                          Swap to {{ prof.name }} (HP: {{ prof.hp }})
+                      </button>
+                  </form>
+              {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endblock %}
   </body>
 </html>
+

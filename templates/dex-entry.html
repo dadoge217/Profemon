@@ -14,29 +14,30 @@
       <div class="head bgyellowcheck round">
         <div class="info-box round">
           <div class="info-image">
-            <img class="image round" src="" alt="Picture of ">
+            <img src="{{ url_for('static', filename=data.img) }}" alt="Picture of {{ data.name }}" height="480">
           </div>
           <div class="info-right">
-            <h1>Profemon Name</h1>
+            <h1>{{ data.name }}</h1>
             <div class="info-stats">
-              stats
-            </div>
-            <div class="affection">
-              <p>affection:</p>
-              <div class="affection-meter round bglightblue">
-              </div>
-              <div class="care-buttons">
-                <div class="pet-button round bgdarkblue">pet</div>
-                <div class="feed-button round bgdarkblue">feed</div>
-              </div>
+              Stats
             </div>
           </div>
         </div>
         <div class="stats bgwhite round">
-          <p>ATK: </p>
-          <p>DEF: </p>
-          <p>HP: </p>
-          <p>SPD: </p>
+          <p>HP: {{ data.hp }}</p>
+          <p>ATK: {{ data.attack }}</p>
+          <p>DEF: {{ data.defense }}</p>
+          <p>SPD: {{ data.speed }}</p>
+        </div>
+        <div class="info-right">
+          <div class="info-stats">
+            Moves
+          </div>
+        </div>
+        <div class="stats bgwhite round">
+          <p>Move 1: {{ data.move1.name }}</p>
+          <p>Move 2: {{ data.move2.name }}</p>
+          <p>Move 3: {{ data.move3.name }}</p>
         </div>
       </div>
     </div>

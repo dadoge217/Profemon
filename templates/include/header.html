@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header</title>
-    <link href="style.css" rel="stylesheet" type="text/css" media="all">
-  </head>
-  <body>
-    
-  </body>
-</html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Header</title>
+<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
+<body>
+    {% block content %}
+    <div class="header-box isGrid">
+        <div class="header isGrid center">
+            <a class="main-link" href="/"><div class="header-text fslarge fcwhite foldarkblue dsblue">Profemon</div></a>
+            <div class="navbar fsmed isGrid">
+                <a href="/info"><div class="nav nav-left bgdarkblue bdlightblue">Profedex</div></a>
+                <a href="/team"><div class="nav nav-team bgdarkblue bdlightblue">Team</div></a>
+                <a href="/stats"><div class="nav nav-stats bgdarkblue bdlightblue">Stats</div></a>
+                <a href="/battle"><div class="nav nav-right bgdarkblue bdlightblue">Battle</div></a>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>

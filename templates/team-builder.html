@@ -1,13 +1,76 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Builder</title>
-    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ url_for('static', filename='css/archie-style.css') }}" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
   </head>
-  <body>
-    
+  <body class="bggraygrid">
+    {% extends 'include/layout.html' %}
+{% block content %}
+    <div class="big-box isGrid">
+      <div class="body-split">
+        <div class="left-split bgyellowcheck round dsdarkgray">
+          <div class="title-box round bgwhite center dsred">
+            <div class="fsmed dslightergray fcdarkgray">
+              Team
+            </div>
+          </div>
+          {% for prof in team %}
+          <div class="member-box bglightgray round dsred">
+            <div class="image round dsdarkgray">
+              <img src="{{ url_for('static', filename=prof.img) }}" alt="Team Member {{ prof.name }}" height="330">
+            </div>
+            <div class="member-stats fcwhite dsdarkgray">
+              <div class="fssmall center">
+                  {{ prof.name }}
+              </div>
+              <div class="type round center {{ prof.type }}type folblack bddarkgray"> {{ prof.type }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="right-split bglightblue round dsdarkgray">
+          <div class="title-box round bgwhite center dsblue">
+            <div class="fsmed dslightergray fcdarkgray">
+              Caught Profemon
+            </div>
+          </div>
+          <div class="caught-mons">
+            {%for prof in totalProfs %}
+              <div class="member-box bglightgray round dsblue">
+                {% if prof.caught %}
+                <div class="image round dsdarkgray">
+                  <img src="{{ url_for('static', filename=prof.img) }}" alt="Can use {{ prof.name }}" height="300">
+                </div>
+                <div class="member-stats fcwhite dsdarkgray">
+                  <div class="fssmall center">
+                      {{ prof.name }}
+                  </div>
+                  <div class="type round center {{type}}type folblack bddarkgray"> {{ prof.type }}</div>
+                </div>
+                {% else %}
+                <div class="image round dsdarkgray">
+                  <img src="{{ url_for('static', filename='assets/images/notUnlocked.png') }}" alt="Cannot use {{ prof.name }}" height="200">
+                </div>
+                <div class="member-stats fcwhite dsdarkgray">
+                  <div class="fssmall center">
+                      {{ prof.name }}
+                  </div>
+                  <div class="type round center {{type}}type folblack bddarkgray"> {{ prof.type }}</div>
+                </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    {% endblock %}
   </body>
 </html>
 

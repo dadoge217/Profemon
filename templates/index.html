@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
-    <link href="style.css" rel="stylesheet" type="text/css" media="all">
-  </head>
-  <body>
-    
+{% extends 'include/layout.html' %}
+{% block content %}
+  
+  <body class="bggraygrid">
+    <div class="big-box isGrid bggraygrid">
+      <div class="head">
+        <div class="title-box bgdarkblue round dsblue">
+          <h1>Welcome to Profemon</h1>
+        </div>
+      </div>
+      <div class="body">
+        <div class="body-box bgdarkblue round dsblue">
+          <p>body</p>
+        </div>
+      </div>
+    </div>
   </body>
-</html>
-
+{% endblock %}
