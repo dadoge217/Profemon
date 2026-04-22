@@ -5,38 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caretaking</title>
+    <link href="{{ url_for('static', filename='css/archie-style.css') }}" rel="stylesheet" type="text/css" media="all">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
   </head>
   <body class="bggraygrid">
 {% extends 'include/layout.html' %}
 {% block content %}
     <div class="big-box isGrid">
-      <div class="head bgyellowcheck round">
-        <div class="info-box round">
-          <div class="info-image">
-            <img class="image round" src="" alt="Picture of ">
+      <div class="head bgyellowcheck round bigger-padding dsdarkgray">
+        <div class="info-box round body-split isGrid">
+          <div class="info-image left-split dsred">
+            <img class="image round" src="{{ url_for('static', filename=data.img) }}" alt="Picture of {{ data.name }}">
           </div>
-          <div class="info-right">
-            <h1>Profemon Name</h1>
-            <div class="info-stats">
-              stats
+          <div class="info-right right-split">
+            <div class="middle-split">
+              <div class="fsbigger dsred">{{ data.name }}</div>
+              <div class="type round center {{data.type.lower()}}type folblack bddarkgray fcwhite fsmed dsred"> {{ data.type }}</div>
             </div>
-            <div class="affection">
-              <p>affection:</p>
+             <div class="affection fsmed dsred">
+              HP:
               <div class="affection-meter round bglightblue">
               </div>
-              <div class="care-buttons">
-                <div class="pet-button round bgdarkblue">pet</div>
-                <div class="feed-button round bgdarkblue">feed</div>
+              <div class="care-buttons middle-split">
+                <div class="pet-button round bgdarkblue center fcwhite dsred">Pet</div>
+                <div class="feed-button round bgdarkblue center fcwhite dsred">Feed</div>
               </div>
             </div>
+            <div class="info-stats fslarge dsred">
+              Stats
+            </div>
+            <div class="stats bgwhite round fsmed middle-split fclightgray dsred">
+              <div class="left-split dslightergray">
+                <p>HP: {{ data.hp }}</p>
+                <p>ATK: {{ data.attack }}</p>
+              </div>
+              <div class="right-split dslightergray">
+                <p>DEF: {{ data.defense }}</p>
+                <p>SPD: {{ data.speed }}</p>
+              </div>
+            </div>
+           
           </div>
-        </div>
-        <div class="stats bgwhite round">
-          <p>ATK: </p>
-          <p>DEF: </p>
-          <p>HP: </p>
-          <p>SPD: </p>
+            
+          </div>
         </div>
       </div>
     </div>

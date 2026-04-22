@@ -57,7 +57,14 @@ def catch():
 
 @app.route('/caretaking')
 def caretaking():
-    return render_template('caretaking.html')
+    global profemons
+    profemons = func.catchProf(profemons, "Delozier")
+    tempProf = request.args.get('prof')
+    workingProf = ""
+    for i in profemons:
+        if i.name == tempProf:
+            workingProf = i
+    return render_template('caretaking.html', data=workingProf)
 
 @app.route('/forfeit/<profId>',methods=['GET'])
 def forfeit_route(profId):
