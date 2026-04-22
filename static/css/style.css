@@ -233,9 +233,32 @@
     grid-column-start:3;
     grid-column-end:4;
 }
-a:link, a:visited, a:hover, a:active{
-    text-decoration:none;
-    color: var(--white);
+.your-moves{
+    grid-template-columns:1fr 1fr 1fr;
+    padding:1rem;
+}
+.your-moves-box{
+    margin-top:1rem;
+}
+.move-button{
+    padding:1rem;
+    margin:1rem;
+}
+/* inner battle */
+.battle-box{
+    grid-template-columns:2fr 1fr 2fr;
+    padding:1rem;
+}
+.your-prof{
+    grid-column-start:1;
+    grid-column-end:2;
+}
+.opp-prof{
+    grid-column-start:3;
+    grid-column-end:4;
+}
+.bat-image{
+    width:40%;
 }
 
 /* profedex */
@@ -267,6 +290,10 @@ a:link, a:visited, a:hover, a:active{
 } */
 .title-box{
     margin:1em;
+}
+a:link, a:visited, a:hover, a:active{
+    text-decoration:none;
+    color: var(--white);
 }
 /*animations*/
 @keyframes fadeOut{
