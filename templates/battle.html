@@ -12,7 +12,7 @@
     <div class="big-box isGrid">
       <div class="bat-body-split isGrid">
         <div class="bat-left-split">
-          <div class="battle-box isGrid round bgwhite">
+          <div class="battle-box dsblue isGrid round bgwhite">
             <div class="your-prof">
               <h2 class="fsmed fcdarkgray dslightergray">Your Profemon</h2>
               <img class="bat-image round" src="{{ url_for('static', filename=player.currentProf.img) }}" alt="Picture of {{ player.currentProf.name }}">
@@ -26,37 +26,38 @@
               <p class="fssmall fcdarkgray dslightergray">HP: {{trainer.currentProf.hp}}</p>
             </div>
           </div>
-          <div class="your-moves-box bgwhite round">
+          <div class="your-moves-box dsblue bgwhite round">
             <form class="your-moves isGrid" method="POST" action="/battle">
-              <button class="round fssmall bdblack fcwhite folblack move-button {{ player.currentProf.move1.type.lower() }}type" name="move" value="move1">{{player.currentProf.move1.name}}<p class="fssmaller">{{player.currentProf.move1.type}}</p></button>
-              <button class="round fssmall bdblack fcwhite folblack move-button {{ player.currentProf.move2.type.lower() }}type" name="move" value="move2">{{player.currentProf.move2.name}} <p class="fssmaller">{{player.currentProf.move2.type}}</p></button>
-              <button class="round fssmall bdblack fcwhite folblack move-button {{ player.currentProf.move3.type.lower() }}type" name="move" value="move3">{{player.currentProf.move3.name}} <p class="fssmaller">{{player.currentProf.move3.type}}</p></button>
+              <button class="round fssmall bdblack fcwhite folblack move-button dslightergray {{ player.currentProf.move1.type.lower() }}type" name="move" value="move1">{{player.currentProf.move1.name}}<p class="fssmaller">{{player.currentProf.move1.type}}</p></button>
+              <button class="round fssmall bdblack fcwhite folblack move-button dslightergray {{ player.currentProf.move2.type.lower() }}type" name="move" value="move2">{{player.currentProf.move2.name}} <p class="fssmaller">{{player.currentProf.move2.type}}</p></button>
+              <button class="round fssmall bdblack fcwhite folblack move-button dslightergray {{ player.currentProf.move3.type.lower() }}type" name="move" value="move3">{{player.currentProf.move3.name}} <p class="fssmaller">{{player.currentProf.move3.type}}</p></button>
             </form>
           </div>
         </div>
         <div class="bat-right-split">
-          <div class="battle-log bgwhite round">
+          <div class="battle-log dsblue bgwhite round">
             <p class="fsmed fcdarkgray dslightergray">Battle log</p>
-            <div class="log">
-              <p class="log-report">individual log report goes here</p>
-              <p class="log-report">individual log report goes here</p>
-              <p class="log-report">individual log report goes here</p>
+            <div class="logs round bdblack">
+              <p class="log-report fssmaller fcdarkgray dslightergray">individual log report goes here</p>
+              <p class="log-report fssmaller fcdarkgray dslightergray">overflow on logs is set to scroll</p>
+              <p class="log-report fssmaller fcdarkgray dslightergray">hypothetically if i put a lot of these it should scroll</p>
+              <p class="log-report fssmaller fcdarkgray dslightergray">but i guess we will see</p>
+              <p class="log-report fssmaller fcdarkgray dslightergray">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, impedit. Atque modi illo quam officiis iste optio, ad perspiciatis similique a eius non doloribus iure, facilis quis ut! Culpa, voluptate!</p>
             </div>
           </div>
-          <div class="options bgwhite round">
-              <h3 class="fsmed fcdarkgray dslightergray">Your Team</h3>
+          <div class="options isGrid dsblue bgwhite round">
+              <h3 class="opt-text fsmed fcdarkgray dslightergray">Options</h3>
             {% for prof in player.team %}
                 {% if not prof.fainted() %}
                     <form method="POST" action="/swap">
                         <input type="hidden" name="prof_name" value="{{ prof.name }}">
-                        <button type="submit">
+                        <button class="opt-button bdblack round bgwhite fssmaller fcdarkgray dslightergray" type="submit">
                             Swap to {{ prof.name }} (HP: {{ prof.hp }})
                         </button>
                     </form>
                 {% endif %}
             {% endfor %}
-            <p>Options</p>
-            <button class="opt-button">Forfeit</button>
+            <button class="opt-button bdblack round bgwhite fssmaller fcdarkgray dslightergray">Forfeit</button>
           </div>
         </div>
       </div>
