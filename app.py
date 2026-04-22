@@ -68,6 +68,22 @@ def battle():
         func.doMoves(move, bot_move, player, trainer)
     return render_template('battle.html', player=player, trainer=trainer)
 
+@app.route('/swap', methods=['POST'])
+def swap():
+    name = request.form['prof_name']
+    for prof in player.team:
+        if prof.name == name and not prof.fainted():
+            if(not player.currentProf.fainted()):
+                player.currentProf = prof
+                move = "swap"
+                bot_move = func.botMove(trainer, player)
+                func.doMoves(move, bot_move, player, trainer)
+                break
+            else:
+                player.currentProf = prof
+                break
+    return render_template('battle.html', player=player, trainer=trainer)
+
 if __name__ == "__main__":
     profemons = func.catchProf(profemons, "Mikhail")
     profemons = func.catchProf(profemons, "John")
