@@ -29,6 +29,7 @@
                   {{ prof.name }}
               </div>
               <div class="type fssmall round center {{ prof.type.lower() }}type folblack bddarkgray"> {{ prof.type }}</div>
+              <button class="fssmall round center">Remove from team</button>
             </div>
           </div>
           {% endfor %}
@@ -51,6 +52,9 @@
                       {{ prof.name }}
                   </div>
                   <div class="type round fssmall center {{prof.type.lower()}}type folblack bddarkgray"> {{ prof.type }}</div>
+                  <button class="fssmall round center">Add to slot 1</button>
+                  <button class="fssmall round center">Add to slot 2</button>
+                  <button class="fssmall round center">Add to slot 3</button>
                 </div>
                 {% else %}
                 <div class="image round dsdarkgray">
