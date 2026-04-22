@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect
 import random
 import profs
 import func
+import time
+import threading
 
 app = Flask(__name__)
 app.debug = True
@@ -17,6 +19,8 @@ player = profs.Trainer("Ben", profemons[2], profemons[4], profemons[6])
 trainer = profs.Trainer("bot1", profemons[1], profemons[5], profemons[7])
 wildProf = profemons[1]
 showProf = False
+timerVal = 10
+running = False
 
 @app.route('/')
 def index():
