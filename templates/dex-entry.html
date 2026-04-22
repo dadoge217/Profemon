@@ -5,39 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caretaking</title>
+    <link href="{{ url_for('static', filename='css/archie-style.css') }}" rel="stylesheet" type="text/css" media="all">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
   </head>
   <body class="bggraygrid">
 {% extends 'include/layout.html' %}
 {% block content %}
     <div class="big-box isGrid">
-      <div class="head bgyellowcheck round">
-        <div class="info-box round">
-          <div class="info-image">
-            <img src="{{ url_for('static', filename=data.img) }}" alt="Picture of {{ data.name }}" height="480">
+      <div class="head bgyellowcheck round bigger-padding dsdarkgray">
+        <div class="info-box round body-split isGrid">
+          <div class="info-image left-split dsred">
+            <img src="{{ url_for('static', filename=data.img) }}" alt="Picture of {{ data.name }}" height="480" class="round">
           </div>
-          <div class="info-right">
-            <h1>{{ data.name }}</h1>
-            <div class="info-stats">
+          <div class="info-right right-split">
+            <div class="middle-split">
+              <div class="fsbigger dsred">{{ data.name }}</div>
+              <div class="type round center {{data.type.lower()}}type folblack bddarkgray fcwhite fsmed dsred"> {{ data.type }}</div>
+            </div>
+            
+            <div class="info-stats fslarge dsred">
               Stats
+            </div>
+            <div class="stats bgwhite round fsmed middle-split fclightgray dsred">
+              <div class="left-split dslightergray">
+                <p>HP: {{ data.hp }}</p>
+                <p>ATK: {{ data.attack }}</p>
+              </div>
+              <div class="right-split dslightergray">
+                <p>DEF: {{ data.defense }}</p>
+                <p>SPD: {{ data.speed }}</p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="stats bgwhite round">
-          <p>HP: {{ data.hp }}</p>
-          <p>ATK: {{ data.attack }}</p>
-          <p>DEF: {{ data.defense }}</p>
-          <p>SPD: {{ data.speed }}</p>
-        </div>
-        <div class="info-right">
-          <div class="info-stats">
-            Moves
+        
+        <div class="moves-box">
+          <div class="info-right moves-box">
+            <div class="info-stats fslarge dsred">
+              Moves
+            </div>
           </div>
-        </div>
-        <div class="stats bgwhite round">
-          <p>Move 1: {{ data.move1.name }}</p>
-          <p>Move 2: {{ data.move2.name }}</p>
-          <p>Move 3: {{ data.move3.name }}</p>
+          <div class="stats bgwhite round fsmed triple-split fclightgray dsred">
+            <div class="{{data.move1.type.lower()}}type round fcwhite center folblack bdblack dslightergray">
+              <p>Move 1: {{ data.move1.name }}</p>
+            </div>
+            <div class="{{data.move2.type.lower()}}type round fcwhite center folblack bdblack dslightergray">
+              <p>Move 2: {{ data.move2.name }}</p>
+            </div>
+            <div class="{{data.move3.type.lower()}}type round fcwhite center folblack bdblack dslightergray">
+              <p>Move 3: {{ data.move3.name }}</p>
+            </div>
+            
+            
+          </div>
         </div>
       </div>
     </div>
