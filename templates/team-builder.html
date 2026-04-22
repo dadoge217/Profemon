@@ -19,16 +19,16 @@
               Team
             </div>
           </div>
-          {% for (profemon) in (team) %}
+          {% for prof in team %}
           <div class="member-box bglightgray round dsred">
             <div class="image round dsdarkgray">
-              <img src="{{image.source}}" alt="your team member here">
+              <img src="{{ url_for('static', filename=prof.img) }}" alt="Team Member {{ prof.name }}" height="330">
             </div>
             <div class="member-stats fcwhite dsdarkgray">
               <div class="fssmall center">
-                  {{Name}}
+                  {{ prof.name }}
               </div>
-              <div class="type round center {{type}}type folblack bddarkgray"> {{type}}</div>
+              <div class="type round center {{ prof.type }}type folblack bddarkgray"> {{ prof.type }}</div>
             </div>
           </div>
           {% endfor %}
@@ -40,17 +40,29 @@
             </div>
           </div>
           <div class="caught-mons">
-            {%for (profemon) in (data) %}
+            {%for prof in totalProfs %}
               <div class="member-box bglightgray round dsblue">
+                {% if prof.caught %}
                 <div class="image round dsdarkgray">
-                  <img src="" alt="your team member here">
+                  <img src="{{ url_for('static', filename=prof.img) }}" alt="Can use {{ prof.name }}" height="300">
                 </div>
                 <div class="member-stats fcwhite dsdarkgray">
                   <div class="fssmall center">
-                      {{Name}}
+                      {{ prof.name }}
                   </div>
-                  <div class="type round center {{type}}type folblack bddarkgray"> {{type}}</div>
+                  <div class="type round center {{type}}type folblack bddarkgray"> {{ prof.type }}</div>
                 </div>
+                {% else %}
+                <div class="image round dsdarkgray">
+                  <img src="{{ url_for('static', filename='assets/images/notUnlocked.png') }}" alt="Cannot use {{ prof.name }}" height="200">
+                </div>
+                <div class="member-stats fcwhite dsdarkgray">
+                  <div class="fssmall center">
+                      {{ prof.name }}
+                  </div>
+                  <div class="type round center {{type}}type folblack bddarkgray"> {{ prof.type }}</div>
+                </div>
+                {% endif %}
               </div>
             {% endfor %}
           </div>

@@ -17,12 +17,18 @@
             <img class="image round" src="" alt="Picture of ">
           </div>
           <div class="info-right bgwhite round">
-            <h1>Profemon Name</h1>
-            <div class="info-stats">
-              stats
-            </div>
+            {% if show %}
+              <h1>{{encounter.name}}</h1>
+              <div class="info-stats">
+                stats
+                HP: {{encounter.hp}}
+              </div>
+          {% endif %}
           </div>
         </div>
+        <form method="POST" action="/catch">
+          <button name="look" value="look">Look Around</button>
+        </form>
       </div>
       <div class="body">
         <div class="left-split">

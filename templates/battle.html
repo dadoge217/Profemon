@@ -40,6 +40,29 @@
             options
             <button class="opt-button">Forfeit</button>
           </div>
+          <form method="POST" action="/battle">
+            <button name="move" value="move1">{{player.currentProf.move1.name}}</button>
+            <button name="move" value="move2">{{player.currentProf.move2.name}}</button>
+            <button name="move" value="move3">{{player.currentProf.move3.name}}</button>
+          </form>
+          <h2>Player</h2>
+          <p>{{player.currentProf.name}}</p>
+          <p>HP: {{player.currentProf.hp}}</p>
+
+          <h2>Trainer</h2>
+          <p>{{trainer.currentProf.name}}</p>
+          <p>HP: {{trainer.currentProf.hp}}</p>
+          <h3>Your Team</h3>
+          {% for prof in player.team %}
+              {% if not prof.fainted() %}
+                  <form method="POST" action="/swap">
+                      <input type="hidden" name="prof_name" value="{{ prof.name }}">
+                      <button type="submit">
+                          Swap to {{ prof.name }} (HP: {{ prof.hp }})
+                      </button>
+                  </form>
+              {% endif %}
+          {% endfor %}
         </div>
       </div>
     </div>
