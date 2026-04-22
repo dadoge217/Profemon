@@ -40,6 +40,11 @@
             options
             <button class="opt-button">Forfeit</button>
           </div>
+          <form method="POST" action="/battle">
+            <button name="move" value="move1">{{player.currentProf.move1.name}}</button>
+            <button name="move" value="move2">{{player.currentProf.move2.name}}</button>
+            <button name="move" value="move3">{{player.currentProf.move3.name}}</button>
+          </form>
         </div>
       </div>
     </div>

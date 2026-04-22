@@ -13,6 +13,7 @@ profemons = func.catchProf(profemons, "Mikhail")
 profemons = func.catchProf(profemons, "John")
 profemons = func.catchProf(profemons, "Giovanni")
 player = profs.Trainer("Ben", profemons[2], profemons[4], profemons[6])
+trainer = profs.Trainer("bot1", profemons[2], profemons[4], profemons[6])
 
 @app.route('/')
 def index():
@@ -41,10 +42,6 @@ def stats():
 def team():
     return render_template('team-builder.html', team=player.team, totalProfs=profemons)
 
-@app.route('/battle')
-def battle():
-    return render_template('battle.html')
-
 @app.route('/catch')
 def catch():
     return render_template('catch.html')
@@ -57,8 +54,21 @@ def caretaking():
 def forfeit_route(profId):
     print(f"Professor ID: {profId}")
 
+@app.route('/battle', methods=['GET', 'POST'])
+def battle():
+    if request.method == 'POST' and 'move' in request.form:
+        playerMove = request.form['move']
+        if playerMove == "move1":
+            move = player.currentProf.move1
+        elif playerMove == "move2":
+            move = player.currentProf.move2
+        else:
+            move = player.currentProf.move3
+    return render_template('battle.html', player=player, trainer=trainer)
+
 if __name__ == "__main__":
     profemons = func.catchProf(profemons, "Mikhail")
     profemons = func.catchProf(profemons, "John")
     profemons = func.catchProf(profemons, "Giovanni")
     player = profs.Trainer("Ben", profemons[2], profemons[4], profemons[6])
+    app.run()
