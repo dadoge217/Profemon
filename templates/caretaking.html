@@ -5,38 +5,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caretaking</title>
+    <link href="{{ url_for('static', filename='css/archie-style.css') }}" rel="stylesheet" type="text/css" media="all">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
   </head>
   <body class="bggraygrid">
-{% extends 'include/layout.html' %}
+    {% extends 'include/layout.html' %}
 {% block content %}
     <div class="big-box isGrid">
-      <div class="head bgyellowcheck round">
-        <div class="info-box round">
-          <div class="info-image">
-            <img class="image round" src="" alt="Picture of ">
-          </div>
-          <div class="info-right">
-            <h1>Profemon Name</h1>
-            <div class="info-stats">
-              stats
-            </div>
-            <div class="affection">
-              <p>affection:</p>
-              <div class="affection-meter round bglightblue">
-              </div>
-              <div class="care-buttons">
-                <div class="pet-button round bgdarkblue">pet</div>
-                <div class="feed-button round bgdarkblue">feed</div>
-              </div>
+      <div class="body-split">
+        <div class="left-split bgyellowcheck round dsdarkgray">
+          <div class="title-box round bgwhite center dsred">
+            <div class="fsmed dslightergray fcdarkgray">
+              Actions
             </div>
           </div>
+          {% for prof in team %}
+          
+          {% endfor %}
         </div>
-        <div class="stats bgwhite round">
-          <p>ATK: </p>
-          <p>DEF: </p>
-          <p>HP: </p>
-          <p>SPD: </p>
+        <div class="right-split bglightblue round dsdarkgray">
+          <div class="title-box round bgwhite center dsblue">
+            <div class="fsmed dslightergray fcdarkgray">
+              My Profemon
+            </div>
+          </div>
+          <div class="caught-mons">
+            {%for prof in totalProfs %}
+              <div class="member-box bglightgray round dsblue">
+                {% if prof.caught %}
+                <div class="image round dsdarkgray">
+                  <img class="round" src="{{ url_for('static', filename=prof.img) }}" alt="Can use {{ prof.name }}" height="300">
+                </div>
+                <div class="member-stats fcwhite dsdarkgray">
+                  <div class="fssmall center">
+                      {{ prof.name }}
+                  </div>
+                  <div class="type round fssmall center {{prof.type.lower()}}type folblack bddarkgray"> {{ prof.type }}</div>
+                </div>
+                {% else %}
+                <div class="image round dsdarkgray">
+                  <img class="round" src="{{ url_for('static', filename='assets/images/notUnlocked.png') }}" alt="Cannot use {{ prof.name }}" height="200">
+                </div>
+                <div class="member-stats fcwhite dsdarkgray">
+                  <div class="fssmall center">
+                      {{ prof.name }}
+                  </div>
+                  <div class="type fssmall round center {{prof.type.lower()}}type folblack bddarkgray"> {{ prof.type }}</div>
+                </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+          
         </div>
       </div>
     </div>
