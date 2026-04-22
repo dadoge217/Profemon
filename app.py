@@ -74,7 +74,7 @@ def battle():
         else:
             move = player.currentProf.move3
         bot_move = func.botMove(trainer, player)
-        func.doMoves(move, bot_move, player, trainer)
+        func.doMoves(move, bot_move, player, trainer) #Do status move logic
     return render_template('battle.html', player=player, trainer=trainer)
 
 @app.route('/swap', methods=['POST'])
