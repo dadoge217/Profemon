@@ -243,21 +243,31 @@ def doMoves(pMove, bMove, player, trainer):
 #         self.power = power
 #         self.status = status
 def botMove(trainer, player):
-    lowestDamage = 1
-    if(isEffective(player.currentProf.type, trainer.currentProf.type) > 1):
-        if(isEffective(player.currentProf.type, trainer.prof1.type) <= lowestDamage):
-            profSwitch = trainer.prof1
-            lowestDamage = isEffective(player.currentProf.type, trainer.prof1.type)
-        if(isEffective(player.currentProf.type, trainer.prof2.type) <= lowestDamage):
-            profSwitch = trainer.prof2
-            lowestDamage = isEffective(player.currentProf.type, trainer.prof2.type)
-        if(isEffective(player.currentProf.type, trainer.prof3.type) <= lowestDamage):
-            profSwitch = trainer.prof3
+    lowestDamage = float('inf')
+    profSwitch = trainer.currentProf
+    if((isEffective(player.currentProf.type, trainer.currentProf.type) > 1) or trainer.currentProf.fainted()):
+        if((isEffective(player.currentProf.type, trainer.team[0].type) <= lowestDamage) and not trainer.team[0].fainted()):
+            profSwitch = trainer.team[0]
+            lowestDamage = isEffective(player.currentProf.type, trainer.team[0].type)
+        if((isEffective(player.currentProf.type, trainer.team[1].type) <= lowestDamage) and not trainer.team[1].fainted()):
+            profSwitch = trainer.team[1]
+            lowestDamage = isEffective(player.currentProf.type, trainer.team[1].type)
+        if(isEffective(player.currentProf.type, trainer.team[2].type) <= lowestDamage and not trainer.team[2].fainted()):
+            profSwitch = trainer.team[2]
+            lowestDamage = isEffective(player.currentProf.type, trainer.team[2].type)
         trainer.currentProf = profSwitch
         return "swap"
-    if(isEffective(trainer.currentProf.move1.type, player.currentProf.type) > 1):
-        return trainer.currentProf.move1
-    elif(isEffective(trainer.currentProf.move2.type, player.currentProf.type) > 1):
-        return trainer.currentProf.move2
-    else:
-        return trainer.currentProf.move3
+    moves = [
+        trainer.currentProf.move1,
+        trainer.currentProf.move2,
+        trainer.currentProf.move3
+    ]
+    bestMove = moves[0]
+    bestScore = isEffective(bestMove.type, player.currentProf.type)
+
+    for move in moves:
+        score = isEffective(move.type, player.currentProf.type)
+        if score > bestScore:
+            bestScore = score
+            bestMove = move
+    return bestMove

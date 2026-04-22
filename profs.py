@@ -6,6 +6,7 @@ class Profemon:
         self.move2 = move2
         self.move3 = move3
         self.hp = int(hp)
+        self.maxHP = int(hp)
         self.attack = int(attack)
         self.defense = int(defense)
         self.speed = int(speed)
@@ -15,6 +16,10 @@ class Profemon:
         self.hp -= damage
         if self.hp < 0:
             self.hp = 0
+    def fainted(self):
+        if self.hp == 0: 
+            return True
+        return False
 
 class Move:
     def __init__(self, name, type, power, status = ""):

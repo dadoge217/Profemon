@@ -13,7 +13,7 @@ profemons = func.catchProf(profemons, "Mikhail")
 profemons = func.catchProf(profemons, "John")
 profemons = func.catchProf(profemons, "Giovanni")
 player = profs.Trainer("Ben", profemons[2], profemons[4], profemons[6])
-trainer = profs.Trainer("bot1", profemons[2], profemons[4], profemons[6])
+trainer = profs.Trainer("bot1", profemons[1], profemons[5], profemons[7])
 
 @app.route('/')
 def index():
@@ -66,7 +66,6 @@ def battle():
             move = player.currentProf.move3
         bot_move = func.botMove(trainer, player)
         func.doMoves(move, bot_move, player, trainer)
-
     return render_template('battle.html', player=player, trainer=trainer)
 
 if __name__ == "__main__":
