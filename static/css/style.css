@@ -273,6 +273,13 @@
 .bat-image{
     width:40%;
 }
+.bat-type{
+    max-width:80%;
+    max-height:50%;
+}
+.name-type{
+    grid-template-columns:1fr 1fr;
+}
 /*battle right*/
 .battle-log{
     padding:.5rem;
