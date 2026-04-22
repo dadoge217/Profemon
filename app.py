@@ -64,8 +64,8 @@ def battle():
             move = player.currentProf.move2
         else:
             move = player.currentProf.move3
-        bot_move = func.botMove(trainer)
-        func.doMoves(move, bot_move)
+        bot_move = func.botMove(trainer, player)
+        func.doMoves(move, bot_move, player, trainer)
 
     return render_template('battle.html', player=player, trainer=trainer)
 

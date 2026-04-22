@@ -1,5 +1,5 @@
 from random import randint
-from profs import Profemon, Move, player, trainer
+from profs import Profemon, Move, player
 
 types = ["Normal","Fire","Water","Electric","Grass","Ice","Fighting","Poison","Ground","Flying","Psychic","Bug","Rock","Ghost","Dragon","Dark","Steel","Fairy"]
 dmoves = ["Slap","Flamethrower","Bubble Burst","Thunderbolt","Razor Leaf","Icicle","Mega Punch","Sludge","Earth Shot","Skydive","Confusion","Slither","Rock Throw","Haunt","Dragon Claw","Bite","Iron Head","Moon Beam", "FINAL FLASH"]
@@ -219,7 +219,7 @@ def damageCalc(prof1, move, prof2):
     
     return damage
 
-def doMoves(pMove, bMove):
+def doMoves(pMove, bMove, player, trainer):
         if(player.currentProf.speed >= trainer.currentProf.speed):
             if pMove != "swap":
                 damage = damageCalc(player.currentProf, pMove, trainer.currentProf)
@@ -242,7 +242,7 @@ def doMoves(pMove, bMove):
 #         self.type = type
 #         self.power = power
 #         self.status = status
-def botMove(trainer):
+def botMove(trainer, player):
     lowestDamage = 1
     if(isEffective(player.currentProf.type, trainer.currentProf.type) > 1):
         if(isEffective(player.currentProf.type, trainer.prof1.type) <= lowestDamage):

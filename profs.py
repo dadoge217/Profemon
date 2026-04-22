@@ -5,20 +5,22 @@ class Profemon:
         self.move1 = move1
         self.move2 = move2
         self.move3 = move3
-        self.hp = hp
-        self.attack = attack
-        self.defense = defense
-        self.speed = speed
+        self.hp = int(hp)
+        self.attack = int(attack)
+        self.defense = int(defense)
+        self.speed = int(speed)
         self.img = img
         self.caught = False
-        def takeDamage(damage):
-            hp = hp - damage
+    def takeDamage(self, damage):
+        self.hp -= damage
+        if self.hp < 0:
+            self.hp = 0
 
 class Move:
     def __init__(self, name, type, power, status = ""):
         self.type = type
         self.name = name
-        self.power = power
+        self.power = int(power)
         self.status = status
 
 class Trainer:
