@@ -12,26 +12,26 @@
 {% extends 'include/layout.html' %}
 {% block content %}
     <div class="big-box isGrid">
-      <div class="head bgyellowcheck round bigger-padding">
+      <div class="head bgyellowcheck round bigger-padding dsdarkgray">
         <div class="info-box round body-split isGrid">
-          <div class="info-image left-split ">
+          <div class="info-image left-split dsred">
             <img src="{{ url_for('static', filename=data.img) }}" alt="Picture of {{ data.name }}" height="480" class="round">
           </div>
           <div class="info-right right-split">
             <div class="middle-split">
-              <div class="fsbigger">{{ data.name }}</div>
-              <div class="type round center {{data.type.lower()}}type folblack bddarkgray fcwhite fsmed"> {{ data.type }}</div>
+              <div class="fsbigger dsred">{{ data.name }}</div>
+              <div class="type round center {{data.type.lower()}}type folblack bddarkgray fcwhite fsmed dsred"> {{ data.type }}</div>
             </div>
             
-            <div class="info-stats fslarge">
+            <div class="info-stats fslarge dsred">
               Stats
             </div>
-            <div class="stats bgwhite round fsmed middle-split fclightgray">
-              <div class="left-split">
+            <div class="stats bgwhite round fsmed middle-split fclightgray dsred">
+              <div class="left-split dslightergray">
                 <p>HP: {{ data.hp }}</p>
                 <p>ATK: {{ data.attack }}</p>
               </div>
-              <div class="right-split">
+              <div class="right-split dslightergray">
                 <p>DEF: {{ data.defense }}</p>
                 <p>SPD: {{ data.speed }}</p>
               </div>
@@ -41,18 +41,18 @@
         
         <div class="moves-box">
           <div class="info-right moves-box">
-            <div class="info-stats fslarge">
+            <div class="info-stats fslarge dsred">
               Moves
             </div>
           </div>
-          <div class="stats bgwhite round fsmed triple-split fclightgray ">
-            <div class="{{data.move1.type.lower()}}type round fcwhite center folblack bdblack">
+          <div class="stats bgwhite round fsmed triple-split fclightgray dsred">
+            <div class="{{data.move1.type.lower()}}type round fcwhite center folblack bdblack dslightergray">
               <p>Move 1: {{ data.move1.name }}</p>
             </div>
-            <div class="{{data.move2.type.lower()}}type round fcwhite center folblack bdblack">
+            <div class="{{data.move2.type.lower()}}type round fcwhite center folblack bdblack dslightergray">
               <p>Move 2: {{ data.move2.name }}</p>
             </div>
-            <div class="{{data.move3.type.lower()}}type round fcwhite center folblack bdblack">
+            <div class="{{data.move3.type.lower()}}type round fcwhite center folblack bdblack dslightergray">
               <p>Move 3: {{ data.move3.name }}</p>
             </div>
             
