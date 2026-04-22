@@ -17,19 +17,52 @@
             <img class="image round" src="" alt="Picture of ">
           </div>
           <div class="info-right bgwhite round">
-            {% if show %}
-              <h1>{{encounter.name}}</h1>
-              <div class="info-stats">
-                stats
-                HP: {{encounter.hp}}
-              </div>
-          {% endif %}
+            <div id="prof">
+              {% if show %}
+                <h1>{{encounter.name}}</h1>
+                <div class="info-stats">
+                  HP: {{encounter.hp}}
+                </div>
+              {% endif %}
+            </div>
           </div>
         </div>
-        <form method="POST" action="/catch">
-          <button name="look" value="look">Look Around</button>
-        </form>
+        {% if not show %}
+          <form method="POST" action="/catch">
+            <button name="look" value="look">Look Around</button>
+          </form>
+        {% elif show %}
+          <form method="POST" action="/minigame">
+            <button name="click" value="click">Try to Catch</button>
+            <button name="flee" value="flee">Flee</button>
+          </form>
+        {% endif %}
       </div>
+      <div>Time: <span id="time">10</span></div>
+      <div>Clicks: <span id="counter">0</span></div>
+
+      <div id="result"></div>
+      <script>
+        let lastResult = null;
+
+        setInterval(async () => {
+            const res = await fetch('/timer');
+            const data = await res.json();
+
+            document.getElementById("time").innerText = data.time;
+            document.getElementById("counter").innerText = data.counter;
+
+            const prof = document.getElementById("prof");
+
+            prof.style.display = data.show ? "block" : "none";
+
+            // 🧠 show catch result ONCE
+            if (data.result && data.result !== lastResult) {
+                lastResult = data.result;
+                document.getElementById("result").innerText = data.result;
+            }
+        }, 500);
+        </script>
       <div class="body">
         <div class="left-split">
           <div class="catch-log bgwhite round">
