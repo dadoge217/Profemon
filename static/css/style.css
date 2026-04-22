@@ -254,6 +254,9 @@
     padding:1rem;
     margin:1rem;
 }
+.move-button:hover{
+    opacity:60%;
+}
 /* inner battle */
 .battle-box{
     grid-template-columns:2fr 1fr 2fr;
@@ -273,10 +276,29 @@
 /*battle right*/
 .battle-log{
     padding:.5rem;
-    height:50%;
+    height:40%;
 }
-.log{
+.logs{
+    padding:.5rem;
+    max-height:50%;
     overflow:scroll;
+}
+.options{
+    grid-template-columns:1fr 1fr 1fr;
+    padding:.5rem;
+    margin-top:1rem;
+}
+.opt-text{
+    grid-column-start:1;
+    grid-column-end:4;
+}
+.opt-button{
+    padding:.5rem;
+    margin:.5rem;
+}
+.opt-button:hover{
+    background-color:var(--lightergray);
+    color:var(--lightgray);
 }
 
 /* profedex */
