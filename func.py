@@ -1,5 +1,5 @@
 from random import randint
-from profs import Profemon, Move, player
+from profs import Profemon, Move, player, trainer
 
 types = ["Normal","Fire","Water","Electric","Grass","Ice","Fighting","Poison","Ground","Flying","Psychic","Bug","Rock","Ghost","Dragon","Dark","Steel","Fairy"]
 dmoves = ["Slap","Flamethrower","Bubble Burst","Thunderbolt","Razor Leaf","Icicle","Mega Punch","Sludge","Earth Shot","Skydive","Confusion","Slither","Rock Throw","Haunt","Dragon Claw","Bite","Iron Head","Moon Beam", "FINAL FLASH"]
@@ -219,41 +219,21 @@ def damageCalc(prof1, move, prof2):
     
     return damage
 
-def campaignBattle(trainer):
-    playerProf1PO = False
-    playerProf2PO = False
-    playerProf3PO = False
-    trainerProf1PO = False
-    trainerProf2PO = False
-    trainerProf3PO = False
-    winner = ""
-
-    currentTurn = 0
-    battleEnded = False
-    while(not battleEnded):
-        currentTurn += 1
-        botMove(trainer)
-        #Do player turn
-        if(player.currentProf.move == "swap"):
-            continue
-        if(trainer.currentProf.move == "swap"):
-            continue
-        if(player.currentProf.speed > trainer.currentProf.speed):
-            if player.currentProf.move != "swap":
-                damageCalc(player.currentProf, player.currentProf.move, trainer.currentProf)
-            if trainer.currentProf.move != "swap":
-                damageCalc(player.currentProf, trainer.currentProf.move, trainer.currentProf)
+def doMoves(pMove, bMove):
+        if(player.currentProf.speed >= trainer.currentProf.speed):
+            if pMove != "swap":
+                damage = damageCalc(player.currentProf, pMove, trainer.currentProf)
+                trainer.currentProf.takeDamage(damage)
+            if bMove != "swap":
+                damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
+                player.currentProf.takeDamage(damage)
         if(trainer.currentProf.speed > player.currentProf.speed):
-            if(trainer.currentProf.move != "swap"):
-                damageCalc(trainer.currentProf, trainer.currentProf.move, player.currentProf)
-            if player.currentProf.move != "swap":
-                damageCalc(player.currentProf, player.currentProf.move, trainer.currentProf)
-        if(playerProf1PO and playerProf2PO and playerProf3PO):
-            battleEnded = True
-            winner = "Trainer"
-        elif(trainerProf1PO and trainerProf2PO and trainerProf3PO):
-            battleEnded = True
-            winner = "Player"
+            if(bMove != "swap"):
+                 damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
+                 player.currentProf.takeDamage(damage)
+            if pMove != "swap":
+                damage = damageCalc(player.currentProf, pMove, trainer.currentProf)
+                trainer.currentProf.takeDamage(damage)
 
 
 
@@ -275,7 +255,9 @@ def botMove(trainer):
             profSwitch = trainer.prof3
         trainer.currentProf = profSwitch
         return "swap"
-    if(isEffective(trainer.currentProf.move1, player.currentProf.type) > 1):
+    if(isEffective(trainer.currentProf.move1.type, player.currentProf.type) > 1):
         return trainer.currentProf.move1
-    elif(isEffective(trainer.currentProf.move2, player.currentProf.type) > 1):
+    elif(isEffective(trainer.currentProf.move2.type, player.currentProf.type) > 1):
         return trainer.currentProf.move2
+    else:
+        return trainer.currentProf.move3

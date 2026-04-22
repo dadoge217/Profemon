@@ -11,6 +11,8 @@ class Profemon:
         self.speed = speed
         self.img = img
         self.caught = False
+        def takeDamage(damage):
+            hp = hp - damage
 
 class Move:
     def __init__(self, name, type, power, status = ""):
