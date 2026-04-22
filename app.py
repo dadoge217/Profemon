@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+import random
 import profs
 import func
 
@@ -14,6 +15,8 @@ profemons = func.catchProf(profemons, "John")
 profemons = func.catchProf(profemons, "Giovanni")
 player = profs.Trainer("Ben", profemons[2], profemons[4], profemons[6])
 trainer = profs.Trainer("bot1", profemons[1], profemons[5], profemons[7])
+wildProf = profemons[1]
+showProf = False
 
 @app.route('/')
 def index():
@@ -42,9 +45,15 @@ def stats():
 def team():
     return render_template('team-builder.html', team=player.team, totalProfs=profemons)
 
-@app.route('/catch')
+@app.route('/catch', methods=['GET', 'POST'])
 def catch():
-    return render_template('catch.html')
+    global showProf
+    if request.method == 'POST' and 'look' in request.form:
+        encounterChance = random.randint(1, 100)
+        if encounterChance <= 97:
+            showProf = True
+
+    return render_template('catch.html', encounter=wildProf, show=showProf)
 
 @app.route('/caretaking')
 def caretaking():
