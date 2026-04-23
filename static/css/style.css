@@ -325,21 +325,34 @@
 
 /*catch*/
 .catch-split{
-    grid-template-columns:3fr 1fr;
+    grid-template-columns:1fr 2fr;
     column-gap: 1rem;
     margin-top:1rem;
     margin-right:1rem;
+
 }
 .catch-options{
     padding-top:.5rem;
     padding-left:1rem;
     padding-right:1rem;
     padding-bottom:1rem;
+    grid-template-columns:1fr 1fr;
+    min-height:10rem;
+}
+.catch-log{
+    padding-top:.5rem;
+    padding-left:1rem;
+    padding-right:1rem;
+    padding-bottom:1rem;
+    min-height:10rem;
 }
 .enc-type{
-    width:50%;
+    width:30%;
     height:30%;
     padding:.5rem;
+}
+.opt-text,.opt-right{
+    margin-top:.5rem;
 }
 /*catch top*/
 .info-box{
