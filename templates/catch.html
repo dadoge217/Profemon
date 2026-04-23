@@ -8,37 +8,46 @@
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
   </head>
   <body class="bggraygrid">
-  {% extends 'include/layout.html' %}
+{% extends 'include/layout.html' %}
 {% block content %}
     <div class="big-box isGrid">
       <div class="head">
-        <div class="info-box bgyellowcheck round">
-          <div class="info-image">
-            <img class="image round" src="" alt="Picture of ">
+        <div class="info-box isGrid bgyellowcheck round">
+          <div class="info-image dsred">
+            <img class="image round" src="{{ url_for('static', filename=encounter.img) }}" alt="Picture of {{encounter.name}}">
           </div>
-          <div class="info-right bgwhite round">
+          <div class="info-right dsred bgwhite round">
             {% if show %}
-              <h1>{{encounter.name}}</h1>
-              <div class="info-stats">
-                stats
-                HP: {{encounter.hp}}
+            <div class="isGrid name-type">
+              <h1 class="fslarge fcdarkgray dslightergray">{{encounter.name}}</h1>
+              <div class="enc-type type fssmall round dslightergray fcwhite center {{ encounter.type.lower() }}type folblack bddarkgray"> {{ encounter.type }}</div>
+            </div>
+              <div class="info-stats fcdarkgray fsmed">
+                <p class="dslightergray">HP: {{encounter.hp}}</p>
               </div>
           {% endif %}
           </div>
         </div>
-        <form method="POST" action="/catch">
-          <button name="look" value="look">Look Around</button>
-        </form>
       </div>
-      <div class="body">
+      <div class="catch-split isGrid">
         <div class="left-split">
           <div class="catch-log bgwhite round">
-            <p>log from catch</p>
+            
+            <div class="logs round bdblack">
+              <p class="log-report fssmaller fcdarkgray dslightergray">This guy has appeared!</p>
+              <p class="log-report fssmaller fcdarkgray dslightergray">overflow on logs is set to scroll</p>
+              <p class="log-report fssmaller fcdarkgray dslightergray">hypothetically if i put a lot of these it should scroll</p>
+              <p class="log-report fssmaller fcdarkgray dslightergray">but i guess we will see</p>
+              <p class="log-report fssmaller fcdarkgray dslightergray">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, impedit. Atque modi illo quam officiis iste optio, ad perspiciatis similique a eius non doloribus iure, facilis quis ut! Culpa, voluptate!</p>
+            </div>
           </div>
         </div>
         <div class="right-split">
           <div class="catch-options bgwhite round">
-            <p>options</p>
+            <p class="fsmed fcdarkgray dslightergray">Options</p>
+            <form method="POST" action="/catch">
+              <button class="opt-button bdblack round bgwhite fssmaller fcdarkgray dslightergray" name="look" value="look">Look Around</button>
+            </form>
           </div>
         </div>
       </div>
@@ -46,4 +55,3 @@
     {% endblock %}
   </body>
 </html>
-
