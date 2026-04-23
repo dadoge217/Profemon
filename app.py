@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect
 import random
 import profs
 import func
+import threading
+import time
 
 app = Flask(__name__)
 app.debug = True
@@ -15,8 +17,30 @@ profemons = func.catchProf(profemons, "John")
 profemons = func.catchProf(profemons, "Giovanni")
 player = profs.Trainer("Ben", profemons[2], profemons[4], profemons[6])
 trainer = profs.Trainer("bot1", profemons[1], profemons[5], profemons[7])
-wildProf = profemons[1]
+lock = threading.Lock()
+wildProf = profemons[10]
 showProf = False
+counter = 0
+timerVal = 10
+running = False
+catchOutcome = ""
+
+def countdown():
+    global timerVal, running, showProf, counter, profemons, catchOutcome
+    running = True
+    while timerVal > 0:
+        time.sleep(1)
+        timerVal -= 1
+    roll = random.randint(1, 100)
+    if counter >= roll:
+        profemons = func.catchProf(profemons, wildProf.name)
+        catchOutcome = f"Congrats! You caught a {wildProf.name}"
+    else:
+        catchOutcome = f"The {wildProf.name} got away!"
+    running = False
+    showProf = False #turn this into the part for logic, then counter = 0
+    counter = 0
+    timerVal = 10
 
 @app.route('/')
 def index():
@@ -29,7 +53,6 @@ def info():
 @app.route('/prof', methods=['GET'])
 def profPage():
     global profemons
-    profemons = func.catchProf(profemons, "Delozier")
     tempProf = request.args.get('prof')
     workingProf = ""
     for i in profemons:
@@ -41,19 +64,91 @@ def profPage():
 def stats():
     return render_template('personal-stats.html')
 
-@app.route('/team')
+@app.route('/team', methods=['GET','POST'])
 def team():
-    return render_template('team-builder.html', team=player.team, totalProfs=profemons)
+    teamslot = 0
+    msg = ""
+    if request.method == 'POST':
+        slot = request.form['slot']
+        getname = request.form['profname']
+        print(getname)
+
+        if slot == "-1":
+            slot = -1
+        elif slot == "0":
+            slot = 0
+        elif slot == "1":
+            slot = 1
+        else:
+            slot = 2
+        
+        #find profemon object from name
+        nameindex = -1
+        teamslot = -1
+        for i in profemons:
+            nameindex += 1
+            if i.name == getname:
+                break
+        if slot == -1: #remove a prof from team
+            for i in player.team:
+                teamslot += 1
+                if i != 0:
+                    print("pass1")
+                    print(i.name)
+                    if i.name == getname:
+                        print("pass2")
+                        break
+            player.team[teamslot] = 0
+        else: #add to slot 1
+            if profemons[nameindex] not in player.team:
+                player.team[slot] = profemons[nameindex]
+            else:
+                msg = "You can only have 1 of each Profemon on your team!"
+    player.currentProf = player.team[0]
+    return render_template('team-builder.html', team=player.team, totalProfs=profemons, msg=msg)
 
 @app.route('/catch', methods=['GET', 'POST'])
 def catch():
-    global showProf
+    global showProf, profemons, wildProf
     if request.method == 'POST' and 'look' in request.form:
         encounterChance = random.randint(1, 100)
         if encounterChance <= 97:
+            wildProfNum = random.randint(0, 36)
+            while (profemons[wildProfNum].caught):
+                wildProfNum = random.randint(0, 36)
+            wildProf = profemons[wildProfNum]
             showProf = True
 
-    return render_template('catch.html', encounter=wildProf, show=showProf)
+    return render_template('catch.html', encounter=wildProf, show=showProf, catchOutcome=catchOutcome)
+
+@app.route('/minigame', methods=['POST'])
+def minigame():
+    global showProf, counter, timerVal, running, catchOutcome
+
+    if 'flee' in request.form:
+        showProf = False
+        return '', 204
+    
+    if 'click' in request.form:
+        counter += 1
+        with lock:
+            if not running:
+                running = True  # 🔥 set immediately inside lock
+                timerVal = 10
+                counter = 0
+                catchOutcome = ""
+                threading.Thread(target=countdown, daemon=True).start()
+
+    return '', 204
+
+@app.route('/timer')
+def timer():
+    return {
+        "time": timerVal,
+        "counter": counter,
+        "show": showProf,
+        "result": catchOutcome
+    }
 
 @app.route('/caretaking')
 def caretaking():
@@ -99,6 +194,23 @@ def swap():
                 player.currentProf = prof
                 break
     return render_template('battle.html', player=player, trainer=trainer)
+
+@app.route('/unlockall')
+def unlock():
+    global profemons
+    for i in profemons:
+        i.caught = True
+    return redirect('/')
+
+@app.route('/relockall')
+def relock():
+    global profemons
+    for i in profemons:
+        i.caught = False
+    profemons = func.catchProf(profemons, "Mikhail")
+    profemons = func.catchProf(profemons, "John")
+    profemons = func.catchProf(profemons, "Giovanni")
+    return redirect('/')
 
 if __name__ == "__main__":
     profemons = func.catchProf(profemons, "Mikhail")
