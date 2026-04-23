@@ -53,7 +53,6 @@ def info():
 @app.route('/prof', methods=['GET'])
 def profPage():
     global profemons
-    profemons = func.catchProf(profemons, "Delozier")
     tempProf = request.args.get('prof')
     workingProf = ""
     for i in profemons:
@@ -65,9 +64,50 @@ def profPage():
 def stats():
     return render_template('personal-stats.html')
 
-@app.route('/team')
+@app.route('/team', methods=['GET','POST'])
 def team():
-    return render_template('team-builder.html', team=player.team, totalProfs=profemons)
+    teamslot = 0
+    msg = ""
+    if request.method == 'POST':
+        slot = request.form['slot']
+        name = request.form['profname']
+        
+        #find profemon object from name
+        nameindex = -1
+        for i in profemons:
+            nameindex += 1
+            if i.name == name:
+                break
+        if slot == "-1": #remove a prof from team
+            for i in player.team:
+                if i.name == name:
+                    teamslot = i.name.index(name)
+            if teamslot == 0:
+                player.team[0] = player.team[1]
+                player.team[1] = player.team[2]
+                player.team[2] = 0
+            elif teamslot == 1:
+                player.team[1] = player.team[2]
+                player.team[2] = 0
+            else:
+                player.team[2] = 0
+        elif slot == "0": #add to slot 1
+            if profemons[nameindex] not in player.team:
+                player.team[0] = profemons[nameindex]
+            else:
+                msg = "You can only have 1 of each Profemon on your team!"
+        elif slot == "1": #add to slot 2
+            if profemons[nameindex] not in player.team:
+                player.team[1] = profemons[nameindex]
+            else:
+                msg = "You can only have 1 of each Profemon on your team!"
+        else: #add to slot 3
+            if profemons[nameindex] not in player.team:
+                player.team[2] = profemons[nameindex]
+            else:
+                msg = "You can only have 1 of each Profemon on your team!"
+    player.currentProf = player.team[0]
+    return render_template('team-builder.html', team=player.team, totalProfs=profemons, msg=msg)
 
 @app.route('/catch', methods=['GET', 'POST'])
 def catch():
@@ -156,6 +196,23 @@ def swap():
                 player.currentProf = prof
                 break
     return render_template('battle.html', player=player, trainer=trainer)
+
+@app.route('/unlockall')
+def unlock():
+    global profemons
+    for i in profemons:
+        i.caught = True
+    return redirect('/')
+
+@app.route('/relockall')
+def relock():
+    global profemons
+    for i in profemons:
+        i.caught = False
+    profemons = func.catchProf(profemons, "Mikhail")
+    profemons = func.catchProf(profemons, "John")
+    profemons = func.catchProf(profemons, "Giovanni")
+    return redirect('/')
 
 if __name__ == "__main__":
     profemons = func.catchProf(profemons, "Mikhail")

@@ -19,19 +19,31 @@
               Team
             </div>
           </div>
+          <div class="fsmed dslightergray fcdarkgray">
+              {{ msg }}
+          </div>
           {% for prof in team %}
+          {% if prof != 0 %}
           <div class="member-box bglightgray round dsred">
             <div class="image round dsdarkgray">
-              <img class="round" src="{{ url_for('static', filename=prof.img) }}" alt="Team Member {{ prof.name }}" height="330">
+              <img class="round" src="{{ url_for('static', filename=prof.img) }}" alt="Team Member {{ prof.name }}" height="330" width="200">
             </div>
             <div class="member-stats fcwhite dsdarkgray">
               <div class="fssmall center">
                   {{ prof.name }}
               </div>
               <div class="type fssmall round center {{ prof.type.lower() }}type folblack bddarkgray"> {{ prof.type }}</div>
-              <button class="fssmall round center">Remove from team</button>
+              <form method='POST' action="/team">
+                    <button class="fssmall round center" name="slot" value="-1">Remove from Team</button>
+                    <input type="hidden" name="profname" value="{{ prof.name }}">
+                  </form>
+              <div class="fssmall center">HP: {{ prof.hp }}</div>
+              <div class="fssmall center">Attack: {{ prof.attack }}</div>
+              <div class="fssmall center">Defense: {{ prof.defense }}</div>
+              <div class="fssmall center">Speed: {{ prof.speed }}</div>
             </div>
           </div>
+          {% endif %}
           {% endfor %}
         </div>
         <div class="right-split bglightblue round dsdarkgray">
@@ -45,16 +57,25 @@
               <div class="member-box bglightgray round dsblue">
                 {% if prof.caught %}
                 <div class="image round dsdarkgray">
-                  <img class="round" src="{{ url_for('static', filename=prof.img) }}" alt="Can use {{ prof.name }}" height="300">
+                  <img class="round" src="{{ url_for('static', filename=prof.img) }}" alt="Can use {{ prof.name }}" height="300" width="180">
                 </div>
                 <div class="member-stats fcwhite dsdarkgray">
                   <div class="fssmall center">
                       {{ prof.name }}
                   </div>
                   <div class="type round fssmall center {{prof.type.lower()}}type folblack bddarkgray"> {{ prof.type }}</div>
-                  <button class="fssmall round center">Add to slot 1</button>
-                  <button class="fssmall round center">Add to slot 2</button>
-                  <button class="fssmall round center">Add to slot 3</button>
+                  <form method='POST' action="/team">
+                    <button class="fssmall round center" name="slot" value="0">Add to slot 1</button>
+                    <input type="hidden" name="profname" value="{{ prof.name }}">
+                  </form>
+                  <form method='POST' action="/team">
+                    <button class="fssmall round center" name="slot" value="1">Add to slot 2</button>
+                    <input type="hidden" name="profname" value="{{ prof.name }}">
+                  </form>
+                  <form method='POST' action="/team">
+                    <button class="fssmall round center" name="slot" value="2">Add to slot 3</button>
+                    <input type="hidden" name="profname" value="{{ prof.name }}">
+                  </form>
                 </div>
                 {% else %}
                 <div class="image round dsdarkgray">
