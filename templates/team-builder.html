@@ -43,6 +43,12 @@
               <div class="fssmall center">Speed: {{ prof.speed }}</div>
             </div>
           </div>
+          {% else %}
+          <div class="member-box bglightgray round member-stats fcwhite dsdarkgray">
+              <div class="fssmall center">
+                  Empty Slot
+              </div>
+          </div>
           {% endif %}
           {% endfor %}
         </div>
