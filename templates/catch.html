@@ -16,20 +16,59 @@
           <div class="info-image dsred">
             <img class="image round" src="{{ url_for('static', filename=encounter.img) }}" alt="Picture of {{encounter.name}}">
           </div>
-          <div class="info-right dsred bgwhite round">
-            {% if show %}
-            <div class="isGrid name-type">
-              <h1 class="fslarge fcdarkgray dslightergray">{{encounter.name}}</h1>
-              <div class="enc-type type fssmall round dslightergray fcwhite center {{ encounter.type.lower() }}type folblack bddarkgray"> {{ encounter.type }}</div>
+          <div class="info-right bgwhite round">
+            <div id="prof">
+              {% if show %}
+                <h1>{{encounter.name}}</h1>
+                <div class="info-stats">
+                  HP: {{encounter.hp}}
+                </div>
+              {% endif %}
             </div>
-              <div class="info-stats fcdarkgray fsmed">
-                <p class="dslightergray">HP: {{encounter.hp}}</p>
-              </div>
-          {% endif %}
           </div>
         </div>
+        <div id="lookActions" {% if show %}style="display:none"{% endif %}>
+          <form method="POST" action="/catch">
+            <button name="look" value="look">Look Around</button>
+          </form>
+        </div>
+
+        <div id="catchActions" {% if not show %}style="display:none"{% endif %}>
+          <form method="POST" action="/minigame">
+            <button name="click" value="click">Try to Catch</button>
+            <button name="flee" value="flee">Flee</button>
+          </form>
+        </div>
       </div>
-      <div class="catch-split isGrid">
+      <div>Time: <span id="time">10</span></div>
+      <div>Clicks: <span id="counter">0</span></div>
+
+      <div id="result"></div>
+      <script>
+        let lastResult = null;
+
+        setInterval(async () => {
+            const res = await fetch('/timer');
+            const data = await res.json();
+
+            document.getElementById("time").innerText = data.time;
+            document.getElementById("counter").innerText = data.counter;
+
+            const prof = document.getElementById("prof");
+            const look = document.getElementById("lookActions");
+            const catchA = document.getElementById("catchActions");
+
+            prof.style.display = data.show ? "block" : "none";
+            look.style.display = data.show ? "none" : "block";
+            catchA.style.display = data.show ? "block" : "none";
+
+            if (data.result && data.result !== lastResult) {
+                lastResult = data.result;
+                document.getElementById("result").innerText = data.result;
+            }
+        }, 500);
+        </script>
+      <div class="body">
         <div class="left-split">
           <div class="catch-log bgwhite round">
             

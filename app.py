@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect
 import random
 import profs
 import func
+import threading
+import time
 
 app = Flask(__name__)
 app.debug = True
@@ -15,8 +17,30 @@ profemons = func.catchProf(profemons, "John")
 profemons = func.catchProf(profemons, "Giovanni")
 player = profs.Trainer("Ben", profemons[2], profemons[4], profemons[6])
 trainer = profs.Trainer("bot1", profemons[1], profemons[5], profemons[7])
-wildProf = profemons[1]
+lock = threading.Lock()
+wildProf = profemons[10]
 showProf = False
+counter = 0
+timerVal = 10
+running = False
+catchOutcome = ""
+
+def countdown():
+    global timerVal, running, showProf, counter, profemons, catchOutcome
+    running = True
+    while timerVal > 0:
+        time.sleep(1)
+        timerVal -= 1
+    roll = random.randint(1, 100)
+    if counter >= roll:
+        profemons = func.catchProf(profemons, wildProf.name)
+        catchOutcome = f"Congrats! You caught a {wildProf.name}"
+    else:
+        catchOutcome = f"The {wildProf.name} got away!"
+    running = False
+    showProf = False #turn this into the part for logic, then counter = 0
+    counter = 0
+    timerVal = 10
 
 @app.route('/')
 def index():
@@ -47,13 +71,46 @@ def team():
 
 @app.route('/catch', methods=['GET', 'POST'])
 def catch():
-    global showProf
+    global showProf, profemons, wildProf
     if request.method == 'POST' and 'look' in request.form:
         encounterChance = random.randint(1, 100)
         if encounterChance <= 97:
+            wildProfNum = random.randint(0, 36)
+            while (profemons[wildProfNum].caught):
+                wildProfNum = random.randint(0, 36)
+            wildProf = profemons[wildProfNum]
             showProf = True
 
-    return render_template('catch.html', encounter=wildProf, show=showProf)
+    return render_template('catch.html', encounter=wildProf, show=showProf, catchOutcome=catchOutcome)
+
+@app.route('/minigame', methods=['POST'])
+def minigame():
+    global showProf, counter, timerVal, running, catchOutcome
+
+    if 'flee' in request.form:
+        showProf = False
+        return '', 204
+    
+    if 'click' in request.form:
+        counter += 1
+        with lock:
+            if not running:
+                running = True  # 🔥 set immediately inside lock
+                timerVal = 10
+                counter = 0
+                catchOutcome = ""
+                threading.Thread(target=countdown, daemon=True).start()
+
+    return '', 204
+
+@app.route('/timer')
+def timer():
+    return {
+        "time": timerVal,
+        "counter": counter,
+        "show": showProf,
+        "result": catchOutcome
+    }
 
 @app.route('/caretaking')
 def caretaking():
