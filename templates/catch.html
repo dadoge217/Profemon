@@ -27,16 +27,18 @@
             </div>
           </div>
         </div>
-        {% if not show %}
+        <div id="lookActions" {% if show %}style="display:none"{% endif %}>
           <form method="POST" action="/catch">
             <button name="look" value="look">Look Around</button>
           </form>
-        {% elif show %}
+        </div>
+
+        <div id="catchActions" {% if not show %}style="display:none"{% endif %}>
           <form method="POST" action="/minigame">
             <button name="click" value="click">Try to Catch</button>
             <button name="flee" value="flee">Flee</button>
           </form>
-        {% endif %}
+        </div>
       </div>
       <div>Time: <span id="time">10</span></div>
       <div>Clicks: <span id="counter">0</span></div>
@@ -53,10 +55,13 @@
             document.getElementById("counter").innerText = data.counter;
 
             const prof = document.getElementById("prof");
+            const look = document.getElementById("lookActions");
+            const catchA = document.getElementById("catchActions");
 
             prof.style.display = data.show ? "block" : "none";
+            look.style.display = data.show ? "none" : "block";
+            catchA.style.display = data.show ? "block" : "none";
 
-            // 🧠 show catch result ONCE
             if (data.result && data.result !== lastResult) {
                 lastResult = data.result;
                 document.getElementById("result").innerText = data.result;
