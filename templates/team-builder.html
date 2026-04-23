@@ -22,13 +22,14 @@
           {% for prof in team %}
           <div class="member-box bglightgray round dsred">
             <div class="image round dsdarkgray">
-              <img src="{{ url_for('static', filename=prof.img) }}" alt="Team Member {{ prof.name }}" height="330">
+              <img class="round" src="{{ url_for('static', filename=prof.img) }}" alt="Team Member {{ prof.name }}" height="330">
             </div>
             <div class="member-stats fcwhite dsdarkgray">
               <div class="fssmall center">
                   {{ prof.name }}
               </div>
-              <div class="type round center {{ prof.type }}type folblack bddarkgray"> {{ prof.type }}</div>
+              <div class="type fssmall round center {{ prof.type.lower() }}type folblack bddarkgray"> {{ prof.type }}</div>
+              <button class="fssmall round center">Remove from team</button>
             </div>
           </div>
           {% endfor %}
@@ -44,23 +45,26 @@
               <div class="member-box bglightgray round dsblue">
                 {% if prof.caught %}
                 <div class="image round dsdarkgray">
-                  <img src="{{ url_for('static', filename=prof.img) }}" alt="Can use {{ prof.name }}" height="300">
+                  <img class="round" src="{{ url_for('static', filename=prof.img) }}" alt="Can use {{ prof.name }}" height="300">
                 </div>
                 <div class="member-stats fcwhite dsdarkgray">
                   <div class="fssmall center">
                       {{ prof.name }}
                   </div>
-                  <div class="type round center {{type}}type folblack bddarkgray"> {{ prof.type }}</div>
+                  <div class="type round fssmall center {{prof.type.lower()}}type folblack bddarkgray"> {{ prof.type }}</div>
+                  <button class="fssmall round center">Add to slot 1</button>
+                  <button class="fssmall round center">Add to slot 2</button>
+                  <button class="fssmall round center">Add to slot 3</button>
                 </div>
                 {% else %}
                 <div class="image round dsdarkgray">
-                  <img src="{{ url_for('static', filename='assets/images/notUnlocked.png') }}" alt="Cannot use {{ prof.name }}" height="200">
+                  <img class="round" src="{{ url_for('static', filename='assets/images/notUnlocked.png') }}" alt="Cannot use {{ prof.name }}" height="200">
                 </div>
                 <div class="member-stats fcwhite dsdarkgray">
                   <div class="fssmall center">
                       {{ prof.name }}
                   </div>
-                  <div class="type round center {{type}}type folblack bddarkgray"> {{ prof.type }}</div>
+                  <div class="type fssmall round center {{prof.type.lower()}}type folblack bddarkgray"> {{ prof.type }}</div>
                 </div>
                 {% endif %}
               </div>

@@ -1,6 +1,18 @@
 .body-split{
-    display:inherit;
+    display:grid;
     grid-template-columns: 1fr 2fr;
+    gap: 2em;
+    padding: 0.5em;
+}
+.middle-split{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+    padding: 0.5em;
+}
+.triple-split{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 2em;
     padding: 0.5em;
 }
@@ -12,8 +24,15 @@
     padding: 0.5em;
     width:auto;
 }
+.bigger-padding{
+    padding:2em;
+}
 .title-box{
     padding: 0.5em;
+}
+.moves-box{
+    padding:0.5em;
+    margin:0.5em;
 }
 .member-box{
     display:grid;
@@ -32,4 +51,11 @@
     padding-bottom: 0.5ch;
     width: 100%;
     margin: 0.5ch;
+}
+.pet-button,.feed-button{
+    padding:0.5em;
+}
+.affection-meter{
+    height: 1em;
+    width: 100%;
 }
