@@ -159,7 +159,7 @@ def caretaking():
     for i in profemons:
         if i.name == tempProf:
             workingProf = i
-    return render_template('caretaking.html', data=workingProf)
+    return render_template('caretaking.html', team=player.team)
 
 @app.route('/forfeit/<profId>',methods=['GET'])
 def forfeit_route(profId):

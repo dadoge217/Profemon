@@ -12,15 +12,18 @@
 {% extends 'include/layout.html' %}
 {% block content %}
     <div class="big-box isGrid">
+
+      {% for prof in team %}
+          {% if prof != 0 %}
       <div class="head bgyellowcheck round bigger-padding dsdarkgray">
         <div class="info-box round body-split isGrid">
           <div class="info-image left-split dsred">
-            <img class="image round" src="{{ url_for('static', filename=data.img) }}" alt="Picture of {{ data.name }}">
+            <img class="image round" src="{{ url_for('static', filename=prof.img) }}" alt="Picture of {{ prof.name }}">
           </div>
           <div class="info-right right-split">
             <div class="middle-split">
-              <div class="fsbigger dsred">{{ data.name }}</div>
-              <div class="type round center {{data.type.lower()}}type folblack bddarkgray fcwhite fsmed dsred"> {{ data.type }}</div>
+              <div class="fsbigger dsred">{{ prof.name }}</div>
+              <div class="type round center {{prof.type.lower()}}type folblack bddarkgray fcwhite fsmed dsred"> {{ prof.type }}</div>
             </div>
              <div class="affection fsmed dsred">
               HP:
@@ -36,12 +39,12 @@
             </div>
             <div class="stats bgwhite round fsmed middle-split fclightgray dsred">
               <div class="left-split dslightergray">
-                <p>HP: {{ data.hp }}</p>
-                <p>ATK: {{ data.attack }}</p>
+                <p>HP: {{ prof.hp }}</p>
+                <p>ATK: {{ prof.attack }}</p>
               </div>
               <div class="right-split dslightergray">
-                <p>DEF: {{ data.defense }}</p>
-                <p>SPD: {{ data.speed }}</p>
+                <p>DEF: {{ prof.defense }}</p>
+                <p>SPD: {{ prof.speed }}</p>
               </div>
             </div>
            
@@ -49,6 +52,8 @@
             
           </div>
         </div>
+        {% endif %}
+        {% endfor %}
       </div>
     </div>
     {% endblock %}
