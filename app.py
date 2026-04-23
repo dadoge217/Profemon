@@ -71,10 +71,14 @@ def team():
 
 @app.route('/catch', methods=['GET', 'POST'])
 def catch():
-    global showProf
+    global showProf, profemons, wildProf
     if request.method == 'POST' and 'look' in request.form:
         encounterChance = random.randint(1, 100)
         if encounterChance <= 97:
+            wildProfNum = random.randint(0, 36)
+            while (profemons[wildProfNum].caught):
+                wildProfNum = random.randint(0, 36)
+            wildProf = profemons[wildProfNum]
             showProf = True
 
     return render_template('catch.html', encounter=wildProf, show=showProf, catchOutcome=catchOutcome)
@@ -86,10 +90,9 @@ def minigame():
     if 'flee' in request.form:
         showProf = False
         return '', 204
-
+    
     if 'click' in request.form:
         counter += 1
-
         with lock:
             if not running:
                 running = True  # 🔥 set immediately inside lock
