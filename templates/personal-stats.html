@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal stats</title>
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ url_for('static', filename='css/archie-style.css') }}" rel="stylesheet" type="text/css" media="all">
   </head>
   <body class="bgyellowcheck">
     {% extends 'include/layout.html' %}
 {% block content %}
      <div class="big-box isGrid">
-      <div class="head bglightgray round">
+      <div class="head bglightgray round moves-box">
         <div class="title-box">
-          <h1 class="dsdarkgray fcwhite fsmed">Recent Battles</h1>
+          <h1 class="dsdarkgray fcwhite fsmed center">Recent Battles</h1>
         </div>
           <div class="vs bgdarkgray round">
             <p class="round-info dsblue fcwhite center fslarge">tickleMonster55 vs. You</p>
@@ -21,12 +22,12 @@
           <div class="vs bgdarkgray round">
             <p class="round-info dsblue fcwhite center fslarge">charlieIsCool vs. You</p>
           </div>
-          <div class="expand bgdarkgray dsblue fcwhite round fssmall">expand</div>
+          <div class="expand bgdarkgray dsblue fcwhite round fssmall center">expand</div>
       </div>
       <div class="body">
-        <div class="body-box bglightgray round">
-          <h1>Player stats</h1>
-          <p>body</p>
+        <div class="moves-box bglightgray round">
+          <h1 class="fsmed fcwhite dsdarkgray center">Player stats</h1>
+          <p class="fssmall fcwhite dsdarkgray">body</p>
           <div class="expand bgdarkgray fcwhite round">expand</div>
         </div>
       </div>
