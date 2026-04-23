@@ -12,7 +12,7 @@
     {% extends 'include/layout.html' %}
 {% block content %}
     <div class="big-box isGrid ">
-      <div class="head">
+      <div class="head bgdarkblue round dsdarkgray">
         <h1 class="title center fstitle fcwhite foldarkblue dsblue">Profedex</h1>
       </div>
       <div class="body center">
@@ -21,7 +21,7 @@
           {% for prof in data %}
           <a class="dex-link" href="/prof?prof={{prof.name}}">
             <div class="image-box">
-              <img class="image bddarkgray round" src="{{ url_for('static', filename=prof.img) }}" alt="Picture of {{ prof.name }}" height="360">
+              <img class="image bddarkgray round dsblue" src="{{ url_for('static', filename=prof.img) }}" alt="Picture of {{ prof.name }}" height="360">
               <p class="fssmall fcwhite foldarkblue dsblue">{{ prof.name }}</p> 
             </div>
           </a>
