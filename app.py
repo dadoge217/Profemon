@@ -70,40 +70,38 @@ def team():
     msg = ""
     if request.method == 'POST':
         slot = request.form['slot']
-        name = request.form['profname']
+        getname = request.form['profname']
+        print(getname)
+
+        if slot == "-1":
+            slot = -1
+        elif slot == "0":
+            slot = 0
+        elif slot == "1":
+            slot = 1
+        else:
+            slot = 2
         
         #find profemon object from name
         nameindex = -1
+        teamslot = -1
         for i in profemons:
             nameindex += 1
-            if i.name == name:
+            if i.name == getname:
                 break
-        if slot == "-1": #remove a prof from team
+        if slot == -1: #remove a prof from team
             for i in player.team:
-                if i.name == name:
-                    teamslot = i.name.index(name)
-            if teamslot == 0:
-                player.team[0] = player.team[1]
-                player.team[1] = player.team[2]
-                player.team[2] = 0
-            elif teamslot == 1:
-                player.team[1] = player.team[2]
-                player.team[2] = 0
-            else:
-                player.team[2] = 0
-        elif slot == "0": #add to slot 1
+                teamslot += 1
+                if i != 0:
+                    print("pass1")
+                    print(i.name)
+                    if i.name == getname:
+                        print("pass2")
+                        break
+            player.team[teamslot] = 0
+        else: #add to slot 1
             if profemons[nameindex] not in player.team:
-                player.team[0] = profemons[nameindex]
-            else:
-                msg = "You can only have 1 of each Profemon on your team!"
-        elif slot == "1": #add to slot 2
-            if profemons[nameindex] not in player.team:
-                player.team[1] = profemons[nameindex]
-            else:
-                msg = "You can only have 1 of each Profemon on your team!"
-        else: #add to slot 3
-            if profemons[nameindex] not in player.team:
-                player.team[2] = profemons[nameindex]
+                player.team[slot] = profemons[nameindex]
             else:
                 msg = "You can only have 1 of each Profemon on your team!"
     player.currentProf = player.team[0]
