@@ -201,6 +201,7 @@ def forfeit():
     inBattle = False
     msg = 'You lost! Heal your team and try again!'
     player.currentProf = player.team[0]
+    trainer.currentProf = trainer.team[0]
     for prof in trainer.team:
         func.fullyheal(prof)
     return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle, msg=msg)
@@ -259,19 +260,24 @@ def battle():
                     trainers[9].shown = True
                 case "Bot 10":
                     trainers[10].shown = True
-            randInt = random.randint(0,2)
-            selected_prof = player.team[randInt]
-            name = selected_prof.name
-            full_index = -1
-            for i, prof in enumerate(profemons):
-                if prof.name == name:
-                    full_index = i
+            oTeam = [-1,-1,-1]
+            checkProfs = -1
+            checkTeam = -1
+            for i in trainer.team:
+                checkTeam += 1
+                for j in profemons:
+                    checkProfs += 1
+                    if i.name == j.name:
+                        print(i.name)
+                        oTeam[checkTeam] = checkProfs
+                checkProfs = -1
+            print(oTeam)
+            for i in oTeam:
+                if not profemons[i].caught:
+                    profemons = func.catchProf(profemons, profemons[i].name)
                     break
-            if full_index != -1 and full_index < len(profemons) - 1:
-                next_prof = profemons[full_index + 1]
-                profemons = func.catchProf(profemons, next_prof.name)
             inBattle = False
-            msg = "You won! You unlocked a new Profemon!"
+            msg = "You won! You unlocked a Profemon from your opponents team!"
             
     elif not teamgood:
         msg = "You must have 3 team members to battle!"
