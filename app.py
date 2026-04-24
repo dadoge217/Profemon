@@ -69,7 +69,12 @@ def profPage():
 
 @app.route('/stats')
 def stats():
-    return render_template('personal-stats.html')
+    global profemons
+    count = 0
+    for prof in profemons:
+        if prof.caught == True:
+            count+=1
+    return render_template('personal-stats.html', personalStats=personalStats, count=count)
 
 @app.route('/team', methods=['GET','POST'])
 def team():
@@ -192,7 +197,7 @@ def forfeit():
 
 @app.route('/battle', methods=['GET', 'POST'])
 def battle():
-    global player, trainer, trainers, inBattle, logs
+    global player, trainer, trainers, inBattle, logs, personalStats
     teamgood = True
     for prof in player.team:
         if prof == 0:
@@ -201,6 +206,9 @@ def battle():
         trainer_id = int(request.form['trainerID'])
         trainer = trainers[trainer_id]
         inBattle = True
+        log = player.name + " vs " + trainer.name
+        personalStats.appendBattle(log)
+
     elif request.method == 'POST' and 'move' in request.form:
         playerMove = request.form['move']
         if playerMove == "move1":
@@ -210,7 +218,11 @@ def battle():
         else:
             move = player.currentProf.move3
         bot_move = func.botMove(trainer, player, logs)
-        func.doMoves(move, bot_move, player, trainer, logs) #Do status move logic
+        func.doMoves(move, bot_move, player, trainer, logs, personalStats) #Do status move logic
+        if((player.team[0].fainted() == True) and (player.team[1].fainted() == True) and (player.team[2].fainted() == True)):
+            personalStats.losses += 1
+        elif((trainer.team[0].fainted() == True) and (trainer.team[1].fainted() == True) and (trainer.team[2].fainted() == True)):
+            personalStats.wins += 1
     elif not teamgood:
         msg = "You must have 3 team members to battle!"
         return render_template('team-builder.html', team=player.team, totalProfs=profemons, msg=msg)
@@ -218,7 +230,7 @@ def battle():
 
 @app.route('/swap', methods=['POST'])
 def swap():
-    global player, trainer, trainers, inBattle, logs
+    global player, trainer, trainers, inBattle, logs, personalStats
     name = request.form['prof_name']
     for prof in player.team:
         if prof.name == name and not prof.fainted():
@@ -228,7 +240,7 @@ def swap():
                 temp = player.name + " switched to " + player.currentProf.name
                 logs.append(temp)
                 bot_move = func.botMove(trainer, player, logs)
-                func.doMoves(move, bot_move, player, trainer, logs)
+                func.doMoves(move, bot_move, player, trainer, logs, personalStats)
                 break
             else:
                 player.currentProf = prof #To do: Resets (forfeiting and changing page should reset trainer profemon), stats page, working on in-game consoles, pretty up the main page, get status moves to work, get feed button to do something, make hp bar dynamic?

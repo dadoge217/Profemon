@@ -7,7 +7,6 @@
     <title>Personal stats</title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/images/caught.png') }}">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
-    <link href="{{ url_for('static', filename='css/archie-style.css') }}" rel="stylesheet" type="text/css" media="all">
   </head>
   <body class="bgyellowcheck">
     {% extends 'include/layout.html' %}
@@ -17,6 +16,13 @@
         <div class="title-box">
           <h1 class="dsdarkgray fcwhite fsmed center">Recent Battles</h1>
         </div>
+        {% for battleLog in personalStats.battleLogs %}
+          <p class="log-report fssmaller fcdarkgray dslightergray">{{ battleLog }}</p>
+        {% endfor %}
+        <p class="log-report fssmaller fcdarkgray dslightergray">Profemon Caught: {{count}}</p>
+        <p class="log-report fssmaller fcdarkgray dslightergray">Profemon Fainted: {{personalStats.faints}}</p>
+        <p class="log-report fssmaller fcdarkgray dslightergray">Battles Won: {{personalStats.wins}}</p>
+        <p class="log-report fssmaller fcdarkgray dslightergray">Battles Lost: {{personalStats.losses}}</p>
           <div class="vs bgdarkgray round">
             <p class="round-info dsblue fcwhite center fslarge">tickleMonster55 vs. You</p>
           </div>

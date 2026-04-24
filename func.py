@@ -221,7 +221,7 @@ def damageCalc(prof1, move, prof2):
     
     return damage
 
-def doMoves(pMove, bMove, player, trainer, logs):
+def doMoves(pMove, bMove, player, trainer, logs, personalStats):
         if bMove != "swap":
             logs.append("----------------")
         if(player.currentProf.speed >= trainer.currentProf.speed):
