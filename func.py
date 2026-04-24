@@ -281,7 +281,6 @@ def doMoves(pMove, bMove, player, trainer, logs, personalStats):
                     logs.append(temp)
                     if(player.currentProf.fainted()):
                         temp = player.name + "'s " + player.currentProf.name + " fainted!"
-                        personalStats.faints +=1
                         logs.append(temp)
         elif(trainer.currentProf.speed > player.currentProf.speed):
             if((bMove != "swap") and not (trainer.currentProf.fainted())):
@@ -311,7 +310,6 @@ def doMoves(pMove, bMove, player, trainer, logs, personalStats):
                     logs.append(temp)
                     if(player.currentProf.fainted()):
                         temp = player.name + "'s " + player.currentProf.name + " fainted!"
-                        personalStats.faints +=1
                         logs.append(temp)
             if ((pMove != "swap") and not (player.currentProf.fainted())):
                 if pMove.power == 0:
