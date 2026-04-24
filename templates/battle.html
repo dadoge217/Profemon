@@ -59,11 +59,11 @@
           <div class="battle-log dsblue bgwhite round">
             <p class="fsmed fcdarkgray dslightergray">Battle log</p>
             <div class="logs round bdblack">
-              <p class="log-report fssmaller fcdarkgray dslightergray">individual log report goes here</p>
-              <p class="log-report fssmaller fcdarkgray dslightergray">overflow on logs is set to scroll</p>
-              <p class="log-report fssmaller fcdarkgray dslightergray">hypothetically if i put a lot of these it should scroll</p>
-              <p class="log-report fssmaller fcdarkgray dslightergray">but i guess we will see</p>
-              <p class="log-report fssmaller fcdarkgray dslightergray">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, impedit. Atque modi illo quam officiis iste optio, ad perspiciatis similique a eius non doloribus iure, facilis quis ut! Culpa, voluptate!</p>
+              {% if logs %}
+              {% for log in logs %}
+              <p class="log-report fssmaller fcdarkgray dslightergray">{{ log }}</p>
+              {% endfor %}
+              {% endif %}
             </div>
           </div>
           <div class="options isGrid dsblue bgwhite round">
