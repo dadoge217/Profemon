@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caretaking</title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/images/caught.png') }}">
-    <link href="{{ url_for('static', filename='css/archie-style.css') }}" rel="stylesheet" type="text/css" media="all">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
   </head>
   <body class="bggraygrid">
@@ -33,10 +32,8 @@
               <div class="Pet Button">
                 <form method="POST" action="/pet">
                   <input type="hidden" name="prof_index" value="{{ loop.index0 }}">
-                  <button type="submit" name="action" value="pet" class="pet-button round bgdarkblue center fcwhite dsred">Pet</button>
+                  <button type="submit" name="action" value="pet" class="pet-button round bgdarkblue center fcwhite dsred fsmed">Pet (Heal Profemon)</button>
                 </form>
-                <div class="pet-button round bgdarkblue center fcwhite dsred">Pet</div>
-                <div class="feed-button round bgdarkblue center fcwhite dsred">Feed</div>
               </div>
             </div>
             <div class="info-stats fslarge dsred">
