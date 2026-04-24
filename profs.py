@@ -38,8 +38,9 @@ class Trainer:
         self.currentProf = prof1
 
 class PersonalStats:
-    def __init__(self, wins = 0, battleLogs = [], faints = 0, profsUnlocked = 0):
+    def __init__(self, wins = 0, losses = 0, battleLogs = [], faints = 0, profsUnlocked = 0):
         self.wins = wins
+        self.losses = losses
         self.battleLogs = battleLogs
         self.faints = faints
         self.profsUnlocked = profsUnlocked

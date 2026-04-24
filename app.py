@@ -196,7 +196,7 @@ def forfeit():
 
 @app.route('/battle', methods=['GET', 'POST'])
 def battle():
-    global player, trainer, trainers, inBattle, logs
+    global player, trainer, trainers, inBattle, logs, personalStats
     teamgood = True
     for prof in player.team:
         if prof == 0:
@@ -218,6 +218,10 @@ def battle():
             move = player.currentProf.move3
         bot_move = func.botMove(trainer, player, logs)
         func.doMoves(move, bot_move, player, trainer, logs, personalStats) #Do status move logic
+        if((player.team[0].fainted() == True) and (player.team[1].fainted() == True) and (player.team[2].fainted() == True)):
+            personalStats.losses += 1
+        elif((trainer.team[0].fainted() == True) and (trainer.team[1].fainted() == True) and (trainer.team[2].fainted() == True)):
+            personalStats.wins += 1
     elif not teamgood:
         msg = "You must have 3 team members to battle!"
         return render_template('team-builder.html', team=player.team, totalProfs=profemons, msg=msg)
