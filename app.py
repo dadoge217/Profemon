@@ -207,16 +207,18 @@ def forfeit():
     global inBattle, trainer, logs, player
     logs = []
     inBattle = False
+    msg = 'You lost! Heal your team and try again!'
     player.currentProf = player.team[0]
     for prof in trainer.team:
         func.fullyheal(prof)
-    return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle)
+    return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle, msg=msg)
 
 
 @app.route('/battle', methods=['GET', 'POST'])
 def battle():
     global player, trainer, trainers, inBattle, logs, personalStats, profemons
     teamgood = True
+    msg = ''
     for prof in player.team:
         if prof == 0:
             teamgood = False
@@ -240,6 +242,7 @@ def battle():
         print("botmove")
         if((player.team[0].fainted() == True) and (player.team[1].fainted() == True) and (player.team[2].fainted() == True)):
             personalStats.losses += 1
+            return redirect('/forfeit')
         elif((trainer.team[0].fainted() == True) and (trainer.team[1].fainted() == True) and (trainer.team[2].fainted() == True)):
             print("win")
             personalStats.wins += 1
@@ -275,12 +278,13 @@ def battle():
             if full_index != -1 and full_index < len(profemons) - 1:
                 next_prof = profemons[full_index + 1]
                 profemons = func.catchProf(profemons, next_prof.name)
-            return redirect('/forfeit')
+            inBattle = False
+            msg = "You won!"
             
     elif not teamgood:
         msg = "You must have 3 team members to battle!"
         return render_template('team-builder.html', team=player.team, totalProfs=profemons, msg=msg)
-    return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle, logs=logs)
+    return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle, logs=logs, msg=msg)
 
 @app.route('/swap', methods=['POST'])
 def swap():
