@@ -137,9 +137,9 @@ def catch():
     if request.method == 'POST' and 'look' in request.form:
         encounterChance = random.randint(1, 100)
         if encounterChance <= 97:
-            wildProfNum = random.randint(0, 36)
+            wildProfNum = random.randint(0, 35)
             while (profemons[wildProfNum].caught):
-                wildProfNum = random.randint(0, 36)
+                wildProfNum = random.randint(0, 35)
             wildProf = profemons[wildProfNum]
             showProf = True
 
@@ -271,7 +271,7 @@ def battle():
                 next_prof = profemons[full_index + 1]
                 profemons = func.catchProf(profemons, next_prof.name)
             inBattle = False
-            msg = "You won!"
+            msg = "You won! You unlocked a new Profemon!"
             
     elif not teamgood:
         msg = "You must have 3 team members to battle!"

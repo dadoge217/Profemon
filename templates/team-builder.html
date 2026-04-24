@@ -65,6 +65,7 @@
           </div>
           <div class="caught-mons">
             {%for prof in totalProfs %}
+            {% if prof.name != "MEGA GRANT" %}
               <div class="member-box bglightgray round dsblue">
                 {% if prof.caught %}
                 <div class="image round dsdarkgray">
@@ -100,6 +101,7 @@
                 </div>
                 {% endif %}
               </div>
+            {% endif %}
             {% endfor %}
           </div>
           
