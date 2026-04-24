@@ -55,6 +55,8 @@
 }
 .pet-button,.feed-button{
     padding:0.5em;
+    margin: 0.5em 0em 0.5em 0em;
+    width:100%;
 }
 .affection-meter{
     height: 1em;
