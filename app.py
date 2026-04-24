@@ -29,8 +29,17 @@ catchOutcome = ""
 inBattle = False
 logs = []
 personalStats = profs.PersonalStats()
-trainers = [profs.Trainer("Bot 1", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
-            profs.Trainer("Bot 2", copy.deepcopy(profemons[4]), copy.deepcopy(profemons[2]), copy.deepcopy(profemons[12]))]
+trainers = [profs.Trainer("Bot 1", copy.deepcopy(profemons[0]), copy.deepcopy(profemons[4]), copy.deepcopy(profemons[6])),
+            profs.Trainer("Bot 2", copy.deepcopy(profemons[8]), copy.deepcopy(profemons[14]), copy.deepcopy(profemons[18])),
+            profs.Trainer("Bot 3", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[1])),
+            profs.Trainer("Bot 4", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
+            profs.Trainer("Bot 5", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
+            profs.Trainer("Bot 6", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
+            profs.Trainer("Bot 7", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
+            profs.Trainer("Bot 8", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
+            profs.Trainer("Bot 9", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
+            profs.Trainer("Bot 10", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
+            profs.Trainer("FINAL BOT", copy.deepcopy(profemons[33]), copy.deepcopy(profemons[36]), copy.deepcopy(profemons[36]))]
 
 
 def countdown():

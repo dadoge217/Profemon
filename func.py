@@ -6,61 +6,61 @@ import copy
 types = ["Normal","Fire","Water","Electric","Grass","Ice","Fighting","Poison","Ground","Flying","Psychic","Bug","Rock","Ghost","Dragon","Dark","Steel","Fairy"]
 dmoves = ["Slap","Flamethrower","Bubble Burst","Thunderbolt","Razor Leaf","Icicle","Mega Punch","Sludge","Earth Shot","Skydive","Confusion","Slither","Rock Throw","Haunt","Dragon Claw","Bite","Iron Head","Moon Beam", "FINAL FLASH"]
 smoves = ["Tangent","Insult","Good Boy","Gameover","Record","Bore","Ignore","Draw","Compliment"]
-profstuff = [['Greg', 'POISON', 'Sludge', 'Earth Shot', 'Tangent', '61', '72', '57', '65', 'assets/images/base/greg.jpg'],
-                ['Delozier', 'POISON', 'Sludge', 'Earth Shot', 'Tangent', '81', '102', '77', '85', 'assets/images/evos/delozier.png'],
+profstuff = [['Greg', 'POISON', 'Sludge', 'Earth Shot', 'Tangent', '61', '72', '57', '65', 'assets/images/base/greg.jpg'], #0
+                ['Delozier', 'POISON', 'Sludge', 'Earth Shot', 'Tangent', '81', '102', '77', '85', 'assets/images/evos/delozier.png'], #1
                  
-                ['Mikhail', 'FIRE', 'Flamethrower', 'Rock Throw', 'Insult', '58', '74', '58', '70', 'assets/images/base/mikhail.jpg'],
-                ['Nesterenko', 'FIRE', 'Flamethrower', 'Rock Throw', 'Insult', '78', '104', '85', '94', 'assets/images/evos/nesterenko.png'],
+                ['Mikhail', 'FIRE', 'Flamethrower', 'Rock Throw', 'Insult', '58', '74', '58', '70', 'assets/images/base/mikhail.jpg'], #2
+                ['Nesterenko', 'FIRE', 'Flamethrower', 'Rock Throw', 'Insult', '78', '104', '85', '94', 'assets/images/evos/nesterenko.png'], #3
                  
-                ['Giovanni', 'GRASS', 'Razor Leaf', 'Bite', 'Good Boy', '60', '80', '80', '60', 'assets/images/base/giovanni.jpg'],
-                ['Herrera', 'GRASS', 'Razor Leaf', 'Bite', 'Good Boy', '80', '100', '100', '80', 'assets/images/evos/harrera.png'],
+                ['Giovanni', 'GRASS', 'Razor Leaf', 'Bite', 'Good Boy', '60', '80', '80', '60', 'assets/images/base/giovanni.jpg'], #4
+                ['Herrera', 'GRASS', 'Razor Leaf', 'Bite', 'Good Boy', '80', '100', '100', '80', 'assets/images/evos/harrera.png'], #5
                  
-                ['John', 'WATER', 'Bubble Burst', 'Earth Shot', 'Insult', '59', '63', '80', '58', 'assets/images/base/jonathan.jpg'],
-                ['Maletik', 'WATER', 'Bubble Burst', 'Earth Shot', 'Insult', '79', '83', '100', '78', 'assets/images/evos/maletic.png'],
+                ['John', 'WATER', 'Bubble Burst', 'Earth Shot', 'Insult', '59', '63', '80', '58', 'assets/images/base/jonathan.jpg'], #6
+                ['Maletik', 'WATER', 'Bubble Burst', 'Earth Shot', 'Insult', '79', '83', '100', '78', 'assets/images/evos/maletic.png'], #7
                  
-                ['Meldin', 'ELECTRIC', 'Thunderbolt', 'Razor Leaf', 'Gameover', '70', '80', '60', '45', 'assets/images/base/meldin.jpg'],
-                ['Bektic', 'ELECTRIC', 'Thunderbolt', 'Razor Leaf', 'Gameover', '90', '115', '90', '8', 'assets/images/evos/bektic.png'],
+                ['Meldin', 'ELECTRIC', 'Thunderbolt', 'Razor Leaf', 'Gameover', '70', '80', '60', '45', 'assets/images/base/meldin.jpg'], #8
+                ['Bektic', 'ELECTRIC', 'Thunderbolt', 'Razor Leaf', 'Gameover', '90', '115', '90', '8', 'assets/images/evos/bektic.png'], #9
                  
-                ['Maha', 'PSYCHIC', 'Confusion', 'Flamethrower', 'Gameover', '64', '85', '60', '65', 'assets/images/base/maha.jpg'],
-                ['Allouzi', 'PSYCHIC', 'Confusion', 'Flamethrower', 'Gameover', '80', '105', '90', '70', 'assets/images/evos/allouzi.png'],
+                ['Maha', 'PSYCHIC', 'Confusion', 'Flamethrower', 'Gameover', '64', '85', '60', '65', 'assets/images/base/maha.jpg'], #10
+                ['Allouzi', 'PSYCHIC', 'Confusion', 'Flamethrower', 'Gameover', '80', '105', '90', '70', 'assets/images/evos/allouzi.png'], #11
 
-                ['Deanna', 'NORMAL', 'Slap', 'Confusion', 'Record', '65', '70', '60', '65', 'assets/images/base/deanna.png'],
-                ['Burret-Peffer', 'NORMAL', 'Slap', 'Confusion', 'Record', '75', '90', '61', '100', 'assets/images/evos/burritt-peffer.png'],
+                ['Deanna', 'NORMAL', 'Slap', 'Confusion', 'Record', '65', '70', '60', '65', 'assets/images/base/deanna.png'], #12
+                ['Burret-Peffer', 'NORMAL', 'Slap', 'Confusion', 'Record', '75', '90', '61', '100', 'assets/images/evos/burritt-peffer.png'], #13
                  
-                ['Javed', 'GROUND', 'Earth Shot', 'Mega Punch', 'Bore', '59', '66', '70', '35', 'assets/images/base/javed.jpg'],
-                ['Khan', 'GROUND', 'Earth Shot', 'Mega Punch', 'Bore', '99', '86', '110', '40', 'assets/images/evos/khan.png'],
+                ['Javed', 'GROUND', 'Earth Shot', 'Mega Punch', 'Bore', '59', '66', '70', '35', 'assets/images/base/javed.jpg'], #14
+                ['Khan', 'GROUND', 'Earth Shot', 'Mega Punch', 'Bore', '99', '86', '110', '40', 'assets/images/evos/khan.png'], #15
                  
-                ['Qiang', 'GHOST', 'Haunt', 'Icicle', 'Ignore', '60', '60', '85', '85', 'assets/images/base/qiang.jpg'],
-                ['Guan', 'GHOST', 'Haunt', 'Icicle', 'Ignore', '60', '60', '105', '105', 'assets/images/evos/guan.png'],
+                ['Qiang', 'GHOST', 'Haunt', 'Icicle', 'Ignore', '60', '60', '85', '85', 'assets/images/base/qiang.jpg'], #16
+                ['Guan', 'GHOST', 'Haunt', 'Icicle', 'Ignore', '60', '60', '105', '105', 'assets/images/evos/guan.png'], #17
                  
-                ['Hassan', 'FLYING', 'Skydive', 'Bubble Burst', 'Bore', '63', '60', '50', '71', 'assets/images/base/hassan.png'],
-                ['Peyravi', 'FLYING', 'Skydive', 'Bubble Burst', 'Bore', '83', '80', '75', '101', 'assets/images/evos/peyravi.png'],
+                ['Hassan', 'FLYING', 'Skydive', 'Bubble Burst', 'Bore', '63', '60', '50', '71', 'assets/images/base/hassan.png'], #18
+                ['Peyravi', 'FLYING', 'Skydive', 'Bubble Burst', 'Bore', '83', '80', '75', '101', 'assets/images/evos/peyravi.png'], #19
                  
-                ['Rowan', 'DRAGON', 'Dragon Claw', 'Flamethrower', 'Insult', '61', '84', '70', '70', 'assets/images/base/rowan.jpg'],
-                ['Ess', 'DRAGON', 'Dragon Claw', 'Flamethrower', 'Insult', '91', '100', '100', '80', 'assets/images/evos/ess.png'],
+                ['Rowan', 'DRAGON', 'Dragon Claw', 'Flamethrower', 'Insult', '61', '84', '70', '70', 'assets/images/base/rowan.jpg'], #20
+                ['Ess', 'DRAGON', 'Dragon Claw', 'Flamethrower', 'Insult', '91', '100', '100', '80', 'assets/images/evos/ess.png'], #21
                  
-                ['Raiful', 'ICE', 'Icicle', 'Bubble Burst', 'Gameover', '90', '60', '75', '45', 'assets/images/base/raiful.jpg'],
-                ['Hasan', 'ICE', 'Icicle', 'Bubble Burst', 'Gameover', '110', '90', '90', '65', 'assets/images/evos/hasan.png'],
+                ['Raiful', 'ICE', 'Icicle', 'Bubble Burst', 'Gameover', '90', '60', '75', '45', 'assets/images/base/raiful.jpg'], #22
+                ['Hasan', 'ICE', 'Icicle', 'Bubble Burst', 'Gameover', '110', '90', '90', '65', 'assets/images/evos/hasan.png'], #23
                  
-                ['Joe', 'FIGHTING', 'Mega Punch', 'Thunderbolt', 'Gameover', '80', '85', '70', '45', 'assets/images/base/joe.jpg'],
-                ['Demore', 'FIGHTING', 'Mega Punch', 'Thunderbolt', 'Gameover', '90', '105', '85', '55', 'assets/images/evos/demore.png'],
+                ['Joe', 'FIGHTING', 'Mega Punch', 'Thunderbolt', 'Gameover', '80', '85', '70', '45', 'assets/images/base/joe.jpg'], #24
+                ['Demore', 'FIGHTING', 'Mega Punch', 'Thunderbolt', 'Gameover', '90', '105', '85', '55', 'assets/images/evos/demore.png'], #25
                  
-                ['Charlie', 'BUG', 'Slither', 'Earth Shot', 'Draw', '35', '50', '35', '35', 'assets/images/base/charlie.jpg'],
-                ['Burrows', 'BUG', 'Slither', 'Earth Shot', 'Draw', '65', '90', '80', '75', 'assets/images/evos/burrows.png'],
+                ['Charlie', 'BUG', 'Slither', 'Earth Shot', 'Draw', '35', '50', '35', '35', 'assets/images/base/charlie.jpg'], #26
+                ['Burrows', 'BUG', 'Slither', 'Earth Shot', 'Draw', '65', '90', '80', '75', 'assets/images/evos/burrows.png'], #27
                  
-                ['Gus', 'ROCK', 'Rock Throw', 'Earth Shot', 'Tangent', '55', '95', '45', '35', 'assets/images/base/augustine.jpg'],
-                ['Samba', 'ROCK', 'Rock Throw', 'Earth Shot', 'Tangent', '80', '110', '65', '45', 'assets/images/evos/samba.png'],
+                ['Gus', 'ROCK', 'Rock Throw', 'Earth Shot', 'Tangent', '55', '95', '45', '35', 'assets/images/base/augustine.jpg'], #28
+                ['Samba', 'ROCK', 'Rock Throw', 'Earth Shot', 'Tangent', '80', '110', '65', '45', 'assets/images/evos/samba.png'], #29
                  
-                ['Colin', 'STEEL', 'Iron Head', 'Rock Throw', 'Compliment', '60', '75', '80', '50', 'assets/images/base/colin.jpg'],
-                ['Grant', 'STEEL', 'Iron Head', 'Rock Throw', 'Compliment', '80', '110', '90', '55', 'assets/images/evos/grant.png'],
+                ['Colin', 'STEEL', 'Iron Head', 'Rock Throw', 'Compliment', '60', '75', '80', '50', 'assets/images/base/colin.jpg'], #30
+                ['Grant', 'STEEL', 'Iron Head', 'Rock Throw', 'Compliment', '80', '110', '90', '55', 'assets/images/evos/grant.png'], #31
                  
-                ['Ben', 'FAIRY', 'Moon Beam', 'Iron Head', 'Gameover', '60', '50', '70', '60', 'assets/images/base/ben.jpg'],
-                ['Purdum', 'FAIRY', 'Moon Beam', 'Iron Head', 'Gameover', '75', '71', '115', '80', 'assets/images/evos/purdum.png'],
+                ['Ben', 'FAIRY', 'Moon Beam', 'Iron Head', 'Gameover', '60', '50', '70', '60', 'assets/images/base/ben.jpg'], #32
+                ['Purdum', 'FAIRY', 'Moon Beam', 'Iron Head', 'Gameover', '75', '71', '115', '80', 'assets/images/evos/purdum.png'], #33
                  
-                ['Archie', 'DARK', 'Bite', 'Sludge', 'Draw', '63', '54', '41', '71', 'assets/images/base/archie.jpg'],
-                ['Horne', 'DARK', 'Bite', 'Sludge', 'Draw', '103', '87', '61', '84', 'assets/images/evos/horne.png'],
+                ['Archie', 'DARK', 'Bite', 'Sludge', 'Draw', '63', '54', '41', '71', 'assets/images/base/archie.jpg'], #34
+                ['Horne', 'DARK', 'Bite', 'Sludge', 'Draw', '103', '87', '61', '84', 'assets/images/evos/horne.png'], #35
                 
-                ['MEGA GRANT', 'STEEL', 'Iron Head', 'FINAL FLASH', 'Compliment', '100', '125', '140', '65', 'assets/images/evos/mega_grant.png']]
+                ['MEGA GRANT', 'STEEL', 'Iron Head', 'FINAL FLASH', 'Compliment', '100', '125', '140', '65', 'assets/images/evos/mega_grant.png']] #36
 
 movestuff = [['Slap', 'NORMAL', '50', 'NULL'], #0
             ['Flamethrower', 'FIRE', '65', 'NULL'], #1
