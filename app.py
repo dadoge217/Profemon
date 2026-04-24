@@ -161,7 +161,6 @@ def timer():
 @app.route('/caretaking')
 def caretaking():
     global profemons
-    profemons = func.catchProf(profemons, "Delozier")
     tempProf = request.args.get('prof')
     workingProf = ""
     for i in profemons:
