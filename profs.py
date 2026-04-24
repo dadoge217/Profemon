@@ -32,12 +32,13 @@ class Move:
         self.status = status
 
 class Trainer:
-    def __init__(self, name = "player", prof1 = "none", prof2 = "none", prof3 = "none",):
+    def __init__(self, name = "player", prof1 = "none", prof2 = "none", prof3 = "none", shown = False):
         self.name = name
         self.team = []
         self.team.append(prof1)
         self.team.append(prof2)
         self.team.append(prof3)
+        self.shown = shown
         self.currentProf = prof1
 
 class PersonalStats:

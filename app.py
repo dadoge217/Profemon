@@ -29,7 +29,7 @@ catchOutcome = ""
 inBattle = False
 logs = []
 personalStats = profs.PersonalStats()
-trainers = [profs.Trainer("Bot 1", copy.deepcopy(profemons[0]), copy.deepcopy(profemons[4]), copy.deepcopy(profemons[6])),
+trainers = [profs.Trainer("Bot 1", copy.deepcopy(profemons[0]), copy.deepcopy(profemons[4]), copy.deepcopy(profemons[6]), True),
             profs.Trainer("Bot 2", copy.deepcopy(profemons[8]), copy.deepcopy(profemons[14]), copy.deepcopy(profemons[18])),
             profs.Trainer("Bot 3", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[1])),
             profs.Trainer("Bot 4", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
@@ -207,7 +207,7 @@ def forfeit():
 
 @app.route('/battle', methods=['GET', 'POST'])
 def battle():
-    global player, trainer, trainers, inBattle, logs, personalStats
+    global player, trainer, trainers, inBattle, logs, personalStats, profemons
     teamgood = True
     for prof in player.team:
         if prof == 0:
@@ -229,10 +229,33 @@ def battle():
             move = player.currentProf.move3
         bot_move = func.botMove(trainer, player, logs)
         func.doMoves(move, bot_move, player, trainer, logs, personalStats) #Do status move logic
+        print("botmove")
         if((player.team[0].fainted() == True) and (player.team[1].fainted() == True) and (player.team[2].fainted() == True)):
             personalStats.losses += 1
         elif((trainer.team[0].fainted() == True) and (trainer.team[1].fainted() == True) and (trainer.team[2].fainted() == True)):
+            print("win")
             personalStats.wins += 1
+            match trainer.name:
+                case "Bot 1":
+                    trainers[1].shown = True
+                case "Bot 2":
+                    trainers[2].shown = True
+                case "Bot 3":
+                    trainers[3].shown = True
+                case "Bot 4":
+                    trainers[4].shown = True
+                case "Bot 5":
+                    trainers[5].shown = True
+                case "Bot 6":
+                    trainers[6].shown = True
+                case "Bot 7":
+                    trainers[7].shown = True
+                case "Bot 8":
+                    trainers[8].shown = True
+                case "Bot 9":
+                    trainers[9].shown = True
+                case "Bot 10":
+                    trainers[10].shown = True
             randInt = random.randint(0,2)
             selected_prof = player.team[randInt]
             name = selected_prof.name
@@ -244,6 +267,7 @@ def battle():
             if full_index != -1 and full_index < len(profemons) - 1:
                 next_prof = profemons[full_index + 1]
                 profemons = func.catchProf(profemons, next_prof.name)
+            return redirect('/forfeit')
             
     elif not teamgood:
         msg = "You must have 3 team members to battle!"

@@ -16,6 +16,7 @@
         <h2 class="dslightergray">Select a Trainer to begin battling!</h2>
       </div>
       {% for t in trainers %}
+      {% if t.shown %}
         <form method="POST" action="/battle">
           <input type="hidden" name="trainerID" value="{{ loop.index0 }}">
           <button type="submit" class="pet-button round bgdarkblue center fcwhite dsdarkgray fsmed">
@@ -24,6 +25,7 @@
             </p>
           </button>
         </form>
+      {% endif %}
       {% endfor %}
     </div>
   {% else %}
