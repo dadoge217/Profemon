@@ -12,6 +12,7 @@ app.debug = True
 moves = func.initMoves()
 profemons = func.initProfs()
 profemons = func.fixMoves(profemons, moves)
+perfectProfs = copy.deepcopy(profemons)
 player = profs.Trainer()
 profemons = func.catchProf(profemons, "Mikhail")
 profemons = func.catchProf(profemons, "John")
@@ -27,9 +28,8 @@ running = False
 catchOutcome = ""
 inBattle = False
 logs = []
-personalStats = profs.PersonalStats()
-trainers = [profs.Trainer("bot1", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
-            profs.Trainer("bot2", copy.deepcopy(profemons[4]), copy.deepcopy(profemons[2]), copy.deepcopy(profemons[12]))]
+trainers = [profs.Trainer("Bot 1", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
+            profs.Trainer("Bot 2", copy.deepcopy(profemons[4]), copy.deepcopy(profemons[2]), copy.deepcopy(profemons[12]))]
 
 
 def countdown():
@@ -180,17 +180,18 @@ def care():
         idx = int(request.form.get('prof_index'))
 
         if player.team[idx] != 0:
-            player.team[idx].hp = player.team[idx].maxHP
+            func.fullyheal(player.team[idx])
 
     return render_template('caretaking.html', team=player.team)
 
 @app.route('/forfeit',methods=['GET', 'POST'])
 def forfeit():
-    global inBattle, trainer, logs
+    global inBattle, trainer, logs, player
     logs = []
     inBattle = False
+    player.currentProf = player.team[0]
     for prof in trainer.team:
-        prof.hp = prof.maxHP
+        func.fullyheal(prof)
     return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle)
 
 
