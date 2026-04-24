@@ -164,7 +164,12 @@
 
 /* SPECIFIC ELEMENTS */
 .type{
+    box-sizing:border-box;
+    display:grid;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
     width: 100%;
+    margin: 0.5ch;
 }
 .isGrid{display:grid;}
 .big-box{
@@ -392,4 +397,60 @@ a:link, a:visited, a:hover, a:active{
     100%{opacity:60%;
         width:97%;
     }
+}
+.body-split{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2em;
+    padding: 0.5em;
+}
+.middle-split{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+    padding: 0.5em;
+}
+.triple-split{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+    padding: 0.5em;
+}
+.left-split{
+    padding: 0.5em;
+    width: auto;
+}
+.right-split{
+    padding: 0.5em;
+    width:auto;
+}
+.bigger-padding{
+    padding:2em;
+    margin: 1em;
+}
+.title-box{
+    padding: 0.5em;
+}
+.moves-box{
+    padding:0.5em;
+    margin:0.5em;
+}
+.member-box{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+.caught-mons{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.pet-button,.feed-button{
+    padding:0.5em;
+    margin: 0.5em 0em 0.5em 0em;
+    width:100%;
+}
+.affection-meter{
+    height: 1em;
+    width: 100%;
 }
