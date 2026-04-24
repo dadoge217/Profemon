@@ -103,9 +103,9 @@ def team():
                         break
             player.team[teamslot] = 0
         else: #add to slot 1
-            if (profemons[nameindex] not in player.team):
+            if (profemons[nameindex] not in player.team and (player.team[slot].hp == player.team[slot].maxHP)):
                 player.team[slot] = profemons[nameindex]
-            elif ((profemons[nameindex].hp != profemons[nameindex].maxHP)):
+            elif ((profemons[nameindex].hp != profemons[nameindex].maxHP) or (player.team[slot].hp != player.team[slot].maxHP)):
                 msg = "You cannot remove an injured Profemon from your team!"
             else:
                 msg = "You can only have 1 of each Profemon on your team!"
@@ -176,9 +176,14 @@ def care():
 
     return render_template('caretaking.html', team=player.team)
 
-@app.route('/forfeit/<profId>',methods=['GET'])
-def forfeit_route(profId):
-    print(f"Professor ID: {profId}")
+@app.route('/forfeit',methods=['GET', 'POST'])
+def forfeit():
+    global inBattle, trainer
+    inBattle = False
+    for prof in trainer.team:
+        prof.hp = prof.maxHP
+    return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle)
+
 
 @app.route('/battle', methods=['GET', 'POST'])
 def battle():
@@ -213,7 +218,7 @@ def swap():
                 break
             else:
                 player.currentProf = prof #To do: Resets (forfeiting and changing page should reset trainer profemon), stats page, working on in-game consoles, pretty up the main page, get status moves to work, get feed button to do something, make hp bar dynamic?
-                break
+                break   
     return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle)
 
 @app.route('/unlockall')

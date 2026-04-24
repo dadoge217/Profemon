@@ -14,7 +14,6 @@
   {% if not inBattle %}
     <div class="big-box">
       <h2>Select a Trainer</h2>
-
       {% for t in trainers %}
         <form method="POST" action="/battle">
           <input type="hidden" name="trainerID" value="{{ loop.index0 }}">
@@ -23,7 +22,6 @@
           </button>
         </form>
       {% endfor %}
-
     </div>
   {% else %}
     <div class="big-box isGrid">
@@ -80,12 +78,28 @@
                     </form>
                 {% endif %}
             {% endfor %}
-            <button class="opt-button bdblack round bgwhite fssmaller fcdarkgray dslightergray">Forfeit</button>
+            <form method="POST" action="/forfeit">
+              <button class="opt-button bdblack round bgwhite fssmaller fcdarkgray dslightergray">Forfeit</button>
+            </form>
           </div>
         </div>
       </div>
     </div>
     {% endif %}
+    <script>
+      let isLeavingIntentionally = true;
+      document.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          isLeavingIntentionally = false;
+        });
+      });
+
+      window.addEventListener("beforeunload", function () {
+        if (isLeavingIntentionally) {
+          navigator.sendBeacon("/forfeit");
+        }
+      });
+      </script>
     {% endblock %}
   </body>
 </html>
