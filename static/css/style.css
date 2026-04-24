@@ -280,11 +280,11 @@
 /*battle right*/
 .battle-log{
     padding:.5rem;
-    height:40%;
+    max-height:40%;
 }
 .logs{
     padding:.5rem;
-    max-height:50%;
+    max-height:10em;
     overflow:scroll;
 }
 .options{
