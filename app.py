@@ -79,12 +79,20 @@ def profPage():
 
 @app.route('/stats')
 def stats():
-    global profemons
+    global profemons, count
     count = 0
     for prof in profemons:
         if prof.caught == True:
             count+=1
     return render_template('personal-stats.html', personalStats=personalStats, count=count)
+
+@app.route('/changeName', methods=['GET', 'POST'])
+def changeName():
+    global player
+    if request.method == 'POST' and 'playerName' in request.form:
+        newName = request.form.get('playerName')
+        player.name = newName
+    return render_template('personal-stats.html', personalStats=personalStats)
 
 @app.route('/team', methods=['GET','POST'])
 def team():
