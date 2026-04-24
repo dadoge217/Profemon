@@ -89,7 +89,7 @@ def team():
             nameindex += 1
             if i.name == getname:
                 break
-        if slot == -1: #remove a prof from team
+        if (slot == -1) and (profemons[nameindex].hp == profemons[nameindex].maxHP): #remove a prof from team
             for i in player.team:
                 teamslot += 1
                 if i != 0:
@@ -100,8 +100,10 @@ def team():
                         break
             player.team[teamslot] = 0
         else: #add to slot 1
-            if profemons[nameindex] not in player.team:
+            if (profemons[nameindex] not in player.team):
                 player.team[slot] = profemons[nameindex]
+            elif ((profemons[nameindex].hp != profemons[nameindex].maxHP)):
+                msg = "You cannot remove an injured Profemon from your team!"
             else:
                 msg = "You can only have 1 of each Profemon on your team!"
     player.currentProf = player.team[0]
