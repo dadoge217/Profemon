@@ -28,6 +28,7 @@ running = False
 catchOutcome = ""
 inBattle = False
 logs = []
+count = 0
 personalStats = profs.PersonalStats()
 trainers = [profs.Trainer("Bot 1", copy.deepcopy(profemons[0]), copy.deepcopy(profemons[4]), copy.deepcopy(profemons[6]), True),
             profs.Trainer("Bot 2", copy.deepcopy(profemons[8]), copy.deepcopy(profemons[14]), copy.deepcopy(profemons[18])),
@@ -79,11 +80,17 @@ def profPage():
 
 @app.route('/stats')
 def stats():
-    global profemons
-    count = 0
-    for prof in profemons:
-        if prof.caught == True:
-            count+=1
+    global profemons, count
+    count = func.getCaught(profemons)
+    return render_template('personal-stats.html', personalStats=personalStats, count=count)
+
+@app.route('/changeName', methods=['GET', 'POST'])
+def changeName():
+    global player, count
+    if request.method == 'POST' and 'playerName' in request.form:
+        newName = request.form.get('playerName')
+        player.name = newName
+    count = func.getCaught(profemons)
     return render_template('personal-stats.html', personalStats=personalStats, count=count)
 
 @app.route('/team', methods=['GET','POST'])

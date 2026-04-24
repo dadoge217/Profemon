@@ -258,7 +258,7 @@ def doMoves(pMove, bMove, player, trainer, logs, personalStats):
                 if bMove.power == 0:
                     if bMove.status == "attack":
                         player.currentProf.attack = player.currentProf.attack * 0.67
-                        temp = trainer.name + "'s " + trainer.currentProf.name + " used " + pMove.name
+                        temp = trainer.name + "'s " + trainer.currentProf.name + " used " + bMove.name
                         logs.append(temp)
                         temp = player.name + "'s " + player.currentProf.name + "'s ATTACK fell!"
                         logs.append(temp)
@@ -287,7 +287,7 @@ def doMoves(pMove, bMove, player, trainer, logs, personalStats):
                 if bMove.power == 0:
                     if bMove.status == "attack":
                         player.currentProf.attack = player.currentProf.attack * 0.67
-                        temp = trainer.name + "'s " + trainer.currentProf.name + " used " + pMove.name
+                        temp = trainer.name + "'s " + trainer.currentProf.name + " used " + bMove.name
                         logs.append(temp)
                         temp = player.name + "'s " + player.currentProf.name + "'s ATTACK fell!"
                         logs.append(temp)
@@ -389,3 +389,10 @@ def fullyheal(prof):
     prof.attack = prof.maxAttack
     prof.defense = prof.maxDefense
     prof.speed = prof.maxSpeed
+
+def getCaught(profemons):
+    count = 0
+    for prof in profemons:
+        if prof.caught == True:
+            count+=1
+    return count

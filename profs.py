@@ -42,13 +42,16 @@ class Trainer:
         self.currentProf = prof1
 
 class PersonalStats:
-    def __init__(self, wins = 0, losses = 0, battleLogs = [], faints = 0, profsUnlocked = 0):
+    def __init__(self, wins = 0, losses = 0, battleLogs = ["", "", ""], faints = 0, profsUnlocked = 0):
         self.wins = wins
         self.losses = losses
         self.battleLogs = battleLogs
         self.faints = faints
         self.profsUnlocked = profsUnlocked
     def appendBattle(self, log):
-        self.battleLogs.append(log)
+
+        self.battleLogs[2] = self.battleLogs[1]
+        self.battleLogs[1] = self.battleLogs[0]
+        self.battleLogs[0] = log
 
 player = Trainer()
