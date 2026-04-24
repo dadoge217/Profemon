@@ -31,15 +31,15 @@ logs = []
 personalStats = profs.PersonalStats()
 trainers = [profs.Trainer("Bot 1", copy.deepcopy(profemons[0]), copy.deepcopy(profemons[4]), copy.deepcopy(profemons[6]), True),
             profs.Trainer("Bot 2", copy.deepcopy(profemons[8]), copy.deepcopy(profemons[14]), copy.deepcopy(profemons[18])),
-            profs.Trainer("Bot 3", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[1])),
-            profs.Trainer("Bot 4", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
-            profs.Trainer("Bot 5", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
-            profs.Trainer("Bot 6", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
-            profs.Trainer("Bot 7", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
-            profs.Trainer("Bot 8", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
-            profs.Trainer("Bot 9", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
-            profs.Trainer("Bot 10", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
-            profs.Trainer("FINAL BOT", copy.deepcopy(profemons[33]), copy.deepcopy(profemons[36]), copy.deepcopy(profemons[36]))]
+            profs.Trainer("Bot 3", copy.deepcopy(profemons[26]), copy.deepcopy(profemons[34]), copy.deepcopy(profemons[1])),
+            profs.Trainer("Bot 4", copy.deepcopy(profemons[24]), copy.deepcopy(profemons[22]), copy.deepcopy(profemons[17])),
+            profs.Trainer("Bot 5", copy.deepcopy(profemons[28]), copy.deepcopy(profemons[2]), copy.deepcopy(profemons[15])),
+            profs.Trainer("Bot 6", copy.deepcopy(profemons[20]), copy.deepcopy(profemons[9]), copy.deepcopy(profemons[35])),
+            profs.Trainer("Bot 7", copy.deepcopy(profemons[30]), copy.deepcopy(profemons[32]), copy.deepcopy(profemons[27])),
+            profs.Trainer("Bot 8", copy.deepcopy(profemons[13]), copy.deepcopy(profemons[11]), copy.deepcopy(profemons[33])),
+            profs.Trainer("Bot 9", copy.deepcopy(profemons[9]), copy.deepcopy(profemons[1]), copy.deepcopy(profemons[31])),
+            profs.Trainer("Bot 10", copy.deepcopy(profemons[3]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
+            profs.Trainer("FINAL BOT", copy.deepcopy(profemons[21]), copy.deepcopy(profemons[33]), copy.deepcopy(profemons[36]))]
 
 
 def countdown():
