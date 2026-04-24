@@ -11,6 +11,21 @@
   <body class="bgbluegrid">
 {% extends 'include/layout.html' %}
 {% block content %}
+  {% if not inBattle %}
+    <div class="big-box">
+      <h2>Select a Trainer</h2>
+
+      {% for t in trainers %}
+        <form method="POST" action="/battle">
+          <input type="hidden" name="trainerID" value="{{ loop.index0 }}">
+          <button type="submit">
+            {{ t.name }}
+          </button>
+        </form>
+      {% endfor %}
+
+    </div>
+  {% else %}
     <div class="big-box isGrid">
       <div class="bat-body-split isGrid">
         <div class="bat-left-split">
@@ -70,6 +85,7 @@
         </div>
       </div>
     </div>
+    {% endif %}
     {% endblock %}
   </body>
 </html>

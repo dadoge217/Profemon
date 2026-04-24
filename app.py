@@ -24,6 +24,9 @@ counter = 0
 timerVal = 10
 running = False
 catchOutcome = ""
+inBattle = False
+trainers = [profs.Trainer("bot1", profemons[1], profemons[5], profemons[7]), profs.Trainer("bot2", profemons[4], profemons[2], profemons[12])]
+
 
 def countdown():
     global timerVal, running, showProf, counter, profemons, catchOutcome
@@ -179,7 +182,12 @@ def forfeit_route(profId):
 
 @app.route('/battle', methods=['GET', 'POST'])
 def battle():
-    if request.method == 'POST' and 'move' in request.form:
+    global player, trainer, trainers, inBattle
+    if request.method == 'POST' and 'trainerID' in request.form:
+        trainer_id = int(request.form['trainerID'])
+        trainer = trainers[trainer_id]
+        inBattle = True
+    elif request.method == 'POST' and 'move' in request.form:
         playerMove = request.form['move']
         if playerMove == "move1":
             move = player.currentProf.move1
@@ -189,10 +197,11 @@ def battle():
             move = player.currentProf.move3
         bot_move = func.botMove(trainer, player)
         func.doMoves(move, bot_move, player, trainer) #Do status move logic
-    return render_template('battle.html', player=player, trainer=trainer)
+    return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle)
 
 @app.route('/swap', methods=['POST'])
 def swap():
+    global player, trainer, trainers, inBattle
     name = request.form['prof_name']
     for prof in player.team:
         if prof.name == name and not prof.fainted():
@@ -203,9 +212,9 @@ def swap():
                 func.doMoves(move, bot_move, player, trainer)
                 break
             else:
-                player.currentProf = prof
+                player.currentProf = prof #To do: Resets (forfeiting and changing page should reset trainer profemon), stats page, working on in-game consoles, pretty up the main page, get status moves to work, get feed button to do something, make hp bar dynamic?
                 break
-    return render_template('battle.html', player=player, trainer=trainer)
+    return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle)
 
 @app.route('/unlockall')
 def unlock():
