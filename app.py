@@ -161,6 +161,16 @@ def caretaking():
             workingProf = i
     return render_template('caretaking.html', team=player.team)
 
+@app.route('/pet', methods=['GET', 'POST'])
+def care():
+    if request.method == 'POST':
+        idx = int(request.form.get('prof_index'))
+
+        if player.team[idx] != 0:
+            player.team[idx].hp = player.team[idx].maxHP
+
+    return render_template('caretaking.html', team=player.team)
+
 @app.route('/forfeit/<profId>',methods=['GET'])
 def forfeit_route(profId):
     print(f"Professor ID: {profId}")

@@ -30,7 +30,11 @@
               HP:
               <div class="affection-meter round bglightblue">
               </div>
-              <div class="care-buttons middle-split">
+              <div class="Pet Button">
+                <form method="POST" action="/pet">
+                  <input type="hidden" name="prof_index" value="{{ loop.index0 }}">
+                  <button type="submit" name="action" value="pet" class="pet-button round bgdarkblue center fcwhite dsred">Pet</button>
+                </form>
                 <div class="pet-button round bgdarkblue center fcwhite dsred">Pet</div>
                 <div class="feed-button round bgdarkblue center fcwhite dsred">Feed</div>
               </div>
@@ -40,7 +44,7 @@
             </div>
             <div class="stats bgwhite round fsmed middle-split fclightgray dsred">
               <div class="left-split dslightergray">
-                <p>HP: {{ prof.hp }}</p>
+                <p>HP: {{ prof.hp }} / {{prof.maxHP}}</p>
                 <p>ATK: {{ prof.attack }}</p>
               </div>
               <div class="right-split dslightergray">
