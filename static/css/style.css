@@ -117,10 +117,10 @@
     background: var(--white);
 }
 .bgredcheck{
-    background: var(--red) var(--redcheck) var(--checkbgsize) var(--tilebgrepeat) var(--tilebgattach);
+    background: var(--red) var(--redcheck);
 }
 .bgyellowcheck{
-    background: var(--yellow) var(--yellowcheck) var(--checkbgsize) var(--tilebgrepeat) var(--tilebgattach);
+    background: var(--yellow) var(--yellowcheck);
 }
 .bggraygrid{
     background: var(--darkgraygrid) var(--gridbgsize) var(--tilebgrepeat) var(--tilebgattach);
