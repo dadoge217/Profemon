@@ -223,6 +223,18 @@ def battle():
             personalStats.losses += 1
         elif((trainer.team[0].fainted() == True) and (trainer.team[1].fainted() == True) and (trainer.team[2].fainted() == True)):
             personalStats.wins += 1
+            randInt = random.randint(0,2)
+            selected_prof = player.team[randInt]
+            name = selected_prof.name
+            full_index = -1
+            for i, prof in enumerate(profemons):
+                if prof.name == name:
+                    full_index = i
+                    break
+            if full_index != -1 and full_index < len(profemons) - 1:
+                next_prof = profemons[full_index + 1]
+                profemons = func.catchProf(profemons, next_prof.name)
+            
     elif not teamgood:
         msg = "You must have 3 team members to battle!"
         return render_template('team-builder.html', team=player.team, totalProfs=profemons, msg=msg)
