@@ -11,31 +11,34 @@
   <body class="bgyellowcheck">
     {% extends 'include/layout.html' %}
 {% block content %}
-     <div class="big-box isGrid">
+     <div class="big-box isGrid dsred">
       <div class="head bglightgray round moves-box">
         <div class="title-box">
           <h1 class="dsdarkgray fcwhite fsmed center">Recent Battles</h1>
         </div>
         {% for battleLog in personalStats.battleLogs %}
-          <p class="log-report fssmaller fcdarkgray dslightergray">{{ battleLog }}</p>
+        <div class="vs bgdarkgray round">
+            <p class="round-info dsblue fcwhite center fslarge">{{ battleLog }}</p>
+          </div>
+         
         {% endfor %}
-        <p class="log-report fssmaller fcdarkgray dslightergray">Profemon Caught: {{count}}</p>
-        <p class="log-report fssmaller fcdarkgray dslightergray">Profemon Fainted: {{personalStats.faints}}</p>
-        <p class="log-report fssmaller fcdarkgray dslightergray">Battles Won: {{personalStats.wins}}</p>
-        <p class="log-report fssmaller fcdarkgray dslightergray">Battles Lost: {{personalStats.losses}}</p>
-          <div class="vs bgdarkgray round">
-            <p class="round-info dsblue fcwhite center fslarge">tickleMonster55 vs. You</p>
-          </div>
-          <div class="vs bgdarkgray round">
-            <p class="round-info dsblue fcwhite center fslarge">charlieIsCool vs. You</p>
-          </div>
-          <div class="expand bgdarkgray dsblue fcwhite round fssmall center">expand</div>
+
+        
+        
       </div>
       <div class="body">
-        <div class="moves-box bglightgray round">
+        <div class="moves-box bglightgray round dsred fcwhite center">
           <h1 class="fsmed fcwhite dsdarkgray center">Player stats</h1>
-          <p class="fssmall fcwhite dsdarkgray">body</p>
-          <div class="expand bgdarkgray fcwhite round">expand</div>
+
+          <form>
+            <button class="small-button round bgdarkblue dsdarkgray fsmed fcwhite"> Set Player Name</button>
+            <input class="small-button round bglightblue dsdarkgray fcwhite fsmed center" type="text" name="playerName" value="">
+          </form>
+            
+          <p class="log-report fssmall  dsdarkgray ">Profemon Caught: {{count}}</p>
+          <p class="log-report fssmall  dsdarkgray ">Profemon Fainted: {{personalStats.faints}}</p>
+          <p class="log-report fssmall  dsdarkgray ">Battles Won: {{personalStats.wins}}</p>
+          <p class="log-report fssmall  dsdarkgray ">Battles Lost: {{personalStats.losses}}</p>
         </div>
       </div>
     </div>
