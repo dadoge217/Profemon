@@ -220,7 +220,7 @@ def damageCalc(prof1, move, prof2):
     
     return damage
 
-def doMoves(pMove, bMove, player, trainer, logs):
+def doMoves(pMove, bMove, player, trainer, logs, personalStats):
         if bMove != "swap":
             logs.append("----------------")
         if(player.currentProf.speed >= trainer.currentProf.speed):
@@ -231,6 +231,7 @@ def doMoves(pMove, bMove, player, trainer, logs):
                 logs.append(temp)
                 if(trainer.currentProf.fainted()):
                     temp = trainer.name + "'s " + trainer.currentProf.name + " fainted!"
+                    personalStats.faints += 1
                     logs.append(temp)
             if ((bMove != "swap") and not (trainer.currentProf.fainted())):
                 damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
@@ -239,6 +240,7 @@ def doMoves(pMove, bMove, player, trainer, logs):
                 logs.append(temp)
                 if(player.currentProf.fainted()):
                     temp = player.name + "'s " + player.currentProf.name + " fainted!"
+                    personalStats.faints += 1
                     logs.append(temp)
         elif(trainer.currentProf.speed > player.currentProf.speed):
             if((bMove != "swap") and not (trainer.currentProf.fainted())):
@@ -248,6 +250,7 @@ def doMoves(pMove, bMove, player, trainer, logs):
                 logs.append(temp)
                 if(player.currentProf.fainted()):
                     temp = player.name + "'s " + player.currentProf.name + " fainted!"
+                    personalStats.faints += 1
                     logs.append(temp)
             if ((pMove != "swap") and not (player.currentProf.fainted())):
                 damage = damageCalc(player.currentProf, pMove, trainer.currentProf)
@@ -256,6 +259,7 @@ def doMoves(pMove, bMove, player, trainer, logs):
                 logs.append(temp)
                 if(trainer.currentProf.fainted()):
                     temp = trainer.name + "'s " + trainer.currentProf.name + " fainted!"
+                    personalStats.faints += 1
                     logs.append(temp)
         if(trainer.currentProf.fainted()):
             botMove(trainer, player, logs)
