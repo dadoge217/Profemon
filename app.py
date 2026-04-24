@@ -28,6 +28,7 @@ running = False
 catchOutcome = ""
 inBattle = False
 logs = []
+personalStats = profs.PersonalStats()
 trainers = [profs.Trainer("Bot 1", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
             profs.Trainer("Bot 2", copy.deepcopy(profemons[4]), copy.deepcopy(profemons[2]), copy.deepcopy(profemons[12]))]
 
