@@ -1,6 +1,7 @@
 from random import randint
 from profs import Profemon, Move, player
 import time
+import copy
 
 types = ["Normal","Fire","Water","Electric","Grass","Ice","Fighting","Poison","Ground","Flying","Psychic","Bug","Rock","Ghost","Dragon","Dark","Steel","Fairy"]
 dmoves = ["Slap","Flamethrower","Bubble Burst","Thunderbolt","Razor Leaf","Icicle","Mega Punch","Sludge","Earth Shot","Skydive","Confusion","Slither","Rock Throw","Haunt","Dragon Claw","Bite","Iron Head","Moon Beam", "FINAL FLASH"]
@@ -59,7 +60,7 @@ profstuff = [['Greg', 'POISON', 'Sludge', 'Earth Shot', 'Tangent', '61', '72', '
                 ['Archie', 'DARK', 'Bite', 'Sludge', 'Draw', '63', '54', '41', '71', 'assets/images/base/archie.jpg'],
                 ['Horne', 'DARK', 'Bite', 'Sludge', 'Draw', '103', '87', '61', '84', 'assets/images/evos/horne.png'],
                 
-                ['MEGA GRANT', 'STEEL', 'Iron Head', 'FINAL FLASH', 'Compliment', '80', '125', '140', '65', 'assets/images/evos/mega_grant.png']]
+                ['MEGA GRANT', 'STEEL', 'Iron Head', 'FINAL FLASH', 'Compliment', '100', '125', '140', '65', 'assets/images/evos/mega_grant.png']]
 
 movestuff = [['Slap', 'NORMAL', '50', 'NULL'], #0
             ['Flamethrower', 'FIRE', '65', 'NULL'], #1
@@ -225,38 +226,118 @@ def doMoves(pMove, bMove, player, trainer, logs):
             logs.append("----------------")
         if(player.currentProf.speed >= trainer.currentProf.speed):
             if ((pMove != "swap") and not (player.currentProf.fainted())):
-                damage = damageCalc(player.currentProf, pMove, trainer.currentProf)
-                trainer.currentProf.takeDamage(damage)
-                temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
-                logs.append(temp)
-                if(trainer.currentProf.fainted()):
-                    temp = trainer.name + "'s " + trainer.currentProf.name + " fainted!"
+                if pMove.power == 0:
+                    if pMove.status == "attack":
+                        trainer.currentProf.attack = trainer.currentProf.attack * 0.67
+                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        logs.append(temp)
+                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s ATTACK fell!"
+                        logs.append(temp)
+                    elif pMove.status == "defense":
+                        trainer.currentProf.defense = trainer.currentProf.defense * 0.67
+                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        logs.append(temp)
+                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s DEFENSE fell!"
+                        logs.append(temp)
+                    else:
+                        trainer.currentProf.speed = trainer.currentProf.speed * 0.67
+                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        logs.append(temp)
+                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s SPEED fell!"
+                        logs.append(temp)
+                else:
+                    damage = damageCalc(player.currentProf, pMove, trainer.currentProf)
+                    trainer.currentProf.takeDamage(damage)
+                    temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
                     logs.append(temp)
+                    if(trainer.currentProf.fainted()):
+                        temp = trainer.name + "'s " + trainer.currentProf.name + " fainted!"
+                        logs.append(temp)
             if ((bMove != "swap") and not (trainer.currentProf.fainted())):
-                damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
-                player.currentProf.takeDamage(damage)
-                temp = trainer.name + "'s " + trainer.currentProf.name + " used " + bMove.name
-                logs.append(temp)
-                if(player.currentProf.fainted()):
-                    temp = player.name + "'s " + player.currentProf.name + " fainted!"
+                if bMove.power == 0:
+                    if bMove.status == "attack":
+                        player.currentProf.attack = player.currentProf.attack * 0.67
+                        temp = trainer.name + "'s " + trainer.currentProf.name + " used " + pMove.name
+                        logs.append(temp)
+                        temp = player.name + "'s " + player.currentProf.name + "'s ATTACK fell!"
+                        logs.append(temp)
+                    elif bMove.status == "defense":
+                        trainer.currentProf.defense = trainer.currentProf.defense * 0.67
+                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        logs.append(temp)
+                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s DEFENSE fell!"
+                        logs.append(temp)
+                    else:
+                        trainer.currentProf.speed = trainer.currentProf.speed * 0.67
+                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        logs.append(temp)
+                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s SPEED fell!"
+                        logs.append(temp)
+                else:
+                    damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
+                    player.currentProf.takeDamage(damage)
+                    temp = trainer.name + "'s " + trainer.currentProf.name + " used " + bMove.name
                     logs.append(temp)
+                    if(player.currentProf.fainted()):
+                        temp = player.name + "'s " + player.currentProf.name + " fainted!"
+                        logs.append(temp)
         elif(trainer.currentProf.speed > player.currentProf.speed):
             if((bMove != "swap") and not (trainer.currentProf.fainted())):
-                damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
-                player.currentProf.takeDamage(damage)
-                temp = trainer.name + "'s " + trainer.currentProf.name + " used " + bMove.name
-                logs.append(temp)
-                if(player.currentProf.fainted()):
-                    temp = player.name + "'s " + player.currentProf.name + " fainted!"
+                if bMove.power == 0:
+                    if bMove.status == "attack":
+                        player.currentProf.attack = player.currentProf.attack * 0.67
+                        temp = trainer.name + "'s " + trainer.currentProf.name + " used " + pMove.name
+                        logs.append(temp)
+                        temp = player.name + "'s " + player.currentProf.name + "'s ATTACK fell!"
+                        logs.append(temp)
+                    elif bMove.status == "defense":
+                        trainer.currentProf.defense = trainer.currentProf.defense * 0.67
+                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        logs.append(temp)
+                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s DEFENSE fell!"
+                        logs.append(temp)
+                    else:
+                        trainer.currentProf.speed = trainer.currentProf.speed * 0.67
+                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        logs.append(temp)
+                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s SPEED fell!"
+                        logs.append(temp)
+                else:
+                    damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
+                    player.currentProf.takeDamage(damage)
+                    temp = trainer.name + "'s " + trainer.currentProf.name + " used " + bMove.name
                     logs.append(temp)
+                    if(player.currentProf.fainted()):
+                        temp = player.name + "'s " + player.currentProf.name + " fainted!"
+                        logs.append(temp)
             if ((pMove != "swap") and not (player.currentProf.fainted())):
-                damage = damageCalc(player.currentProf, pMove, trainer.currentProf)
-                trainer.currentProf.takeDamage(damage)
-                temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
-                logs.append(temp)
-                if(trainer.currentProf.fainted()):
-                    temp = trainer.name + "'s " + trainer.currentProf.name + " fainted!"
+                if pMove.power == 0:
+                    if pMove.status == "attack":
+                        trainer.currentProf.attack = trainer.currentProf.attack * 0.67
+                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        logs.append(temp)
+                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s ATTACK fell!"
+                        logs.append(temp)
+                    elif pMove.status == "defense":
+                        trainer.currentProf.defense = trainer.currentProf.defense * 0.67
+                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        logs.append(temp)
+                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s DEFENSE fell!"
+                        logs.append(temp)
+                    else:
+                        trainer.currentProf.speed = trainer.currentProf.speed * 0.67
+                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        logs.append(temp)
+                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s SPEED fell!"
+                        logs.append(temp)
+                else:
+                    damage = damageCalc(player.currentProf, pMove, trainer.currentProf)
+                    trainer.currentProf.takeDamage(damage)
+                    temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
                     logs.append(temp)
+                    if(trainer.currentProf.fainted()):
+                        temp = trainer.name + "'s " + trainer.currentProf.name + " fainted!"
+                        logs.append(temp)
         if(trainer.currentProf.fainted()):
             botMove(trainer, player, logs)
         
@@ -300,3 +381,9 @@ def botMove(trainer, player, logs):
             bestScore = score
             bestMove = move
     return bestMove
+
+def fullyheal(prof):
+    prof.hp = prof.maxHP
+    prof.attack = prof.maxAttack
+    prof.defense = prof.maxDefense
+    prof.speed = prof.maxSpeed
