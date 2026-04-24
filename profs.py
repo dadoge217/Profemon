@@ -8,8 +8,11 @@ class Profemon:
         self.hp = int(hp)
         self.maxHP = int(hp)
         self.attack = int(attack)
+        self.maxAttack = int(attack)
         self.defense = int(defense)
+        self.maxDefense = int(defense)
         self.speed = int(speed)
+        self.maxSpeed = int(speed)
         self.img = img
         self.caught = False
     def takeDamage(self, damage):
