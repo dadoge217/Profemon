@@ -37,4 +37,13 @@ class Trainer:
         self.team.append(prof3)
         self.currentProf = prof1
 
+class PersonalStats:
+    def __init__(self, wins = 0, battleLogs = [], faints = 0, profsUnlocked = 0):
+        self.wins = wins
+        self.battleLogs = battleLogs
+        self.faints = faints
+        self.profsUnlocked = profsUnlocked
+    def appendBattle(self, log):
+        self.battleLogs.append(log)
+
 player = Trainer()

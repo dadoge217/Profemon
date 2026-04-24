@@ -17,6 +17,10 @@
         <div class="title-box">
           <h1 class="dsdarkgray fcwhite fsmed center">Recent Battles</h1>
         </div>
+        {% for battleLog in personalStats.battleLogs %}
+          <p class="log-report fssmaller fcdarkgray dslightergray">{{ battleLog }}</p>
+        {% endfor %}
+        <p class="log-report fssmaller fcdarkgray dslightergray">Profemon Caught: {{count}}</p>
           <div class="vs bgdarkgray round">
             <p class="round-info dsblue fcwhite center fslarge">tickleMonster55 vs. You</p>
           </div>

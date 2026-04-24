@@ -27,6 +27,7 @@ running = False
 catchOutcome = ""
 inBattle = False
 logs = []
+personalStats = profs.PersonalStats()
 trainers = [profs.Trainer("bot1", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
             profs.Trainer("bot2", copy.deepcopy(profemons[4]), copy.deepcopy(profemons[2]), copy.deepcopy(profemons[12]))]
 
@@ -68,7 +69,12 @@ def profPage():
 
 @app.route('/stats')
 def stats():
-    return render_template('personal-stats.html')
+    global profemons
+    count = 0
+    for prof in profemons:
+        if prof.caught == True:
+            count+=1
+    return render_template('personal-stats.html', personalStats=personalStats, count=count)
 
 @app.route('/team', methods=['GET','POST'])
 def team():
@@ -200,6 +206,9 @@ def battle():
         trainer_id = int(request.form['trainerID'])
         trainer = trainers[trainer_id]
         inBattle = True
+        log = player.name + " vs " + trainer.name
+        personalStats.appendBattle(log)
+
     elif request.method == 'POST' and 'move' in request.form:
         playerMove = request.form['move']
         if playerMove == "move1":
