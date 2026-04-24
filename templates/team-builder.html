@@ -45,10 +45,15 @@
             </div>
           </div>
           {% else %}
-          <div class="member-box bglightgray round member-stats fcwhite dsdarkgray">
+          <div class="member-box bglightgray round dsblue">
+            <div class="image round dsdarkgray">
+              <img class="round" src="{{ url_for('static', filename='assets/images/notUnlocked.png') }}" alt="Cannot use {{ prof.name }}" height="200">
+            </div>
+            <div class="member-stats fcwhite dsdarkgray">
               <div class="fssmall center">
-                  Empty Slot
+                Empty Slot
               </div>
+            </div>
           </div>
           {% endif %}
           {% endfor %}

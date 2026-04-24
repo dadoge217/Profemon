@@ -4,6 +4,7 @@ import profs
 import func
 import threading
 import time
+import copy
 
 app = Flask(__name__)
 app.debug = True
@@ -25,7 +26,9 @@ timerVal = 10
 running = False
 catchOutcome = ""
 inBattle = False
-trainers = [profs.Trainer("bot1", profemons[1], profemons[5], profemons[7]), profs.Trainer("bot2", profemons[4], profemons[2], profemons[12])]
+logs = []
+trainers = [profs.Trainer("bot1", copy.deepcopy(profemons[1]), copy.deepcopy(profemons[5]), copy.deepcopy(profemons[7])),
+            profs.Trainer("bot2", copy.deepcopy(profemons[4]), copy.deepcopy(profemons[2]), copy.deepcopy(profemons[12]))]
 
 
 def countdown():
@@ -102,8 +105,8 @@ def team():
                         print("pass2")
                         break
             player.team[teamslot] = 0
-        else: #add to slot 1
-            if (profemons[nameindex] not in player.team and (player.team[slot].hp == player.team[slot].maxHP)):
+        else: #add to slot
+            if (player.team[slot] == 0 or (profemons[nameindex] not in player.team and (player.team[slot].hp == player.team[slot].maxHP))):
                 player.team[slot] = profemons[nameindex]
             elif ((profemons[nameindex].hp != profemons[nameindex].maxHP) or (player.team[slot].hp != player.team[slot].maxHP)):
                 msg = "You cannot remove an injured Profemon from your team!"
@@ -178,7 +181,8 @@ def care():
 
 @app.route('/forfeit',methods=['GET', 'POST'])
 def forfeit():
-    global inBattle, trainer
+    global inBattle, trainer, logs
+    logs = []
     inBattle = False
     for prof in trainer.team:
         prof.hp = prof.maxHP
@@ -187,7 +191,11 @@ def forfeit():
 
 @app.route('/battle', methods=['GET', 'POST'])
 def battle():
-    global player, trainer, trainers, inBattle
+    global player, trainer, trainers, inBattle, logs
+    teamgood = True
+    for prof in player.team:
+        if prof == 0:
+            teamgood = False
     if request.method == 'POST' and 'trainerID' in request.form:
         trainer_id = int(request.form['trainerID'])
         trainer = trainers[trainer_id]
@@ -200,26 +208,33 @@ def battle():
             move = player.currentProf.move2
         else:
             move = player.currentProf.move3
-        bot_move = func.botMove(trainer, player)
-        func.doMoves(move, bot_move, player, trainer) #Do status move logic
-    return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle)
+        bot_move = func.botMove(trainer, player, logs)
+        func.doMoves(move, bot_move, player, trainer, logs) #Do status move logic
+    elif not teamgood:
+        msg = "You must have 3 team members to battle!"
+        return render_template('team-builder.html', team=player.team, totalProfs=profemons, msg=msg)
+    return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle, logs=logs)
 
 @app.route('/swap', methods=['POST'])
 def swap():
-    global player, trainer, trainers, inBattle
+    global player, trainer, trainers, inBattle, logs
     name = request.form['prof_name']
     for prof in player.team:
         if prof.name == name and not prof.fainted():
             if(not player.currentProf.fainted()):
                 player.currentProf = prof
                 move = "swap"
-                bot_move = func.botMove(trainer, player)
-                func.doMoves(move, bot_move, player, trainer)
+                temp = player.name + " switched to " + player.currentProf.name
+                logs.append(temp)
+                bot_move = func.botMove(trainer, player, logs)
+                func.doMoves(move, bot_move, player, trainer, logs)
                 break
             else:
                 player.currentProf = prof #To do: Resets (forfeiting and changing page should reset trainer profemon), stats page, working on in-game consoles, pretty up the main page, get status moves to work, get feed button to do something, make hp bar dynamic?
+                temp = player.name + " switched to " + player.currentProf.name
+                logs.append(temp)
                 break   
-    return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle)
+    return render_template('battle.html', player=player, trainer=trainer, trainers=trainers, inBattle=inBattle, logs=logs)
 
 @app.route('/unlockall')
 def unlock():

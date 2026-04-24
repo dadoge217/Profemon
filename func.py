@@ -18,7 +18,7 @@ profstuff = [['Greg', 'POISON', 'Sludge', 'Earth Shot', 'Tangent', '61', '72', '
                 ['Maletik', 'WATER', 'Bubble Burst', 'Earth Shot', 'Insult', '79', '83', '100', '78', 'assets/images/evos/maletic.png'],
                  
                 ['Meldin', 'ELECTRIC', 'Thunderbolt', 'Razor Leaf', 'Gameover', '70', '80', '60', '45', 'assets/images/base/meldin.jpg'],
-                ['Bektic', 'ELECTRIC', 'Thunderbolt', 'Razor Leaf', 'Gameover', '90', '115', '90', '55', 'assets/images/evos/bektic.png'],
+                ['Bektic', 'ELECTRIC', 'Thunderbolt', 'Razor Leaf', 'Gameover', '90', '115', '90', '8', 'assets/images/evos/bektic.png'],
                  
                 ['Maha', 'PSYCHIC', 'Confusion', 'Flamethrower', 'Gameover', '64', '85', '60', '65', 'assets/images/base/maha.jpg'],
                 ['Allouzi', 'PSYCHIC', 'Confusion', 'Flamethrower', 'Gameover', '80', '105', '90', '70', 'assets/images/evos/allouzi.png'],
@@ -59,7 +59,7 @@ profstuff = [['Greg', 'POISON', 'Sludge', 'Earth Shot', 'Tangent', '61', '72', '
                 ['Archie', 'DARK', 'Bite', 'Sludge', 'Draw', '63', '54', '41', '71', 'assets/images/base/archie.jpg'],
                 ['Horne', 'DARK', 'Bite', 'Sludge', 'Draw', '103', '87', '61', '84', 'assets/images/evos/horne.png'],
                 
-                ['MEGA GRANT', 'STEEL', 'Iron Head', 'FINAL FLASH', 'Compliment', '80', '125', '120', '65', 'assets/images/evos/mega_grant.png']]
+                ['MEGA GRANT', 'STEEL', 'Iron Head', 'FINAL FLASH', 'Compliment', '80', '125', '140', '65', 'assets/images/evos/mega_grant.png']]
 
 movestuff = [['Slap', 'NORMAL', '50', 'NULL'], #0
             ['Flamethrower', 'FIRE', '65', 'NULL'], #1
@@ -79,7 +79,7 @@ movestuff = [['Slap', 'NORMAL', '50', 'NULL'], #0
             ['Bite', 'DARK', '60', 'NULL'], #15
             ['Iron Head', 'STEEL', '70', 'NULL'], #16
             ['Moon Beam', 'FAIRY', '65', 'NULL'], #17
-            ['FINAL FLASH', 'PSYCHIC', '80', 'NULL'], #18
+            ['FINAL FLASH', 'PSYCHIC', '85', 'NULL'], #18
 
             ['Tangent', 'NORMAL', '0', 'speed'], #19
             ['Insult', 'NORMAL', '0', 'defense'], #20
@@ -220,23 +220,46 @@ def damageCalc(prof1, move, prof2):
     
     return damage
 
-def doMoves(pMove, bMove, player, trainer):
+def doMoves(pMove, bMove, player, trainer, logs):
+        if bMove != "swap":
+            logs.append("----------------")
         if(player.currentProf.speed >= trainer.currentProf.speed):
             if ((pMove != "swap") and not (player.currentProf.fainted())):
                 damage = damageCalc(player.currentProf, pMove, trainer.currentProf)
                 trainer.currentProf.takeDamage(damage)
+                temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                logs.append(temp)
+                if(trainer.currentProf.fainted()):
+                    temp = trainer.name + "'s " + trainer.currentProf.name + " fainted!"
+                    logs.append(temp)
             if ((bMove != "swap") and not (trainer.currentProf.fainted())):
                 damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
                 player.currentProf.takeDamage(damage)
+                temp = trainer.name + "'s " + trainer.currentProf.name + " used " + bMove.name
+                logs.append(temp)
+                if(player.currentProf.fainted()):
+                    temp = player.name + "'s " + player.currentProf.name + " fainted!"
+                    logs.append(temp)
         elif(trainer.currentProf.speed > player.currentProf.speed):
             if((bMove != "swap") and not (trainer.currentProf.fainted())):
-                 damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
-                 player.currentProf.takeDamage(damage)
+                damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
+                player.currentProf.takeDamage(damage)
+                temp = trainer.name + "'s " + trainer.currentProf.name + " used " + bMove.name
+                logs.append(temp)
+                if(player.currentProf.fainted()):
+                    temp = player.name + "'s " + player.currentProf.name + " fainted!"
+                    logs.append(temp)
             if ((pMove != "swap") and not (player.currentProf.fainted())):
                 damage = damageCalc(player.currentProf, pMove, trainer.currentProf)
                 trainer.currentProf.takeDamage(damage)
+                temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                logs.append(temp)
+                if(trainer.currentProf.fainted()):
+                    temp = trainer.name + "'s " + trainer.currentProf.name + " fainted!"
+                    logs.append(temp)
         if(trainer.currentProf.fainted()):
-            botMove(trainer, player)
+            botMove(trainer, player, logs)
+        
 
 
 # class Move:
@@ -244,7 +267,7 @@ def doMoves(pMove, bMove, player, trainer):
 #         self.type = type
 #         self.power = power
 #         self.status = status
-def botMove(trainer, player):
+def botMove(trainer, player, logs):
     lowestDamage = float('inf')
     profSwitch = trainer.currentProf
     if((isEffective(player.currentProf.type, trainer.currentProf.type) > 1) or trainer.currentProf.fainted()):
@@ -258,6 +281,10 @@ def botMove(trainer, player):
             profSwitch = trainer.team[2]
             lowestDamage = isEffective(player.currentProf.type, trainer.team[2].type)
         trainer.currentProf = profSwitch
+        temp = "----------------"
+        logs.append(temp)
+        temp = trainer.name + " switched to " + trainer.currentProf.name
+        logs.append(temp)
         return "swap"
     moves = [
         trainer.currentProf.move1,
