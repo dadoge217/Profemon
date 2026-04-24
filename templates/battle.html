@@ -13,12 +13,16 @@
 {% block content %}
   {% if not inBattle %}
     <div class="big-box">
-      <h2>Select a Trainer</h2>
+      <div class="round bgwhite center fcdarkgray dsdarkgray fslarge">
+        <h2 class="dslightergray">Select a Trainer to begin battling!</h2>
+      </div>
       {% for t in trainers %}
         <form method="POST" action="/battle">
           <input type="hidden" name="trainerID" value="{{ loop.index0 }}">
-          <button type="submit">
-            {{ t.name }}
+          <button type="submit" class="pet-button round bgdarkblue center fcwhite dsdarkgray fsmed">
+            <p class="dsdarkgray">
+              {{ t.name }}
+            </p>
           </button>
         </form>
       {% endfor %}
