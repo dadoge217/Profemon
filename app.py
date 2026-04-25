@@ -176,6 +176,7 @@ def minigame():
                 counter = 0
                 catchOutcome = ""
                 threading.Thread(target=countdown, daemon=True).start()
+                return redirect('/catch')
             else:
                 counter += 1
 
