@@ -336,7 +336,7 @@ def relock():
     profemons = func.catchProf(profemons, "John")
     profemons = func.catchProf(profemons, "Giovanni")
     for i in trainers:
-        i.shown = True
+        i.shown = False
     trainers[0].shown = True
     return redirect('/')
 
