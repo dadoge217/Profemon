@@ -44,6 +44,7 @@
               <div>Clicks: <span id="counter">0</span></div>
 
               <div id="result"></div>
+              {% if show %}
               <script>
                 let lastResult = null;
 
@@ -68,6 +69,7 @@
                     }
                 }, 500);
                 </script>
+                {% endif %}
           </div>
         </div>
         

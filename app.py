@@ -45,20 +45,21 @@ trainers = [profs.Trainer("Bot 1", copy.deepcopy(profemons[0]), copy.deepcopy(pr
 
 def countdown():
     global timerVal, running, showProf, counter, profemons, catchOutcome
-    running = True
     while timerVal > 0:
         time.sleep(1)
-        timerVal -= 1
+        with lock:
+            if timerVal <= 0:
+                break
+            timerVal -= 1
     roll = random.randint(1, 100)
     if counter >= roll:
         profemons = func.catchProf(profemons, wildProf.name)
-        catchOutcome = f"Congrats! You caught a {wildProf.name}"
+        catchOutcome = f"Congrats! You caught a {wildProf.name}!"
     else:
         catchOutcome = f"The {wildProf.name} got away!"
     running = False
     showProf = False #turn this into the part for logic, then counter = 0
     counter = 0
-    timerVal = 10
 
 @app.route('/')
 def index():
@@ -146,7 +147,8 @@ def team():
 
 @app.route('/catch', methods=['GET', 'POST'])
 def catch():
-    global showProf, profemons, wildProf
+    global showProf, profemons, wildProf, catchOutcome
+    catchOutcome = ""
     if request.method == 'POST' and 'look' in request.form:
         encounterChance = random.randint(1, 100)
         if encounterChance <= 97:
@@ -164,17 +166,18 @@ def minigame():
 
     if 'flee' in request.form:
         showProf = False
-        return '', 204
+        return redirect('/catch')
     
     if 'click' in request.form:
-        counter += 1
         with lock:
-            if not running:
+            if not running and catchOutcome == "":
                 running = True  # 🔥 set immediately inside lock
                 timerVal = 10
                 counter = 0
                 catchOutcome = ""
                 threading.Thread(target=countdown, daemon=True).start()
+            else:
+                counter += 1
 
     return '', 204
 
