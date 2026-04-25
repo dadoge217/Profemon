@@ -129,9 +129,15 @@ def team():
                         break
             player.team[teamslot] = 0
         else: #add to slot
-            if (player.team[slot] == 0 or (profemons[nameindex] not in player.team and (player.team[slot].hp == player.team[slot].maxHP))):
+            notInTeam = True
+            for i in player.team:
+                if i != 0 and i.name == profemons[nameindex].name:
+                    notInTeam = False
+                    break
+            print(notInTeam)
+            if ((player.team[slot] == 0 and notInTeam) or (notInTeam and (player.team[slot].hp == player.team[slot].maxHP))):
                 player.team[slot] = profemons[nameindex]
-            elif ((profemons[nameindex].hp != profemons[nameindex].maxHP) or (player.team[slot].hp != player.team[slot].maxHP)):
+            elif ((profemons[nameindex].hp != profemons[nameindex].maxHP) or (notInTeam and (player.team[slot].hp != player.team[slot].maxHP))):
                 msg = "You cannot remove an injured Profemon from your team!"
             else:
                 msg = "You can only have 1 of each Profemon on your team!"
@@ -314,19 +320,24 @@ def swap():
 
 @app.route('/unlockall')
 def unlock():
-    global profemons
+    global profemons, trainers
     for i in profemons:
         i.caught = True
+    for i in trainers:
+        i.shown = True
     return redirect('/')
 
 @app.route('/relockall')
 def relock():
-    global profemons
+    global profemons, trainers
     for i in profemons:
         i.caught = False
     profemons = func.catchProf(profemons, "Mikhail")
     profemons = func.catchProf(profemons, "John")
     profemons = func.catchProf(profemons, "Giovanni")
+    for i in trainers:
+        i.shown = True
+    trainers[0].shown = True
     return redirect('/')
 
 if __name__ == "__main__":

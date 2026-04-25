@@ -263,16 +263,16 @@ def doMoves(pMove, bMove, player, trainer, logs, personalStats):
                         temp = player.name + "'s " + player.currentProf.name + "'s ATTACK fell!"
                         logs.append(temp)
                     elif bMove.status == "defense":
-                        trainer.currentProf.defense = trainer.currentProf.defense * 0.67
-                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        player.currentProf.defense = player.currentProf.defense * 0.67
+                        temp = trainer.name + "'s " + trainer.currentProf.name + " used " + bMove.name
                         logs.append(temp)
-                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s DEFENSE fell!"
+                        temp = player.name + "'s " + player.currentProf.name + "'s DEFENSE fell!"
                         logs.append(temp)
                     else:
-                        trainer.currentProf.speed = trainer.currentProf.speed * 0.67
-                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        player.currentProf.speed = player.currentProf.speed * 0.67
+                        temp = trainer.name + "'s " + trainer.currentProf.name + " used " + bMove.name
                         logs.append(temp)
-                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s SPEED fell!"
+                        temp = player.name + "'s " + player.currentProf.name + "'s SPEED fell!"
                         logs.append(temp)
                 else:
                     damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
@@ -293,15 +293,15 @@ def doMoves(pMove, bMove, player, trainer, logs, personalStats):
                         logs.append(temp)
                     elif bMove.status == "defense":
                         trainer.currentProf.defense = trainer.currentProf.defense * 0.67
-                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        temp = player.name + "'s " + player.currentProf.name + " used " + bMove.name
                         logs.append(temp)
                         temp = trainer.name + "'s " + trainer.currentProf.name + "'s DEFENSE fell!"
                         logs.append(temp)
                     else:
-                        trainer.currentProf.speed = trainer.currentProf.speed * 0.67
-                        temp = player.name + "'s " + player.currentProf.name + " used " + pMove.name
+                        player.currentProf.speed = player.currentProf.speed * 0.67
+                        temp = trainer.name + "'s " + trainer.currentProf.name + " used " + bMove.name
                         logs.append(temp)
-                        temp = trainer.name + "'s " + trainer.currentProf.name + "'s SPEED fell!"
+                        temp = player.name + "'s " + player.currentProf.name + "'s SPEED fell!"
                         logs.append(temp)
                 else:
                     damage = damageCalc(trainer.currentProf, bMove, player.currentProf)
@@ -353,7 +353,11 @@ def doMoves(pMove, bMove, player, trainer, logs, personalStats):
 def botMove(trainer, player, logs):
     lowestDamage = float('inf')
     profSwitch = trainer.currentProf
-    if((isEffective(player.currentProf.type, trainer.currentProf.type) > 1) or trainer.currentProf.fainted()):
+    faintedCount = 0
+    for i in trainer.team:
+        if i.fainted():
+            faintedCount += 1
+    if(((isEffective(player.currentProf.type, trainer.currentProf.type) > 1) or trainer.currentProf.fainted()) and (faintedCount != 2 and not trainer.currentProf.fainted())):
         if((isEffective(player.currentProf.type, trainer.team[0].type) <= lowestDamage) and not trainer.team[0].fainted()):
             profSwitch = trainer.team[0]
             lowestDamage = isEffective(player.currentProf.type, trainer.team[0].type)
