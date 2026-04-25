@@ -354,10 +354,7 @@ def botMove(trainer, player, logs):
     lowestDamage = float('inf')
     profSwitch = trainer.currentProf
     faintedCount = 0
-    for i in trainer.team:
-        if i.fainted():
-            faintedCount += 1
-    if(((isEffective(player.currentProf.type, trainer.currentProf.type) > 1) or trainer.currentProf.fainted()) and (faintedCount != 2 and not trainer.currentProf.fainted())):
+    if((isEffective(player.currentProf.type, trainer.currentProf.type) > 1) or trainer.currentProf.fainted()):
         if((isEffective(player.currentProf.type, trainer.team[0].type) <= lowestDamage) and not trainer.team[0].fainted()):
             profSwitch = trainer.team[0]
             lowestDamage = isEffective(player.currentProf.type, trainer.team[0].type)
@@ -367,12 +364,13 @@ def botMove(trainer, player, logs):
         if(isEffective(player.currentProf.type, trainer.team[2].type) <= lowestDamage and not trainer.team[2].fainted()):
             profSwitch = trainer.team[2]
             lowestDamage = isEffective(player.currentProf.type, trainer.team[2].type)
-        trainer.currentProf = profSwitch
-        temp = "----------------"
-        logs.append(temp)
-        temp = trainer.name + " switched to " + trainer.currentProf.name
-        logs.append(temp)
-        return "swap"
+        if trainer.currentProf.name != profSwitch.name:
+            trainer.currentProf = profSwitch
+            temp = "----------------"
+            logs.append(temp)
+            temp = trainer.name + " switched to " + trainer.currentProf.name
+            logs.append(temp)
+            return "swap"
     moves = [
         trainer.currentProf.move1,
         trainer.currentProf.move2,
